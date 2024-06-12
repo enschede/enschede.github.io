@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
         spaceBetween: 0,
         speed: 1000,
         autoplay: {
-            delay: 3000,
+            delay: 10000,
         },
 
         pagination: {
