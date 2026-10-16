@@ -1,5 +1,5 @@
 // Vervang deze voorbeeldinhoud door je eigen naam, teksten en foto's.
-export const profile = { name: 'Jouw naam', email: '', phone: '', location: '', linkedin: '', tagline: 'Persoonlijk. Nieuwsgierig. Betrokken.' };
+export const profile = { name: 'Jouw naam', email: 'marc@worldofciam.nl', phone: '06-24243469', location: '', linkedin: '', tagline: 'Persoonlijk. Nieuwsgierig. Betrokken.' };
 export const photos = {
  hero: ['photo-1470770841072-f978cf4d019e','Een stil meer tussen de bergen'],
  about: ['photo-1441974231531-c6227db76b6e','Zonlicht tussen de bomen'],
