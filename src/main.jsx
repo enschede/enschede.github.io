@@ -10,7 +10,8 @@ const Arrow = () => <span aria-hidden="true">↗</span>;
 
 function Photo({name, eager = false, className = ''}) {
     const [id, alt] = photos[name];
-    return <img className={className} src={`https://images.unsplash.com/${id}?auto=format&fit=crop&w=1600&q=85`}
+    const src = id.startsWith('photo-') ? `https://images.unsplash.com/${id}?auto=format&fit=crop&w=1600&q=85` : id;
+    return <img className={className} src={src}
                 alt={alt} loading={eager ? 'eager' : 'lazy'} width="1600" height="1100"/>;
 }
 
@@ -21,7 +22,7 @@ function Header() {
         <button className="menu-toggle" aria-expanded={open} aria-controls="navigation"
                 onClick={() => setOpen(!open)}>{open ? 'Sluiten ×' : 'Menu ☰'}</button>
         <nav id="navigation" className={open ? 'open' : ''} aria-label="Hoofdnavigatie" onClick={() => setOpen(false)}>
-            <a href={homeLink('over')}>Over mij</a><a href={homeLink('werk')}>Mijn werk</a><a
+            <a href={homeLink('ciam')}>Over CIAM</a><a href={homeLink('werk')}>Mijn werk</a><a
             aria-current={page === 'blog' ? 'page' : undefined} href="./blog.html">Verhalen</a><a
             aria-current={page === 'mijn-verhaal' ? 'page' : undefined} href="./mijn-verhaal.html">Mijn verhaal</a><a
             className="nav-contact" href={homeLink('kennismaken')}>Even kennismaken <Arrow/></a></nav>
@@ -41,7 +42,7 @@ function Contact() {
     return (
         <section className="company-footer section" id="contact"
                  aria-label="World of CIAM bedrijfs- en contactgegevens">
-            <h2>Contact</h2>
+            <Label number="07">Contact</Label><h2>Contact</h2>
             <div className="company-footer-grid">
                 <div>
                     <h3>Adres</h3>
@@ -111,15 +112,15 @@ function Home() {
         <section className="hero" id="welkom">
             <div className="hero-copy"><Label number="01">Welkom, fijn dat je er bent</Label><h1>MAAK INLOGGEN MAKKELIJKER,<br/>VEILIGER EN GOEDKOPER</h1><p>Een persoonlijke plek voor wat mij inspireert,<br
                 className="desktop"/> het werk dat ik doe en de verhalen die ik wil delen.</p><a className="button"
-                                                                                                 href="#over">Ontdek
+                                                                                                 href="./mijn-verhaal.html">Ontdek
                 mijn verhaal <span>↓</span></a><p className="small-note">{profile.tagline}</p></div>
             <div className="hero-image"><Photo name="hero" eager/>
                 <div className="image-note">Een frisse blik begint met even stilstaan.</div>
             </div>
-            <div className="hero-bottom"><span>Met aandacht voor wat ertoe doet</span><a href="#over">Scroll om te
+            <div className="hero-bottom"><span>Met aandacht voor wat ertoe doet</span><a href="#ciam">Scroll om te
                 ontdekken ↓</a></div>
         </section>
-        <section className="split section" id="over">
+        <section className="split section" id="ciam">
             <div className="photo-frame"><Photo name="about"/></div>
             <div className="section-copy">
                 <Label number="02">Het speelveld van CIAM</Label>
@@ -214,24 +215,28 @@ function Blog() {
 }
 
 function MyStory() {
-    return <article className="subpage article"><Label number="Persoonlijk">Mijn verhaal</Label><h1>De weg naar<br/><em>wie
-        ik ben.</em></h1><p className="intro">Een plek voor mijn achtergrond, wat mij drijft en de ervaringen die mij
-        hebben gevormd.</p><Photo name="background" eager/>
-        <div className="article-body"><p className="example-note">Dit is voorbeeldinhoud. Hier komt binnenkort mijn
-            persoonlijke verhaal.</p>{[
-            ['Waar het begon', 'Vertel hier over je achtergrond en de eerste ervaringen die je hebben gevormd. Wat maakte je nieuwsgierig en welke richting wilde je ontdekken?'],
-            ['Wat mij heeft gevormd', 'Gebruik deze ruimte voor bijzondere ontmoetingen, keuzes en momenten die belangrijk voor je zijn geweest. Wat heb je ervan geleerd en wat neem je mee?'],
-            ['Wat mij drijft', 'Beschrijf waar je energie van krijgt, wat je belangrijk vindt en hoe dat terugkomt in je leven en werk.'],
-            ['Waar ik naartoe wil', 'Deel hier je ideeën voor de toekomst. Wat wil je ontdekken, maken of betekenen voor anderen?']
-        ].map(([title, body]) => <section key={title}><h2>{title}</h2><p>{body}</p></section>)}<TextLink
-            href={homeLink('contact')}>Laten we kennismaken</TextLink></div>
+    return <article className="subpage about-section">
+        <Label number="Persoonlijk">Mijn verhaal</Label>
+        <h1>Zelf iets maken blijft leuk. Ook na bijna 40 jaar in de ICT.</h1>
+        <div className="about-layout">
+            <div className="photo-frame"><Photo name="portrait" eager/></div>
+            <div className="about-copy">
+                    <p>Ooit begon ik als programmeur. Rond het jaar 2000 kreeg ik de kans om architect te worden. Daarmee werd mijn blik een stuk breder. Business value leveren interesseerde me veel meer dan alleen bits en bytes.</p>
+                    <p>Na een jaar of tien begon het programmeren toch weer te kriebelen. Zelf dingen maken, uitproberen en werkend krijgen. Dus ging ik weer bouwen, met de ervaring als architect in mijn achterzak. Die combinatie past bij mij: het geheel overzien én weten wat er nodig is om het aan de praat te krijgen.</p>
+                    <p>In de afgelopen twintig jaar zat in bijna ieder project wel een klantportaal. En bij zo’n portaal hoorde meestal een inlogscherm met een gebruikersnaam en wachtwoord. Het lijkt een klein onderdeel, totdat een klant niet binnenkomt. Dan staat alles wat je achter dat inlogscherm hebt gebouwd ineens buiten bereik.</p>
+                    <p>Inmiddels ligt daar mijn specialisme: klanten soepel en veilig laten registreren en inloggen. Customer Identity &amp; Access Management, oftewel CIAM. Daarin komen voor mij techniek, bedrijfsprocessen en de ervaring van de klant samen.</p>
+                    <p>Als onafhankelijk CIAM-consultant help ik product owners en architecten om rust en overzicht te krijgen. Je hoeft niet zelf alle antwoorden te hebben. Ik denk met je mee, maak keuzes en risico’s inzichtelijk en geef advies vanuit mijn ervaring. Soms met een compleet ontwerp, soms met een second opinion of gewoon een middag sparren. En waar nodig bouw ik mee.</p>
+                    <p>Mijn aanpak is nuchter: eerst draaien, dan verfraaien. Kleine, beheersbare stappen, met oog voor wat er al staat. Zo kun jij met vertrouwen beslissingen nemen en houd je zelf de regie.</p>
+                <TextLink href={homeLink('kennismaken')}>Laten we kennismaken</TextLink>
+            </div>
+        </div>
     </article>
 }
 
 function Longread() {
     return <article className="subpage article"><Label number="Longread">Voorbeeldverhaal · 3 min leestijd</Label><h1>De
         waarde van<br/><em>even stilstaan.</em></h1><p className="intro">Soms ontstaat een nieuw idee juist wanneer je
-        even niets hoeft. Over aandacht, ruimte en kijken met een frisse blik.</p><Photo name="hero" eager/>
+        even niets hoeft. Over aandacht, ruimte en kijken met een frisse blik.</p><Photo name="landscape" eager/>
         <div className="article-body"><p className="example-note">Dit is een voorbeeldtekst voor de indeling van een
             longread.</p>{[['Ruimte in je dag', 'Een agenda vult zich vaak vanzelf. Een afspraak hier, een bericht daar. Voor je het weet is de dag voorbij. Even stilstaan kan helpen om opnieuw te zien wat je aandacht verdient. Het hoeft niet groot te zijn: een wandeling, een kop koffie zonder scherm of een paar gedachten op papier.'], ['Kijken met aandacht', 'Wie wat langzamer kijkt, ziet andere dingen. Het licht op een muur, een onverwachte vraag in een gesprek, een idee dat nog geen vorm heeft. Aandacht geeft ruimte aan wat je anders misschien voorbij zou lopen.'], ['Een klein begin', 'Je hoeft niet meteen alles anders te doen. Begin met een klein moment dat je voor jezelf vrijhoudt. Wat valt je op? Wat wil je bewaren? En wat mag nog even wachten? Misschien begint daar wel een nieuw verhaal.']].map(([title, body]) =>
             <section key={title}><h2>{title}</h2><p>{body}</p><p>{filler}</p></section>)}<TextLink href="./blog.html">Terug

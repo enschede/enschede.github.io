@@ -216,3 +216,13 @@ footer p, footer > a:last-child { font-size: 11px; color: #bbb; }
 .approach-steps p { margin: 0; }
 .vision .approach-photo img { height: auto; aspect-ratio: 4 / 5; }
 @media(max-width:700px) { .vision .approach-photo img { aspect-ratio: 4 / 3; } }
+
+.about-section > h2 { max-width: 880px; margin-bottom: 40px; }
+.about-layout { display: grid; grid-template-columns: minmax(0,.8fr) minmax(0,1.2fr); gap: 7%; align-items: start; }
+.about-layout .photo-frame { height: auto; aspect-ratio: 3 / 2; }
+.about-copy { min-width: 0; }
+.about-copy p:first-child { margin-top: 0; }
+.company-footer > .eyebrow, .company-footer > .eyebrow span { color: #ccc; }
+@media(max-width:700px) {
+    .about-layout { grid-template-columns: minmax(0,1fr); gap: 28px; }
+}

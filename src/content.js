@@ -8,7 +8,9 @@ export const profile = {
     tagline: 'Persoonlijk. Nieuwsgierig. Betrokken.'
 };
 export const photos = {
-    hero: ['photo-1470770841072-f978cf4d019e', 'Een stil meer tussen de bergen'],
+    hero: ['./images/eb230711 Marc Enschede342 copy.png', 'Marc Enschede'],
+    portrait: ['./images/eb230711 Marc Enschede342 copy.png', 'Marc Enschede'],
+    landscape: ['photo-1470770841072-f978cf4d019e', 'Een stil meer tussen de bergen'],
     about: ['photo-1441974231531-c6227db76b6e', 'Zonlicht tussen de bomen'],
     vision: ['photo-1470252649378-9c29740c9fa8', 'Een landschap in zacht ochtendlicht'],
     work: ['photo-1499750310107-5fef28a66643', 'Notitieboek en koffie op een werktafel'],
