@@ -1,6 +1,6 @@
 # Persoonlijke website
 
-Rustige, responsive React-website met zeven homepageblokken en afzonderlijke HTML-ingangen voor blog, cv en longread. Alle inhoud is voorlopig voorbeeldinhoud. De vormgeving is geïnspireerd op Rocked van aThemes (https://athemes.com/theme/rocked/): witte navigatie, een brede fotobanner, stevige koppen en rechte knoppen. Het palet en de fotografie zijn zwart-wit-grijs. Dit is een eigen React-implementatie; het WordPress-theme is niet geïnstalleerd.
+Rustige, responsive React-website met zeven homepageblokken en afzonderlijke HTML-ingangen voor blog, Mijn verhaal en longread. Alle inhoud is voorlopig voorbeeldinhoud. De vormgeving is geïnspireerd op Rocked van aThemes (https://athemes.com/theme/rocked/): witte navigatie, een brede fotobanner, stevige koppen en rechte knoppen. Het palet en de fotografie zijn zwart-wit-grijs. Dit is een eigen React-implementatie; het WordPress-theme is niet geïnstalleerd.
 
 ## Lokaal bekijken
 
@@ -21,9 +21,9 @@ npm run preview
 ## Aanpassen
 
 - `src/content.js`: naam, e-mailadres (`email`), telefoon (`phone`), locatie/adres (`location`), LinkedIn-URL (`linkedin`), fotoreferenties en algemene opvultekst. Zolang het e-mailadres leeg is, verschijnt geen werkende mailknop.
-- `src/main.jsx`: zeven blokken, navigatie, blogoverzicht, cv en longread. Voeg voor meer artikelen een nieuwe HTML-ingang en de bijbehorende inhoud toe; registreer de ingang in `vite.config.js`.
+- `src/main.jsx`: zeven blokken, navigatie, blogoverzicht, Mijn verhaal en longread. Voeg voor meer artikelen een nieuwe HTML-ingang en de bijbehorende inhoud toe; registreer de ingang in `vite.config.js`.
 - `src/style.css`: kleuren, typografie, layouts en mobiele weergave.
-- `index.html`, `blog.html`, `cv.html`, `longread.html`: wijzig de metadata naar de eigen inhoud voor publicatie.
+- `index.html`, `blog.html`, `mijn-verhaal.html`, `longread.html`: wijzig de metadata naar de eigen inhoud voor publicatie.
 
 Foto's worden geladen via Unsplash en lettertypen via Google Fonts. Er zijn dus externe verbindingen nodig; bij het uitvallen van lettertypen worden systeemfonts gebruikt. Vervang de voorbeeldfoto's desgewenst door eigen bestanden in `public/images/` en gebruik relatieve afbeeldingspaden. Er is geen CMS of backend nodig.
 
@@ -37,8 +37,10 @@ De workflow bouwt de site en publiceert `dist`. De relatieve Vite-base ondersteu
 
 ## Scripts en toekomstige integraties
 
-Er is geen Content Security Policy, sandbox of scriptfilter toegevoegd dat externe integraties zoals Leadinfo tegenhoudt. Voeg de leverancierssnippet toe aan de vier HTML-bestanden of laad deze eenmalig vanuit een gedeelde integratiemodule in `src/main.jsx`. Houd eigen tokens die geheim moeten blijven buiten deze publieke frontend. Voeg bij het daadwerkelijk inschakelen van tracking de toepasselijke toestemmingslogica toe. Er is nu geen tracking actief.
+Er is geen Content Security Policy, sandbox of scriptfilter toegevoegd dat externe integraties zoals Leadinfo tegenhoudt. Voeg de leverancierssnippet toe aan de vier inhoudelijke HTML-bestanden of laad deze eenmalig vanuit een gedeelde integratiemodule in `src/main.jsx`. Houd eigen tokens die geheim moeten blijven buiten deze publieke frontend. Voeg bij het daadwerkelijk inschakelen van tracking de toepasselijke toestemmingslogica toe. Er is nu geen tracking actief.
 
 ## Toegankelijkheid
 
-Semantische paginadelen, toetsenbordfocus, skiplink, alt-teksten, een menu met `aria-expanded`, respect voor verminderde beweging en een printweergave voor het cv zijn aanwezig.
+Semantische paginadelen, toetsenbordfocus, skiplink, alt-teksten, een menu met `aria-expanded`, respect voor verminderde beweging en een printweergave zijn aanwezig.
+
+De oude URL `cv.html` verwijst door naar `mijn-verhaal.html`, zodat bestaande links blijven werken.
