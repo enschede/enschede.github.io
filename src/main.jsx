@@ -154,7 +154,7 @@ function Home() {
                 <p>Een goed CIAM-project begint met begrijpen welke proposities je ondersteunt en hoe je
                     klantgroepen eruitzien. Daarna kijk je hoe de processen door je organisatie lopen en
                     tot welke data welke klant toegang moet hebben. Dat is wat jouw organisatie uniek maakt.</p>
-                <p>Pas daarna komt de techniek. De architectuurpatronen zijn uitgebreid beschreven.
+                <p>Pas daarna komt de techniek. Die architectuurpatronen zijn uitgebreid beschreven.
                     De uitdaging zit in begrijpen wat jouw organisatie nodig heeft en hoe je daar komt.</p>
                 <ol className="approach-steps">
                     <li><h3>Waar staan we nu?</h3>
