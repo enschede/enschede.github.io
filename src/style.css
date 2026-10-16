@@ -163,7 +163,7 @@ footer p, footer > a:last-child { font-size: 11px; color: #bbb; }
 
 /* Final homepage block: company information and contact details. */
 .company-footer { background: #222; color: #f5f5f5; padding-bottom: 28px; }
-.company-footer-grid { display: grid; grid-template-columns: 1.5fr 1fr .85fr 1.25fr; gap: 36px; }
+.company-footer-grid { display: grid; grid-template-columns: minmax(0,1fr); gap: 36px; }
 .company-footer-grid > div { min-width: 0; }
 .company-footer .company-intro h2 { font-size: 27px; text-transform: none; margin: 0 0 20px; }
 .company-footer .company-intro h2::after { display: none; }
@@ -181,7 +181,7 @@ footer p, footer > a:last-child { font-size: 11px; color: #bbb; }
 .company-bottom { border-top: 1px solid #555; margin-top: 24px; padding-top: 20px; display: flex; justify-content: space-between; align-items: center; gap: 15px; color: #ccc; font-size: 11px; }
 .company-bottom a { font-size: 11px; }
 @media(max-width:1000px) {
-  .company-footer-grid { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 35px; }
+  .company-footer-grid { gap: 35px; }
 }
 @media(max-width:600px) {
   .company-footer-grid { grid-template-columns: minmax(0,1fr); gap: 24px; }

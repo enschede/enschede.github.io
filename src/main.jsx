@@ -15,29 +15,6 @@ function Contact() {
   return (
     <section className="company-footer section" id="contact" aria-label="World of CIAM bedrijfs- en contactgegevens">
       <div className="company-footer-grid">
-        <div className="company-intro">
-          <h2>World of CIAM</h2>
-          <p>Senior interim IT-professionals voor de transformatieprogramma’s van grote corporate klanten. Change-, project- &amp; programmamanagement en agile consulting. Goed gedaan, snel gedaan.</p>
-          <p className="company-motto"><span aria-hidden="true">✦</span> Wij blijven tot het werkt</p>
-        </div>
-        <div>
-          <h3>Diensten</h3>
-          <ul>
-            <li><a href="https://sprint2perform.nl/#agile">Agile Consulting</a></li>
-            <li><a href="https://sprint2perform.nl/#project">Project &amp; Programma</a></li>
-            <li><a href="https://sprint2perform.nl/#change">Change Management</a></li>
-            <li><a href="https://sprint2perform.nl/#products">Product Catalogus</a></li>
-          </ul>
-        </div>
-        <div>
-          <h3>Bedrijf</h3>
-          <ul>
-            <li><a href="https://sprint2perform.nl/#home::who-we-are">Wie we zijn</a></li>
-            <li><a href="https://sprint2perform.nl/#tim">Tim Huibers</a></li>
-            <li><a href="https://sprint2perform.nl/#robert">Robert Tilmans</a></li>
-            <li><a href={`mailto:${profile.email}`}>Contact</a></li>
-          </ul>
-        </div>
         <div>
           <h3>Contact</h3>
           <address>
