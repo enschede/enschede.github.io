@@ -208,3 +208,11 @@ footer p, footer > a:last-child { font-size: 11px; color: #bbb; }
 
 .company-footer .linkedin-icon { display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; padding: 0; border: 1px solid #999; color: #fff; }
 .company-footer .linkedin-icon:hover { background: #fff; color: #222; }
+
+.approach-steps { list-style: decimal-leading-zero; margin: 28px 0 0; padding-left: 32px; }
+.approach-steps li { padding: 0 0 18px 10px; }
+.approach-steps li::marker { font-family: Montserrat, Arial, sans-serif; font-weight: 600; color: #626262; }
+.approach-steps h3 { font-size: 19px; margin: 0 0 8px; }
+.approach-steps p { margin: 0; }
+.vision .approach-photo img { height: auto; aspect-ratio: 4 / 5; }
+@media(max-width:700px) { .vision .approach-photo img { aspect-ratio: 4 / 3; } }

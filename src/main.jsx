@@ -109,8 +109,7 @@ function BookingEmbed() {
 function Home() {
     return <>
         <section className="hero" id="welkom">
-            <div className="hero-copy"><Label number="01">Welkom, fijn dat je er bent</Label><h1>Ruimte voor
-                aandacht.<br/><em>En nieuwe ideeën.</em></h1><p>Een persoonlijke plek voor wat mij inspireert,<br
+            <div className="hero-copy"><Label number="01">Welkom, fijn dat je er bent</Label><h1>MAAK INLOGGEN MAKKELIJKER,<br/>VEILIGER EN GOEDKOPER</h1><p>Een persoonlijke plek voor wat mij inspireert,<br
                 className="desktop"/> het werk dat ik doe en de verhalen die ik wil delen.</p><a className="button"
                                                                                                  href="#over">Ontdek
                 mijn verhaal <span>↓</span></a><p className="small-note">{profile.tagline}</p></div>
@@ -122,15 +121,61 @@ function Home() {
         </section>
         <section className="split section" id="over">
             <div className="photo-frame"><Photo name="about"/></div>
-            <div className="section-copy"><Label number="02">Over mij</Label><h2>Achter ieder idee<br/>zit <em>een
-                verhaal.</em></h2><p>{filler}</p><p>Hier kun je iets vertellen over je achtergrond, je nieuwsgierigheid
-                en de kleine dingen die voor jou het verschil maken.</p><TextLink href="./mijn-verhaal.html">Lees mijn
-                verhaal</TextLink></div>
+            <div className="section-copy">
+                <Label number="02">Het speelveld van CIAM</Label>
+                <h2>Je wilt dat de business maximaal kan leveren. Hoe helpt CIAM daarbij?</h2>
+                <p>Je wilt nieuwe klanten verwelkomen, bestaande klanten beter bedienen en nieuwe digitale
+                    diensten snel naar de markt brengen. Dan moet toegang goed geregeld zijn. Klanten moeten
+                    eenvoudig een account kunnen aanmaken, veilig kunnen inloggen en verder kunnen met waarvoor
+                    ze kwamen. CIAM legt daarvoor de basis, zodat je business kan groeien.</p>
+                <p>Als product owner wil je investeren in wat waarde oplevert. Minder klanten die afhaken bij
+                    registratie. Minder telefoontjes over inlogproblemen. Meer klanten die je diensten gebruiken.
+                    Maar welke verbetering heeft de meeste impact? En hoe maak je van die ambitie een roadmap
+                    waarmee je team gericht kan leveren?</p>
+                <p>Als architect wil je dat technologie die ambities mogelijk maakt. Een gezamenlijke basis
+                    voor klantidentiteit en toegang, waarop teams kunnen voortbouwen. Zodat een nieuwe dienst
+                    aansluiten minder tijd kost, je niet telkens hetzelfde oplost en veranderingen beheersbaar
+                    blijven. Hoe richt je dat in, passend bij het bestaande landschap en de plannen van de business?</p>
+                <p>De waarde van CIAM zit in wat je ermee mogelijk maakt: een betere klantreis, sneller nieuwe
+                    functionaliteit leveren en minder kosten voor beheer en ondersteuning. Daarvoor moet je
+                    keuzes maken. Wat draagt het meest bij aan je doelen? Wat moet nu en wat kan later?
+                    En hoe houd je de toegang veilig terwijl je vooruitgaat?</p>
+                <p>Ik help je die verbinding te maken. Van businessdoelen naar concrete keuzes en een uitvoerbaar
+                    plan voor product owners, architecten en teams. Met duidelijke prioriteiten en resultaten
+                    waaraan je kunt zien wat het oplevert. Zodat CIAM de business helpt maximaal te leveren,
+                    door inloggen makkelijker, veiliger en goedkoper te maken.</p>
+            </div>
         </section>
         <section className="vision section" id="visie">
-            <div><Label number="03">Wat mij drijft</Label><h2>Meer aandacht.<br/>Meer betekenis.<br/><em>Meer
-                verbinding.</em></h2></div>
-            <div><Photo name="vision"/><p>{filler}</p></div>
+            <div>
+                <Label number="03">Mijn aanpak</Label>
+                <h2>CIAM in 4 stappen</h2>
+                <p>Bij platformen denken we al snel aan techniek. Als je meteen die kant op gaat, loop je snel vast.</p>
+                <p>Een goed CIAM-project begint met begrijpen welke proposities je ondersteunt en hoe je
+                    klantgroepen eruitzien. Daarna kijk je hoe de processen door je organisatie lopen en
+                    tot welke data welke klant toegang moet hebben. Dat is wat jouw organisatie uniek maakt.</p>
+                <p>Pas daarna komt de techniek. De architectuurpatronen zijn uitgebreid beschreven.
+                    De uitdaging zit in begrijpen wat jouw organisatie nodig heeft en hoe je daar komt.</p>
+                <ol className="approach-steps">
+                    <li><h3>Waar staan we nu?</h3>
+                        <p>We brengen de huidige situatie in kaart: proposities, klantgroepen, processen,
+                            data en systemen. Wat werkt goed, waar lopen klanten en teams tegenaan en
+                            wat betekent dat voor de business?</p></li>
+                    <li><h3>Waar willen we naartoe?</h3>
+                        <p>We bepalen wat CIAM moet opleveren voor je klanten en organisatie. Welke ambities
+                            willen we ondersteunen, welke verbeteringen hebben prioriteit en waaraan zien
+                            we dat we ons doel bereiken?</p></li>
+                    <li><h3>Hoe richten we het in?</h3>
+                        <p>Vanuit die gewenste situatie werken we de inrichting van het nieuwe systeem uit.
+                            We maken keuzes over architectuur, koppelingen, toegang en beheer die passen
+                            bij je organisatie en de doelen die we willen bereiken.</p></li>
+                    <li><h3>Hoe komen we daar?</h3>
+                        <p>We maken een uitvoerbaar migratieplan. In welke volgorde gaan applicaties en
+                            klantgroepen over? Hoe houden we bestaande diensten beschikbaar? En hoe zorgen
+                            we dat klanten en teams de overstap goed kunnen maken?</p></li>
+                </ol>
+            </div>
+            <div className="approach-photo"><Photo name="vision"/></div>
         </section>
         <section className="split section work" id="werk">
             <div className="section-copy"><Label number="04">Mijn werk</Label><h2>Van een eerste idee<br/>naar <em>iets
