@@ -11,14 +11,43 @@ function Photo({name, eager=false, className=''}) { const [id,alt]=photos[name];
 function Header(){const [open,setOpen]=useState(false);return <header className="header"><a className="brand" href="./index.html">{profile.name}<span className="brand-dot">.</span></a><button className="menu-toggle" aria-expanded={open} aria-controls="navigation" onClick={()=>setOpen(!open)}>{open?'Sluiten ×':'Menu ☰'}</button><nav id="navigation" className={open?'open':''} aria-label="Hoofdnavigatie" onClick={()=>setOpen(false)}><a href={homeLink('over')}>Over mij</a><a href={homeLink('werk')}>Mijn werk</a><a aria-current={page==='blog'?'page':undefined} href="./blog.html">Verhalen</a><a aria-current={page==='cv'?'page':undefined} href="./cv.html">CV</a><a className="nav-contact" href={homeLink('contact')}>Even kennismaken <Arrow/></a></nav></header>}
 function Label({number,children}){return <p className="eyebrow"><span>{number} /</span> {children}</p>}
 function TextLink({href,children}){return <a className="text-link" href={href}>{children}<Arrow/></a>}
+function Contact() {
+  return (
+    <section className="contact section" id="contact" aria-labelledby="contact-title">
+      <div className="contact-intro">
+        <Label number="07">Laten we kennismaken</Label>
+        <h2 id="contact-title">Een goed gesprek<br/>begint met <em>hallo.</em></h2>
+        <p>Een vraag, een idee of benieuwd wat we voor elkaar kunnen betekenen? Ik maak graag tijd voor een kennismaking.</p>
+        <div className="contact-actions">
+          {profile.email && <a className="button" href={`mailto:${profile.email}`}>Stuur een e-mail <Arrow/></a>}
+          {profile.phone && <a className="button button-outline" href={`tel:${profile.phone.replace(/[^+0-9]/g, '')}`}>Bel mij <Arrow/></a>}
+        </div>
+      </div>
+      <div className="contact-details">
+        <Photo name="contact"/>
+        <address className="contact-address">
+          <h3>{profile.name}</h3>
+          <p>{profile.tagline}</p>
+          <dl>
+            <div><dt>E-mail</dt><dd>{profile.email ? <a href={`mailto:${profile.email}`}>{profile.email}</a> : <span className="contact-pending">Volgt binnenkort</span>}</dd></div>
+            <div><dt>Telefoon</dt><dd>{profile.phone ? <a href={`tel:${profile.phone.replace(/[^+0-9]/g, '')}`}>{profile.phone}</a> : <span className="contact-pending">Volgt binnenkort</span>}</dd></div>
+            <div><dt>Locatie</dt><dd>{profile.location || <span className="contact-pending">Volgt binnenkort</span>}</dd></div>
+          </dl>
+          {profile.linkedin && <a className="text-link" href={profile.linkedin} target="_blank" rel="noopener noreferrer">Bekijk mijn LinkedIn <Arrow/></a>}
+        </address>
+      </div>
+    </section>
+  );
+}
 function Home(){return <>
-<section className="hero" id="welkom"><div className="hero-copy"><Label number="01">Welkom, fijn dat je er bent</Label><h1>Ruimte voor<br/>aandacht.<br/><em>En nieuwe ideeën.</em></h1><p>Een persoonlijke plek voor wat mij inspireert,<br className="desktop"/> het werk dat ik doe en de verhalen die ik wil delen.</p><a className="button" href="#over">Ontdek mijn verhaal <span>↓</span></a><p className="small-note">{profile.tagline}</p></div><div className="hero-image"><Photo name="hero" eager/><div className="image-note">Een frisse blik begint met even stilstaan.</div></div><div className="hero-bottom"><span>Met aandacht voor wat ertoe doet</span><a href="#over">Scroll om te ontdekken ↓</a></div></section>
+<section className="hero" id="welkom"><div className="hero-copy"><Label number="01">Welkom, fijn dat je er bent</Label><h1>Ruimte voor aandacht.<br/><em>En nieuwe ideeën.</em></h1><p>Een persoonlijke plek voor wat mij inspireert,<br className="desktop"/> het werk dat ik doe en de verhalen die ik wil delen.</p><a className="button" href="#over">Ontdek mijn verhaal <span>↓</span></a><p className="small-note">{profile.tagline}</p></div><div className="hero-image"><Photo name="hero" eager/><div className="image-note">Een frisse blik begint met even stilstaan.</div></div><div className="hero-bottom"><span>Met aandacht voor wat ertoe doet</span><a href="#over">Scroll om te ontdekken ↓</a></div></section>
 <section className="split section" id="over"><div className="photo-frame"><Photo name="about"/></div><div className="section-copy"><Label number="02">Over mij</Label><h2>Achter ieder idee<br/>zit <em>een verhaal.</em></h2><p>{filler}</p><p>Hier kun je iets vertellen over je achtergrond, je nieuwsgierigheid en de kleine dingen die voor jou het verschil maken.</p><TextLink href="./cv.html">Meer over mijn achtergrond</TextLink></div></section>
 <section className="vision section" id="visie"><div><Label number="03">Wat mij drijft</Label><h2>Meer aandacht.<br/>Meer betekenis.<br/><em>Meer verbinding.</em></h2></div><div><Photo name="vision"/><p>{filler}</p></div></section>
 <section className="split section work" id="werk"><div className="section-copy"><Label number="04">Mijn werk</Label><h2>Van een eerste idee<br/>naar <em>iets moois.</em></h2><p>{filler}</p><p>Gebruik dit blok voor projecten, samenwerkingen of de onderwerpen waar je graag aan werkt.</p><TextLink href="#contact">Laten we kennismaken</TextLink></div><div className="photo-frame"><Photo name="work"/></div></section>
 <section className="stories section" id="verhalen"><div className="section-heading"><div><Label number="05">Verhalen & gedachten</Label><h2>Even de tijd om <em>te lezen.</em></h2></div><TextLink href="./blog.html">Naar het blog</TextLink></div><a className="story-feature" href="./longread.html"><Photo name="blog"/><div><span className="eyebrow">Voorbeeldverhaal · 3 min leestijd</span><h3>De waarde van<br/>even stilstaan.</h3><p>{filler}</p><span className="text-link">Lees het verhaal <Arrow/></span></div></a></section>
 <section className="split section background" id="achtergrond"><div className="photo-frame"><Photo name="background"/></div><div className="section-copy"><Label number="06">Mijn achtergrond</Label><h2>Elke stap brengt<br/><em>iets nieuws.</em></h2><p>{filler}</p><TextLink href="./cv.html">Bekijk mijn cv</TextLink></div></section>
-<section className="contact section" id="contact"><div><Label number="07">Contact</Label><h2>Een goed gesprek<br/>begint met <em>hallo.</em></h2><p>{filler}</p>{profile.email?<a className="button" href={`mailto:${profile.email}`}>Stuur mij een bericht <Arrow/></a>:<p className="contact-placeholder">Mijn contactgegevens volgen binnenkort.</p>}</div><Photo name="contact"/></section>
+<Contact/>
+
 </>}
 function Blog(){return <div className="subpage"><Label number="Blog">Verhalen & gedachten</Label><h1>Een moment<br/>om <em>te lezen.</em></h1><p className="intro">Ideeën, observaties en verhalen. Een verzameling die met de tijd mag groeien.</p><a className="story-feature" href="./longread.html"><Photo name="blog" eager/><div><span className="eyebrow">Voorbeeldverhaal · 3 min leestijd</span><h2>De waarde van<br/><em>even stilstaan.</em></h2><p>{filler}</p><span className="text-link">Lees verder <Arrow/></span></div></a></div>}
 function CV(){return <div className="subpage cv"><Label number="CV">Mijn achtergrond</Label><h1>Ervaring, met<br/><em>een eigen verhaal.</em></h1><p className="intro">Onderstaand cv bevat voorbeeldvelden die je kunt vervangen door je eigen loopbaan.</p><div className="cv-layout"><Photo name="background" eager/><div>{[['Profiel',filler],['Werkervaring','Functietitel · Organisatie · Periode\nBeschrijf hier je rol, verantwoordelijkheden en belangrijkste resultaten.'],['Opleiding','Opleiding · Onderwijsinstelling · Periode\nVertel hier over je opleiding en eventuele specialisaties.'],['Vaardigheden','Voeg hier je vaardigheden, talen en andere relevante kennis toe.']].map(([title,body])=><section className="cv-row" key={title}><h2>{title}</h2><p>{body}</p></section>)}<button className="button" onClick={()=>window.print()}>Print of bewaar als PDF ↓</button></div></div></div>}
