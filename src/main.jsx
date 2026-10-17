@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {createRoot} from 'react-dom/client';
-import {filler, photos, profile} from './content';
+import {filler, photos, profile, testimonials} from './content';
 import './style.css';
 
 const page = location.pathname.split('/').pop().replace('.html', '') || 'index';
@@ -22,7 +22,7 @@ function Header() {
         <button className="menu-toggle" aria-expanded={open} aria-controls="navigation"
                 onClick={() => setOpen(!open)}>{open ? 'Sluiten ×' : 'Menu ☰'}</button>
         <nav id="navigation" className={open ? 'open' : ''} aria-label="Hoofdnavigatie" onClick={() => setOpen(false)}>
-            <a href={homeLink('ciam')}>Over CIAM</a><a href={homeLink('werk')}>Mijn werk</a><a
+            <a href={homeLink('ciam')}>Over CIAM</a><a href={homeLink('testimonials')}>Testimonials</a><a
             aria-current={page === 'blog' ? 'page' : undefined} href="./blog.html">Verhalen</a><a
             aria-current={page === 'mijn-verhaal' ? 'page' : undefined} href="./mijn-verhaal.html">Mijn verhaal</a><a
             className="nav-contact" href={homeLink('kennismaken')}>Even kennismaken <Arrow/></a></nav>
@@ -107,6 +107,37 @@ function BookingEmbed() {
     </div>;
 }
 
+const bannerLogos = [
+    ['logo-KPN-.png', 'KPN'],
+    ['medux-logo.326ae0ik4pu2v.svg', 'Medux'],
+    ['ANWB-logo-B4BA884D61-seeklogo.com.png', 'ANWB'],
+    ['kadaster-logo-1.png', 'Kadaster'],
+    ['logo group 2000.png', 'Group 2000'],
+    ['2560px-Tele2_logo.svg.png', 'Tele2'],
+    ['unisys.png', 'Unisys'],
+    ['Vodafone Ziggo.png', 'VodafoneZiggo'],
+    ['alliander.png', 'Alliander'],
+    ['Logo_Schouten-Zekerheid-opgedikt.svg', 'Schouten Zekerheid']
+];
+
+function LogoBanner() {
+    return <aside className="logo-banner" aria-label="Organisatielogo’s">
+        <div className="logo-banner-track">
+            {[false, true].map(duplicate => <ul className="logo-banner-list" key={String(duplicate)} aria-hidden={duplicate ? true : undefined}>
+                {bannerLogos.map(([file, name]) => <li key={file}>
+                    <img src={`./images/banner/${encodeURIComponent(file)}`} alt={duplicate ? '' : name}/>
+                </li>)}
+            </ul>)}
+        </div>
+        <button className="logo-motion-toggle" type="button" onClick={event => {
+            const banner = event.currentTarget.closest('.logo-banner');
+            const paused = banner.classList.toggle('is-paused');
+            event.currentTarget.setAttribute('aria-pressed', String(paused));
+            event.currentTarget.textContent = paused ? 'Afspelen' : 'Pauzeren';
+        }} aria-label="Logobeweging pauzeren of hervatten" aria-pressed="false">Pauzeren</button>
+    </aside>;
+}
+
 function Home() {
     return <>
         <section className="hero" id="welkom">
@@ -120,6 +151,7 @@ function Home() {
             <div className="hero-bottom"><span>Met aandacht voor wat ertoe doet</span><a href="#ciam">Scroll om te
                 ontdekken ↓</a></div>
         </section>
+        <LogoBanner/>
         <section className="split section" id="ciam">
             <div className="photo-frame"><Photo name="about"/></div>
             <div className="section-copy">
@@ -158,19 +190,19 @@ function Home() {
                 <p>Pas daarna komt de techniek. Die architectuurpatronen zijn uitgebreid beschreven.
                     De uitdaging zit in begrijpen wat jouw organisatie nodig heeft en hoe je daar komt.</p>
                 <ol className="approach-steps">
-                    <li><h3>Waar staan we nu?</h3>
+                    <li><h3>Overzicht</h3>
                         <p>We brengen de huidige situatie in kaart: proposities, klantgroepen, processen,
                             data en systemen. Wat werkt goed, waar lopen klanten en teams tegenaan en
                             wat betekent dat voor de business?</p></li>
-                    <li><h3>Waar willen we naartoe?</h3>
+                    <li><h3>Richting</h3>
                         <p>We bepalen wat CIAM moet opleveren voor je klanten en organisatie. Welke ambities
                             willen we ondersteunen, welke verbeteringen hebben prioriteit en waaraan zien
                             we dat we ons doel bereiken?</p></li>
-                    <li><h3>Hoe richten we het in?</h3>
+                    <li><h3>Plan</h3>
                         <p>Vanuit die gewenste situatie werken we de inrichting van het nieuwe systeem uit.
                             We maken keuzes over architectuur, koppelingen, toegang en beheer die passen
                             bij je organisatie en de doelen die we willen bereiken.</p></li>
-                    <li><h3>Hoe komen we daar?</h3>
+                    <li><h3>Doen</h3>
                         <p>We maken een uitvoerbaar migratieplan. In welke volgorde gaan applicaties en
                             klantgroepen over? Hoe houden we bestaande diensten beschikbaar? En hoe zorgen
                             we dat klanten en teams de overstap goed kunnen maken?</p></li>
@@ -178,11 +210,19 @@ function Home() {
             </div>
             <div className="approach-photo"><Photo name="vision"/></div>
         </section>
-        <section className="split section work" id="werk">
-            <div className="section-copy"><Label number="04">Mijn werk</Label><h2>Van een eerste idee<br/>naar <em>iets
-                moois.</em></h2><p>{filler}</p><p>Gebruik dit blok voor projecten, samenwerkingen of de onderwerpen waar
-                je graag aan werkt.</p><TextLink href="#contact">Laten we kennismaken</TextLink></div>
-            <div className="photo-frame"><Photo name="work"/></div>
+        <section className="section testimonials" id="testimonials" aria-labelledby="testimonials-title">
+            <div className="section-heading">
+                <Label number="04">Testimonials</Label>
+                <h2 id="testimonials-title">WAT KLANTEN WAARDEREN</h2>
+                <p>World Of CIAM helpt organisaties om complexe identity-vraagstukken praktisch, begrijpelijk en uitvoerbaar te maken.</p>
+            </div>
+            <div className="testimonials-grid">
+                {testimonials.map(({name, quote, role, organization, photo}) => <figure className="testimonial" key={name}>
+                    {photo && <img className="testimonial-photo" src={photo} alt={`Portret van ${name}`} width="96" height="96" loading="lazy"/>}
+                    {quote ? <blockquote>{quote.split('\n\n').map((paragraph, index) => <p key={index}>{paragraph}</p>)}</blockquote> : <p className="testimonial-placeholder">Testimonial volgt binnenkort.</p>}
+                    <figcaption>{name}{role && <span className="testimonial-role">{role}</span>}{organization && <span className="testimonial-organization">{organization}</span>}</figcaption>
+                </figure>)}
+            </div>
         </section>
         <section className="stories section" id="verhalen">
             <div className="section-heading">
@@ -256,5 +296,5 @@ document.title = `${({
     blog: 'Verhalen',
     'mijn-verhaal': 'Mijn verhaal',
     longread: 'De waarde van even stilstaan'
-})[page] || 'Ruimte voor aandacht'} — ${profile.name}`;
+})[page] || 'CIAM in 4 stappen'} — ${profile.name}`;
 createRoot(document.getElementById('root')).render(<App/>);
