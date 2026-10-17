@@ -141,8 +141,7 @@ function LogoBanner() {
 function Home() {
     return <>
         <section className="hero" id="welkom">
-            <div className="hero-copy"><Label number="01">Welkom, fijn dat je er bent</Label><h1>MAAK INLOGGEN MAKKELIJKER,<br/>VEILIGER EN GOEDKOPER</h1><p>Een persoonlijke plek voor wat mij inspireert,<br
-                className="desktop"/> het werk dat ik doe en de verhalen die ik wil delen.</p><a className="button"
+            <div className="hero-copy"><Label number="01">Welkom, fijn dat je er bent</Label><h1>MAAK INLOGGEN MAKKELIJKER,<br/>VEILIGER EN GOEDKOPER</h1><p>CIAM gaat over hoe je de business ondersteunt met digitale identiteit van de klant</p><a className="button"
                                                                                                  href="./mijn-verhaal.html">Ontdek
                 mijn verhaal <span>↓</span></a><p className="small-note">{profile.tagline}</p></div>
             <div className="hero-image"><Photo name="hero" eager/>
@@ -224,7 +223,7 @@ function Home() {
                 </figure>)}
             </div>
         </section>
-        <section className="stories section" id="verhalen">
+        <section className="stories section" id="verhalen" hidden>
             <div className="section-heading">
                 <div><Label number="05">Verhalen & gedachten</Label><h2>Even de tijd om <em>te lezen.</em></h2></div>
                 <TextLink href="./blog.html">Naar het blog</TextLink></div>
