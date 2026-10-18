@@ -37,7 +37,7 @@ De workflow bouwt de site en publiceert `dist`. De relatieve Vite-base ondersteu
 
 ## Scripts en toekomstige integraties
 
-Er is geen Content Security Policy, sandbox of scriptfilter toegevoegd dat externe integraties zoals Leadinfo tegenhoudt. Voeg de leverancierssnippet toe aan de vier inhoudelijke HTML-bestanden of laad deze eenmalig vanuit een gedeelde integratiemodule in `src/main.jsx`. Houd eigen tokens die geheim moeten blijven buiten deze publieke frontend. Voeg bij het daadwerkelijk inschakelen van tracking de toepasselijke toestemmingslogica toe. Er is nu geen tracking actief.
+Er is geen Content Security Policy, sandbox of scriptfilter toegevoegd dat externe integraties zoals Leadinfo tegenhoudt. De aangeleverde Leadinfo-snippet (tracker `LI-6AD4A6F9EACFD`) staat in de head van de vier inhoudelijke HTML-bestanden en laadt asynchroon. De oude cv-URL verwijst alleen door en laadt geen aparte tracker. Houd eigen tokens die geheim moeten blijven buiten deze publieke frontend. Leadinfo wordt bij het openen van de inhoudelijke pagina’s geladen, ook lokaal. Er is geen toestemmingsinterface toegevoegd. Ontvangst van bezoeken in het Leadinfo-account moet na publicatie worden gecontroleerd.
 
 ## Toegankelijkheid
 
