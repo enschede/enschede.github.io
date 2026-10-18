@@ -48,7 +48,7 @@ function Contact() {
                     <h3>Adres</h3>
                     <address>
                         <strong>I am Enschede BV</strong>
-                        <span>Langestraat 45a<br/>7511 HB Enschede<br/>Nederland</span>
+                        <span>Ekersdijk 269<br/>7534 PX Enschede<br/>Nederland</span>
                     </address>
                 </div>
                 <div>
