@@ -15,6 +15,8 @@ export const photos = {
     about: ['./images/decorations/8DD176F5-5273-4AC9-8FD9-1DFAB91534D2_1_201_a.jpeg', 'Staand portret van Marc Enschede buiten'],
     approach: ['./images/decorations/44C6AB17-9F09-4D34-9B3D-6D476CF471F3_1_105_c.jpeg', 'Marc Enschede bij een klimwand'],
     vision: ['./images/decorations/6436D8E4-DF4D-4FCC-9D75-0BFAD7F99169_1_201_a.jpeg', 'Een CIAM-workshop met uitleg aan een scherm'],
+    twoFactor: ['./images/decorations/DE1EF37F-6F7A-4FD7-8CEB-D4FC2CE0552D_1_105_c.jpeg', 'Marc Enschede bij een reling aan het water'],
+    smallStart: ['./images/decorations/1FA6BC38-1057-410C-ABAF-D7D4CB5EBE6E_1_105_c.jpeg', 'Marc Enschede met zijn jas over zijn schouder voor een gebouw'],
     work: ['photo-1499750310107-5fef28a66643', 'Notitieboek en koffie op een werktafel'],
     blog: ['photo-1445394761341-4773ffeb5f07', 'Een opengeslagen notitieboek'],
     background: ['./images/decorations/535DEC9A-AF42-4207-9AA5-4E270AD1C431_1_105_c.jpeg', 'Marc Enschede aan een picknicktafel bij het water'],

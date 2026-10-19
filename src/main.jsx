@@ -170,8 +170,8 @@ function Home() {
                 <div><h2>Even de tijd om <em>te lezen.</em></h2></div>
                 <TextLink href="./blog.html">Naar het blog</TextLink></div>
             <StoryCard/>
-        <StoryCard story={secondStory} href="./tweede-verhaal.html" category="Praktische gids" photo="approach"/>
-        <StoryCard story={smallStartStory} href="./klein-beginnen.html" category="Aanpak" photo="background"/></section>
+        <StoryCard story={secondStory} href="./tweede-verhaal.html" category="Praktische gids" photo="twoFactor"/>
+        <StoryCard story={smallStartStory} href="./klein-beginnen.html" category="Aanpak" photo="smallStart"/></section>
         <section className="split section background" id="kennismaken">
             <div className="photo-frame"><Photo name="background"/></div>
             <div className="section-copy"><h2>Laten we<br/><em>kennismaken.</em>
@@ -202,8 +202,8 @@ function Blog() {
         <h1>Een moment om te lezen.</h1>
         <p className="intro">Ideeën, observaties en verhalen over CIAM, architectuur en de waarde voor je organisatie.</p>
         <StoryCard/>
-        <StoryCard story={secondStory} href="./tweede-verhaal.html" category="Praktische gids" photo="approach"/>
-        <StoryCard story={smallStartStory} href="./klein-beginnen.html" category="Aanpak" photo="background"/>
+        <StoryCard story={secondStory} href="./tweede-verhaal.html" category="Praktische gids" photo="twoFactor"/>
+        <StoryCard story={smallStartStory} href="./klein-beginnen.html" category="Aanpak" photo="smallStart"/>
     </div>;
 }
 
