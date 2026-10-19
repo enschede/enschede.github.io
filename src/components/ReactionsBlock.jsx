@@ -8,10 +8,12 @@ export default function ReactionsBlock() {
             <h2 id="reactions-title">Wat is jouw ervaring?</h2>
             <p>Heb je een vraag over dit verhaal, een aanvulling of een ervaring die je wilt delen? Ik hoor graag van je.</p>
         </div>
-        <a className="button" href={profile.contactFormUrl || '#contact'}
-           target={profile.contactFormUrl ? '_blank' : undefined}
-           rel={profile.contactFormUrl ? 'noopener noreferrer' : undefined}>
-            {profile.contactFormUrl ? 'Stuur een reactie' : 'Neem contact op'} <span aria-hidden="true">↗</span>
-        </a>
+        <div className="reaction-form">
+            <iframe src={profile.contactFormUrl}
+                    title="Reactieformulier World of CIAM"
+                    loading="lazy"/>
+            <p>Laadt het formulier niet? <a className="text-link" href={profile.contactFormUrl}
+                                          target="_blank" rel="noopener noreferrer">Open het reactieformulier in een nieuw tabblad ↗</a></p>
+        </div>
     </section>;
 }

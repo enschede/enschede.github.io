@@ -319,11 +319,13 @@ footer p, footer > a:last-child { font-size: 11px; color: #bbb; }
 .whitepaper-references a { text-decoration: underline; text-underline-offset: 3px; }
 .whitepaper-references a:hover { color: #111; }
 
-.reactions-block { display: flex; align-items: center; justify-content: space-between; gap: 40px; background: #f2f2f2; }
-.reactions-block > div { max-width: 680px; }
+.reactions-block { display: flex; flex-direction: column; align-items: stretch; gap: 32px; background: #f2f2f2; }
+.reactions-block > div:first-child { max-width: 680px; }
 .reactions-block h2 { margin-top: 14px; }
-.reactions-block .button { flex-shrink: 0; }
-@media(max-width:700px) { .reactions-block { flex-direction: column; align-items: flex-start; gap: 16px; } }
+.reaction-form { width: 100%; min-width: 0; }
+.reaction-form iframe { display: block; width: 100%; height: 800px; border: 0; background: #fff; }
+.reaction-form > p { margin-top: 16px; }
+@media(max-width:700px) { .reactions-block { gap: 16px; } }
 
 .header .brand { display: inline-flex; align-items: center; gap: 12px; }
 .header .brand-logo { width: 48px; height: 42px; flex-shrink: 0; object-fit: contain; filter: grayscale(1); }
