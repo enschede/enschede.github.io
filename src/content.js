@@ -12,6 +12,7 @@ export const photos = {
     portrait: ['./images/decorations/eb230711 Marc Enschede342 copy.png', 'Marc Enschede'],
     landscape: ['photo-1470770841072-f978cf4d019e', 'Een stil meer tussen de bergen'],
     about: ['./images/decorations/8DD176F5-5273-4AC9-8FD9-1DFAB91534D2_1_201_a.jpeg', 'Staand portret van Marc Enschede buiten'],
+    approach: ['./images/decorations/44C6AB17-9F09-4D34-9B3D-6D476CF471F3_1_105_c.jpeg', 'Marc Enschede bij een klimwand'],
     vision: ['./images/decorations/6436D8E4-DF4D-4FCC-9D75-0BFAD7F99169_1_201_a.jpeg', 'Een CIAM-workshop met uitleg aan een scherm'],
     work: ['photo-1499750310107-5fef28a66643', 'Notitieboek en koffie op een werktafel'],
     blog: ['photo-1445394761341-4773ffeb5f07', 'Een opengeslagen notitieboek'],

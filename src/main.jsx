@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {createRoot} from 'react-dom/client';
 import {filler, photos, profile, testimonials} from './content';
 import './style.css';
+import firstStory from './articles/eerste-verhaal.json';
 
 const page = location.pathname.split('/').pop().replace('.html', '') || 'index';
 const isHome = page === 'index';
@@ -194,7 +195,7 @@ function Home() {
                             we dat klanten en teams de overstap goed kunnen maken?</p></li>
                 </ol>
             </div>
-            <div className="approach-photo"><Photo name="vision"/></div>
+            <div className="approach-photo"><Photo name="approach"/></div>
         </section>
         <section className="section testimonials" id="testimonials" aria-labelledby="testimonials-title">
             <div className="section-heading">
@@ -210,14 +211,11 @@ function Home() {
                 </figure>)}
             </div>
         </section>
-        <section className="stories section" id="verhalen" hidden>
+        <section className="stories section" id="verhalen">
             <div className="section-heading">
                 <div><Label number="05">Verhalen & gedachten</Label><h2>Even de tijd om <em>te lezen.</em></h2></div>
                 <TextLink href="./blog.html">Naar het blog</TextLink></div>
-            <a className="story-feature" href="./longread.html"><Photo name="blog"/>
-                <div><span className="eyebrow">Voorbeeldverhaal · 3 min leestijd</span><h3>De waarde van<br/>even
-                    stilstaan.</h3><p>{filler}</p><span className="text-link">Lees het verhaal <Arrow/></span></div>
-            </a></section>
+            <StoryCard/></section>
         <section className="split section background" id="kennismaken">
             <div className="photo-frame"><Photo name="background"/></div>
             <div className="section-copy"><Label number="06">Kennismaken</Label><h2>Laten we<br/><em>kennismaken.</em>
@@ -231,13 +229,54 @@ function Home() {
     </>
 }
 
+function StoryCard() {
+    return <a className="story-feature" href="./eerste-verhaal.html">
+        <Photo name="vision"/>
+        <div><span className="eyebrow">Whitepaper · {firstStory.readingMinutes} min leestijd</span>
+            <h2>{firstStory.title}</h2>
+            <p>{firstStory.intro}</p>
+            <span className="text-link">Lees het verhaal <Arrow/></span>
+        </div>
+    </a>;
+}
+
 function Blog() {
-    return <div className="subpage"><Label number="Blog">Verhalen & gedachten</Label><h1>Een moment<br/>om <em>te
-        lezen.</em></h1><p className="intro">Ideeën, observaties en verhalen. Een verzameling die met de tijd mag
-        groeien.</p><a className="story-feature" href="./longread.html"><Photo name="blog" eager/>
-        <div><span className="eyebrow">Voorbeeldverhaal · 3 min leestijd</span><h2>De waarde van<br/><em>even
-            stilstaan.</em></h2><p>{filler}</p><span className="text-link">Lees verder <Arrow/></span></div>
-    </a></div>
+    return <div className="subpage">
+        <Label number="Blog">Verhalen & gedachten</Label>
+        <h1>Een moment om te lezen.</h1>
+        <p className="intro">Ideeën, observaties en verhalen over CIAM, architectuur en de waarde voor je organisatie.</p>
+        <StoryCard/>
+    </div>;
+}
+
+function FirstStory() {
+    return <article className="subpage whitepaper">
+        <a className="text-link" href="./blog.html">← Alle verhalen</a>
+        <p className="eyebrow">Whitepaper · Marc Enschede · {firstStory.readingMinutes} min leestijd</p>
+        <h1>{firstStory.title}</h1>
+        <p className="whitepaper-subtitle">{firstStory.subtitle}</p>
+        <p className="intro">{firstStory.intro}</p>
+        <div className="whitepaper-layout">
+            <aside className="whitepaper-toc" aria-label="Inhoudsopgave">
+                <details open><summary>In dit verhaal</summary>
+                    <ol>{firstStory.toc.map(item => <li key={item.id}><a href={`#${item.id}`}>{item.text}</a></li>)}</ol>
+                </details>
+            </aside>
+            <div className="whitepaper-body">
+                {firstStory.blocks.map((block, index) => {
+                    if (block.type === 'h2') return <h2 id={block.id} key={index}>{block.text}</h2>;
+                    if (block.type === 'h3') return <h3 key={index}>{block.text}</h3>;
+                    if (block.type === 'code') return <pre key={index} tabIndex={0} aria-label="Codevoorbeeld"><code>{block.text}</code></pre>;
+                    if (block.type === 'list') return <ul key={index}>{block.items.map((item, i) => <li key={i}>{item}</li>)}</ul>;
+                    return <p className={block.type === 'callout' ? 'whitepaper-callout' : undefined} key={index}>{block.text}</p>;
+                })}
+                <div className="whitepaper-end"><h2>Sparren over jouw architectuur?</h2>
+                    <a className="button" href={homeLink('kennismaken')}>Plan een kennismaking <Arrow/></a>
+                    <TextLink href="./blog.html">Terug naar alle verhalen</TextLink>
+                </div>
+            </div>
+        </div>
+    </article>;
 }
 
 function MyStory() {
@@ -272,13 +311,14 @@ function Longread() {
 
 function App() {
     return <><a className="skip-link" href="#inhoud">Direct naar inhoud</a><Header/>
-        <main id="inhoud">{page === 'blog' ? <Blog/> : page === 'mijn-verhaal' ? <MyStory/> : page === 'longread' ?
+        <main id="inhoud">{page === 'eerste-verhaal' ? <FirstStory/> : page === 'blog' ? <Blog/> : page === 'mijn-verhaal' ? <MyStory/> : page === 'longread' ?
             <Longread/> : <Home/>}</main>
         {!isHome && <footer><a className="brand" href="./index.html">{profile.name}.</a><p>Met aandacht gemaakt.
             © {new Date().getFullYear()}</p><a href="#inhoud">Terug naar boven ↑</a></footer>}</>
 }
 
 document.title = `${({
+    'eerste-verhaal': firstStory.title,
     blog: 'Verhalen',
     'mijn-verhaal': 'Mijn verhaal',
     longread: 'De waarde van even stilstaan'

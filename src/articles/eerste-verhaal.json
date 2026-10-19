@@ -1,0 +1,933 @@
+{
+  "title": "Architectuur voor veilige toegang tot selfserviceportalen",
+  "subtitle": "Van authenticatie tot autorisatie",
+  "intro": "Een whitepaper over het ontwerpen van een veilige, beheersbare en uitbreidbare toegangsarchitectuur voor klanten, medewerkers en ketenpartners.",
+  "readingMinutes": 19,
+  "toc": [
+    {
+      "text": "Leeswijzer",
+      "id": "leeswijzer"
+    },
+    {
+      "text": "1. Waarom een toegangsarchitectuur?",
+      "id": "hoofdstuk-1"
+    },
+    {
+      "text": "2. Praktijkvoorbeeld",
+      "id": "hoofdstuk-2"
+    },
+    {
+      "text": "3. Gebruiker, rol en handelingscontext",
+      "id": "hoofdstuk-3"
+    },
+    {
+      "text": "4. De authenticatiearchitectuur",
+      "id": "hoofdstuk-4"
+    },
+    {
+      "text": "5. Sessies en tokens",
+      "id": "hoofdstuk-5"
+    },
+    {
+      "text": "6. Handelen namens een klant",
+      "id": "hoofdstuk-6"
+    },
+    {
+      "text": "7. Architectuurlagen",
+      "id": "hoofdstuk-7"
+    },
+    {
+      "text": "8. Waar vindt autorisatie plaats?",
+      "id": "hoofdstuk-8"
+    },
+    {
+      "text": "9. Drie architectuurkeuzes",
+      "id": "hoofdstuk-9"
+    },
+    {
+      "text": "10. Vergelijking en beslismodel",
+      "id": "hoofdstuk-10"
+    },
+    {
+      "text": "11. Aanbevolen ontwerpprincipes",
+      "id": "hoofdstuk-11"
+    },
+    {
+      "text": "12. Over de auteur",
+      "id": "hoofdstuk-12"
+    },
+    {
+      "text": "13. Conclusie",
+      "id": "hoofdstuk-13"
+    },
+    {
+      "text": "Bronnen en standaarden",
+      "id": "bronnen"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "h2",
+      "text": "Leeswijzer",
+      "id": "leeswijzer"
+    },
+    {
+      "type": "paragraph",
+      "text": "Deze whitepaper is geschreven voor lead developers, solution architecten en product owners die betrokken zijn bij de vernieuwing van de toegang tot selfserviceportalen."
+    },
+    {
+      "type": "paragraph",
+      "text": "Voor lead developers en solution architecten biedt het document ontwerpprincipes en concrete keuzes voor authenticatie, sessies, tokens, handelingscontext, API's en autorisatie. De voorbeelden helpen om verantwoordelijkheden over de verschillende architectuurlagen te verdelen en de gevolgen van ontwerpkeuzes bespreekbaar te maken."
+    },
+    {
+      "type": "paragraph",
+      "text": "Voor product owners is het niet nodig om ieder protocol of iedere claim technisch te kunnen doorgronden. Wel helpt deze whitepaper om te herkennen welke onderwerpen vóór de realisatie moeten worden besproken, welke keuzes op de backlog thuishoren en aan welke specialisten vragen moeten worden gesteld. De hoofdstukken over authenticatieniveau, tokengebruik, handelen namens een klant en de plaats van autorisatie zijn daarbij vooral relevant."
+    },
+    {
+      "type": "paragraph",
+      "text": "De praktijkcase met een klant, callcentermedewerker en supervisor loopt als rode draad door het document. Hoofdstuk 4 en 5 behandelen authenticatie, sessies en tokens. Hoofdstuk 6 werkt het handelen namens een klant uit. Hoofdstuk 7 tot en met 10 beschrijven de architectuurlagen en drie keuzes voor de inrichting van endpoints en autorisatie. Hoofdstuk 11 vat de belangrijkste ontwerpprincipes samen."
+    },
+    {
+      "type": "h2",
+      "text": "1. Waarom een toegangsarchitectuur?",
+      "id": "hoofdstuk-1"
+    },
+    {
+      "type": "paragraph",
+      "text": "Veel organisaties willen de toegang tot hun digitale dienstverlening vernieuwen. De bestaande loginvoorziening voldoet niet meer aan de eisen van klanten, security of de business. Wachtwoorden veroorzaken frustratie en herstelverzoeken, tweefactorauthenticatie (2FA) wordt niet overal consequent toegepast en nieuwe kanalen blijken moeilijk op de bestaande oplossing aan te sluiten."
+    },
+    {
+      "type": "paragraph",
+      "text": "Tegelijkertijd wordt de context complexer. Diensten worden aangeboden via websites, mobiele apps, partnerportalen en white-labelconstructies. Organisaties breiden hun dienstverlening uit naar de zakelijke markt. Medewerkers van een callcenter handelen namens klanten en externe dienstverleners hebben toegang nodig tot een afgebakend deel van de dienstverlening."
+    },
+    {
+      "type": "paragraph",
+      "text": "Al deze gebruikers moeten veilig naar dezelfde achterliggende informatie en functionaliteit kunnen worden geleid. De architectuur moet daarom antwoord geven op vijf samenhangende vragen:"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Wie probeert toegang te krijgen?",
+        "Hoe wordt de identiteit van deze persoon vastgesteld?",
+        "Namens wie handelt deze persoon?",
+        "Welke informatie en functionaliteit zijn in deze context toegestaan?",
+        "Waar en hoe wordt die beslissing afgedwongen?"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Alleen een nieuw inlogscherm of een nieuw CIAM-product geeft daarop geen volledig antwoord. Authenticatie, sessies, tokens, API’s en autorisatie vormen samen één keten. Een zwakke schakel kan de beveiliging van de gehele dienstverlening ondermijnen."
+    },
+    {
+      "type": "paragraph",
+      "text": "Deze whitepaper werkt die keten stap voor stap uit aan de hand van een praktijkvoorbeeld. Daarbij kijken we niet alleen naar technologie, maar vooral naar de verdeling van verantwoordelijkheden. Juist die verdeling bepaalt of de oplossing veilig, onderhoudbaar en uitbreidbaar blijft."
+    },
+    {
+      "type": "h2",
+      "text": "2. Praktijkvoorbeeld",
+      "id": "hoofdstuk-2"
+    },
+    {
+      "type": "paragraph",
+      "text": "Stel dat een organisatie haar klanten een selfserviceportaal aanbiedt. Via dit portaal kunnen klanten hun persoonsgegevens beheren, bestellingen bekijken en wijzigingen doorvoeren."
+    },
+    {
+      "type": "paragraph",
+      "text": "Naast het selfserviceportaal beschikt de organisatie over een callcenter. Medewerkers gebruiken dezelfde front-end applicatie om klanten telefonisch te ondersteunen. Dat maakt ondersteuning eenvoudiger, maar betekent niet dat iedereen dezelfde functies of gegevens mag zien."
+    },
+    {
+      "type": "paragraph",
+      "text": "Een klant kan uitsluitend voor zichzelf handelen. Een callcentermedewerker kan namens een geselecteerde klant bijvoorbeeld een adres wijzigen, een bestelling plaatsen of een korting verlenen. Privacygevoelige informatie, zoals een geboortedatum, kan voor deze medewerker bewust worden afgeschermd."
+    },
+    {
+      "type": "paragraph",
+      "text": "Binnen het callcenter bestaat daarnaast een supervisorrol. Een supervisor ondersteunt medewerkers bij complexere vragen en beschikt over aanvullende bevoegdheden. Zo kan een supervisor privacygevoelige informatie raadplegen die voor een reguliere callcentermedewerker niet zichtbaar is."
+    },
+    {
+      "type": "paragraph",
+      "text": "In dit voorbeeld onderscheiden we drie gebruikersgroepen:"
+    },
+    {
+      "type": "list",
+      "items": [
+        "klant;",
+        "callcentermedewerker;",
+        "callcentersupervisor."
+      ]
+    },
+    {
+      "type": "h3",
+      "text": "Overzicht van de rechten"
+    },
+    {
+      "type": "paragraph",
+      "text": "Het verschil zit niet alleen in de rol. Ook de handelingscontext verschilt:"
+    },
+    {
+      "type": "list",
+      "items": [
+        "de klant handelt voor zichzelf;",
+        "de callcentermedewerker handelt namens een klant;",
+        "de supervisor handelt namens een klant en heeft aanvullende bevoegdheden."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Die combinatie van identiteit, rol en context vormt de basis voor de architectuur in de volgende hoofdstukken."
+    },
+    {
+      "type": "h2",
+      "text": "3. Gebruiker, rol en handelingscontext",
+      "id": "hoofdstuk-3"
+    },
+    {
+      "type": "paragraph",
+      "text": "Een toegangsbeslissing begint met het onderscheiden van drie begrippen."
+    },
+    {
+      "type": "h3",
+      "text": "Gebruiker"
+    },
+    {
+      "type": "paragraph",
+      "text": "De gebruiker is de persoon die daadwerkelijk achter het toetsenbord of de telefoon zit. Authenticatie stelt vast wie deze persoon is en met welke zekerheid dat is gebeurd."
+    },
+    {
+      "type": "h3",
+      "text": "Rol"
+    },
+    {
+      "type": "paragraph",
+      "text": "De rol beschrijft de algemene functie of positie van de gebruiker, bijvoorbeeld customer, callcenter_agent of callcenter_supervisor. Een rol kan helpen bij grove toegangsbeslissingen, maar is meestal niet voldoende voor fijnmazige autorisatie."
+    },
+    {
+      "type": "h3",
+      "text": "Handelingscontext"
+    },
+    {
+      "type": "paragraph",
+      "text": "De handelingscontext beschrijft namens wie en binnen welke situatie de gebruiker werkt. Dat onderscheid is nodig omdat de identiteit waarmee iemand inlogt niet altijd gelijk is aan de persoon voor wie de handeling wordt uitgevoerd. Een callcentermedewerker is bijvoorbeeld als medewerker geauthenticeerd, maar handelt na het selecteren van een klant namens die klant."
+    },
+    {
+      "type": "paragraph",
+      "text": "Deze context mag niet uitsluitend uit de front-end komen."
+    },
+    {
+      "type": "paragraph",
+      "text": "De reden hiervoor is dat een door de browser meegestuurd klantnummer geen betrouwbaar bewijs is dat de medewerker voor die klant mag handelen. De server moet de context vaststellen en vastleggen in een controleerbaar token of in een server-side sessie."
+    },
+    {
+      "type": "paragraph",
+      "text": "De architectuur moet daardoor steeds twee identiteiten kunnen onderscheiden:"
+    },
+    {
+      "type": "list",
+      "items": [
+        "de subject: de klant of resource-eigenaar namens wie wordt gehandeld;",
+        "de actor: de persoon die de handeling daadwerkelijk uitvoert."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Deze scheiding is noodzakelijk voor autorisatie, auditing, fraudedetectie en het afhandelen van klachten."
+    },
+    {
+      "type": "h2",
+      "text": "4. De authenticatiearchitectuur",
+      "id": "hoofdstuk-4"
+    },
+    {
+      "type": "paragraph",
+      "text": "Authenticatie bepaalt wie een gebruiker is. De gekozen methode kan per gebruikersgroep en per handeling verschillen."
+    },
+    {
+      "type": "h3",
+      "text": "Verschillende routes, één vertrouwde uitkomst"
+    },
+    {
+      "type": "paragraph",
+      "text": "Een klant kan rechtstreeks bij het CIAM-platform inloggen. Een medewerker gebruikt vaak het interne authenticatiedomein van de organisatie. Een ketenpartner kan weer via zijn eigen Identity Provider binnenkomen."
+    },
+    {
+      "type": "paragraph",
+      "text": "De authenticatieroutes mogen verschillen, maar de achterliggende API’s moeten niet alle Identity Providers afzonderlijk hoeven vertrouwen en begrijpen. Het CIAM-platform of een centrale Authorization Server kan als broker optreden en na succesvolle authenticatie tokens uitgeven in één voorspelbaar formaat."
+    },
+    {
+      "type": "h3",
+      "text": "Authenticatiemethoden"
+    },
+    {
+      "type": "paragraph",
+      "text": "De architectuur moet ruimte bieden aan meerdere methoden:"
+    },
+    {
+      "type": "list",
+      "items": [
+        "wachtwoord;",
+        "wachtwoord in combinatie met 2FA;",
+        "Passkey;",
+        "social login;",
+        "federatie met een zakelijke of interne Identity Provider."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Niet iedere gebruiker hoeft altijd met de zwaarste methode in te loggen. De benodigde zekerheid hangt af van het risico van de handeling. Het bekijken van een bestelling kan bijvoorbeeld een lager niveau vereisen dan het wijzigen van een bankrekeningnummer."
+    },
+    {
+      "type": "h3",
+      "text": "Step-up-authenticatie"
+    },
+    {
+      "type": "paragraph",
+      "text": "Bij step-up-authenticatie vraagt de applicatie tijdens een bestaande sessie om een sterkere of recentere authenticatie. Claims in een ID Token of Access Token kunnen vastleggen met welk niveau, op welke manier en op welk moment de gebruiker is geauthenticeerd. Dit gebeurt o.a. met de acr, amr en auth_time claim."
+    },
+    {
+      "type": "paragraph",
+      "text": "De betekenis van deze claims wordt later in dit whitepaper uitgelegd."
+    },
+    {
+      "type": "paragraph",
+      "text": "De API bepaalt welk niveau voor een handeling nodig is. Ontbreekt dat niveau, dan start de applicatie een aanvullende authenticatiestap. De front-end mag de gebruikerservaring begeleiden, maar mag niet zelf beslissen dat een lichtere authenticatie voldoende is."
+    },
+    {
+      "type": "h3",
+      "text": "Architectuurprincipes voor de authenticatieflow"
+    },
+    {
+      "type": "h3",
+      "text": "Gebruik Authorization Code Flow met PKCE"
+    },
+    {
+      "type": "paragraph",
+      "text": "Voor interactieve applicaties ligt de OpenID Connect Authorization Code Flow voor de hand. PKCE beschermt de uitwisseling van de autorisatiecode en is noodzakelijk voor clients die geen geheim veilig kunnen bewaren, zoals mobiele apps en browserapplicaties."
+    },
+    {
+      "type": "h3",
+      "text": "Houd tokens bij browserapplicaties bij voorkeur aan de serverzijde"
+    },
+    {
+      "type": "paragraph",
+      "text": "Voor een browserapplicatie verdient een Backend for Frontend (BFF) serieuze overweging. Tokens blijven dan aan de serverzijde en de browser ontvangt alleen een beveiligde sessiecookie. Dit beperkt de blootstelling van tokens aan JavaScript en verkleint de impact van tokendiefstal in de browser."
+    },
+    {
+      "type": "h2",
+      "text": "5. Sessies en tokens",
+      "id": "hoofdstuk-5"
+    },
+    {
+      "type": "paragraph",
+      "text": "Na succesvolle authenticatie ontstaat een sessie en worden, afhankelijk van de gekozen architectuur, tokens uitgegeven. Deze middelen hebben verschillende doelen en mogen niet door elkaar worden gebruikt."
+    },
+    {
+      "type": "h3",
+      "text": "ID Token"
+    },
+    {
+      "type": "callout",
+      "text": "Architectuurprincipe: gebruik een ID Token uitsluitend voor de clientsessie, niet voor toegang tot API's."
+    },
+    {
+      "type": "paragraph",
+      "text": "Het ID Token geeft de client informatie over de uitgevoerde authenticatie en de identiteit van de gebruiker. Het token is bedoeld voor de client die de login heeft gestart. Het is niet bedoeld als toegangsbewijs voor API’s."
+    },
+    {
+      "type": "paragraph",
+      "text": "Een ID Token heeft een beperkte geldigheidsduur. De client controleert onder andere de handtekening, issuer, audience, vervaltijd en nonce voordat informatie uit het token wordt gebruikt. Claims mogen niet langer als actueel worden beschouwd dan de sessie en het toepasselijke beleid toelaten."
+    },
+    {
+      "type": "h3",
+      "text": "Access Token"
+    },
+    {
+      "type": "paragraph",
+      "text": "Het Access Token is bestemd voor een resource server: de API waarop het token toegang geeft."
+    },
+    {
+      "type": "paragraph",
+      "text": "De API controleert ten minste:"
+    },
+    {
+      "type": "list",
+      "items": [
+        "de handtekening of geldigheid van het token;",
+        "de vertrouwde issuer;",
+        "de audience;",
+        "de vervaltijd;",
+        "de voor de functie vereiste scopes of andere autorisatieclaims."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Een eenvoudig Access Token voor een klant kan er als volgt uitzien:"
+    },
+    {
+      "type": "code",
+      "text": "{\n  \"iss\": \"https://login.example.nl\",\n  \"sub\": \"1234567890\",\n  \"aud\": \"https://api.example.nl\",\n  \"scope\": \"customer.read customer.write\",\n  \"role\": \"customer\",\n  \"acr\": \"urn:example:loa:2\",\n  \"amr\": [\n    \"hak\"\n  ],\n  \"auth_time\": 1785766961,\n  \"exp\": 1785769200\n}"
+    },
+    {
+      "type": "paragraph",
+      "text": "Een rol of scope is geen vervanging voor resource-level autorisatie. De claim ‘customer.read’ betekent bijvoorbeeld niet automatisch dat de gebruiker ieder klantdossier mag lezen. De backend moet ook controleren dat de gevraagde resource bij de subject of diens geldige handelingscontext hoort."
+    },
+    {
+      "type": "paragraph",
+      "text": "De sub-claim, voluit subject, bevat een stabiele identifier van de ingelogde klant. Dit hoeft niet hetzelfde te zijn als het relatienummer in het achterliggende klantsysteem. De backend gebruikt sub om de identiteit te koppelen aan de juiste klantrelatie en controleert vervolgens of de opgevraagde gegevens bij die relatie horen. Zo hoeft een intern relatienummer niet in ieder Access Token te worden opgenomen."
+    },
+    {
+      "type": "paragraph",
+      "text": "De aud-claim, voluit audience, legt vast welke API het token als ontvanger mag accepteren. De claim voorkomt dat een geldig token dat voor de ene API is uitgegeven zonder meer bij een andere API kan worden gebruikt."
+    },
+    {
+      "type": "paragraph",
+      "text": "De acr-claim staat voor Authentication Context Class Reference. Deze claim geeft het bereikte authenticatieniveau of de toegepaste authenticatiecontext aan. Een organisatie kan hiermee bijvoorbeeld onderscheid maken tussen een basislogin en een login die geschikt is voor een risicovolle handeling. De betekenis van iedere acr-waarde moet vooraf in het authenticatiebeleid zijn vastgelegd."
+    },
+    {
+      "type": "paragraph",
+      "text": "De amr-claim staat voor Authentication Methods References. Deze claim bevat de methoden die tijdens de authenticatie zijn gebruikt, bijvoorbeeld een wachtwoord, een eenmalige code of een Passkey. amr beschrijft dus hoe de gebruiker is geauthenticeerd, maar bepaalt op zichzelf niet welk betrouwbaarheidsniveau is bereikt."
+    },
+    {
+      "type": "paragraph",
+      "text": "De auth_time-claim bevat het tijdstip waarop de gebruiker daadwerkelijk is geauthenticeerd. Daarmee kan een API of applicatie bepalen of de authenticatie nog recent genoeg is voor een gevoelige handeling."
+    },
+    {
+      "type": "paragraph",
+      "text": "Is een token bijvoorbeeld uitgegeven voor de klantgegevens-API, dan moet een bestellingen-API dat token weigeren wanneer zij niet als audience is opgenomen. De audience verwijst dus naar de beschermde API of resource server, niet naar de gebruiker en ook niet naar de webpagina waarop de gebruiker zich bevindt. Iedere API controleert of haar eigen identifier in de aud-claim staat voordat zij het token accepteert."
+    },
+    {
+      "type": "h3",
+      "text": "Refresh Token"
+    },
+    {
+      "type": "paragraph",
+      "text": "Een Refresh Token kan worden gebruikt om een nieuw Access Token te verkrijgen zonder de gebruiker opnieuw te laten inloggen. Omdat een Refresh Token langduriger toegang kan geven, moet het sterker worden beschermd dan een Access Token."
+    },
+    {
+      "type": "callout",
+      "text": "Architectuurprincipe voor browserapplicaties: zonder BFF wordt geen Refresh Token aan de browser uitgegeven."
+    },
+    {
+      "type": "paragraph",
+      "text": "Binnen deze referentiearchitectuur bewaart alleen het BFF een Refresh Token, aan de serverzijde. Een browser kan een Refresh Token niet met dezelfde zekerheid beschermen tegen diefstal door kwaadaardige JavaScript-code. Zonder BFF werkt de browser daarom met kortlevende Access Tokens en wordt voor verlenging van de gebruikerssessie opnieuw via de Authorization Server geauthenticeerd."
+    },
+    {
+      "type": "paragraph",
+      "text": "Dit is een bewuste, conservatieve ontwerpkeuze voor browserapplicaties en geen algemene regel voor iedere publieke client. Voor bijvoorbeeld een native mobiele app kan uitgifte van een Refresh Token wel passend zijn, mits rotatie, detectie van hergebruik en veilige opslag onderdeel zijn van het ontwerp. Als een browserapplicatie zonder BFF bij uitzondering toch Refresh Tokens gebruikt, vraagt dat om een expliciet risico- en beveiligingsontwerp in plaats van een standaardinstelling."
+    },
+    {
+      "type": "h3",
+      "text": "Sessiebeheer"
+    },
+    {
+      "type": "paragraph",
+      "text": "Een volledige sessiearchitectuur beschrijft meer dan de levensduur van tokens. Zij bevat ook afspraken over:"
+    },
+    {
+      "type": "list",
+      "items": [
+        "maximale en inactieve sessieduur;",
+        "opnieuw authenticeren bij risicovolle handelingen;",
+        "centraal en lokaal uitloggen;",
+        "intrekken van toegang bij fraude of accountblokkade;",
+        "beëindigen van sessies na een wachtwoord- of beveiligingswijziging;",
+        "consistente sessies over meerdere kanalen en apparaten."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Korte Access Tokens beperken de tijd waarin een gestolen token bruikbaar is. Voor gebeurtenissen die onmiddellijk effect moeten hebben, kan aanvullende controle via introspectie, een server-side sessie of een revocatiemechanisme nodig zijn."
+    },
+    {
+      "type": "h2",
+      "text": "6. Handelen namens een klant",
+      "id": "hoofdstuk-6"
+    },
+    {
+      "type": "paragraph",
+      "text": "Een callcentermedewerker logt in met zijn eigen identiteit. Pas nadat de medewerker een klant heeft gezocht en geselecteerd, ontstaat de context waarin hij namens die klant handelt."
+    },
+    {
+      "type": "paragraph",
+      "text": "Het oorspronkelijke Access Token beschrijft alleen de medewerker en is voor deze vervolgstap niet voldoende. De geselecteerde klant als losse queryparameter meesturen is evenmin voldoende: zo’n parameter kan worden gewijzigd en vormt geen door de Authorization Server ondertekend bewijs."
+    },
+    {
+      "type": "h3",
+      "text": "Token Exchange"
+    },
+    {
+      "type": "paragraph",
+      "text": "OAuth Token Exchange kan worden gebruikt om een nieuw Access Token uit te geven waarin zowel de klant als de medewerker zijn opgenomen. In de gestandaardiseerde act-claim staat de actor die voor de subject handelt."
+    },
+    {
+      "type": "code",
+      "text": "{\n  \"iss\": \"https://login.example.nl\",\n  \"sub\": \"1234567890\",\n  \"aud\": \"https://api.example.nl\",\n  \"scope\": \"customer.read customer.write discount.grant\",\n  \"act\": {\n    \"sub\": \"987654321\",\n    \"role\": \"callcenter_agent\"\n  },\n  \"exp\": 1785769200\n}"
+    },
+    {
+      "type": "paragraph",
+      "text": "De sub-claim beschrijft de klant namens wie wordt gehandeld. De act-claim beschrijft de medewerker die de handeling uitvoert."
+    },
+    {
+      "type": "paragraph",
+      "text": "Voordat het token wordt uitgegeven, moet de server controleren:"
+    },
+    {
+      "type": "list",
+      "items": [
+        "of de medewerker klanten mag zoeken en selecteren;",
+        "of de geselecteerde klant bestaat;",
+        "welke functies de medewerker namens deze klant mag uitvoeren;",
+        "of voor de handeling aanvullende authenticatie nodig is;",
+        "hoe lang de gedelegeerde context geldig mag blijven."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Deze opzet maakt voor alle achterliggende componenten duidelijk voor welke klant toegang is verleend en welke medewerker de handelingen uitvoert. De informatie kan uniform worden gebruikt voor autorisatie, logging en auditing."
+    },
+    {
+      "type": "paragraph",
+      "text": "Bij het wisselen naar een andere klant moet een nieuwe handelingscontext ontstaan. Voorkom dat gegevens uit de vorige klantcontext in caches, schermen of server-side sessies achterblijven."
+    },
+    {
+      "type": "h2",
+      "text": "7. Architectuurlagen",
+      "id": "hoofdstuk-7"
+    },
+    {
+      "type": "paragraph",
+      "text": "Een verzoek loopt niet rechtstreeks van de gebruiker naar een database. Tussen de gebruiker en de achterliggende systemen bevinden zich lagen met elk een eigen verantwoordelijkheid."
+    },
+    {
+      "type": "h3",
+      "text": "Front-end applicatie"
+    },
+    {
+      "type": "paragraph",
+      "text": "De front-end vormt de gebruikersinterface. Dit kan een webapplicatie, mobiele app, desktopapplicatie, callcenterapplicatie of partnerportaal zijn."
+    },
+    {
+      "type": "paragraph",
+      "text": "De front-end is verantwoordelijk voor:"
+    },
+    {
+      "type": "list",
+      "items": [
+        "presentatie en gebruikersinteractie;",
+        "het starten van authenticatie en step-up;",
+        "het aanroepen van API’s;",
+        "het tonen van functies die bij de context passen."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Het verbergen van een knop is geen autorisatie. Een aanvaller kan proberen de onderliggende API rechtstreeks aan te roepen. De uiteindelijke toegangsbeslissing wordt daarom altijd aan de serverzijde afgedwongen."
+    },
+    {
+      "type": "h3",
+      "text": "Backend for Frontend"
+    },
+    {
+      "type": "paragraph",
+      "text": "Een BFF is optioneel, maar vooral voor browserapplicaties waardevol. Het BFF handelt de OpenID Connect-flow af, bewaart tokens aan de serverzijde en biedt de browser een beveiligde sessie via een cookie."
+    },
+    {
+      "type": "paragraph",
+      "text": "Het BFF is verantwoordelijk voor:"
+    },
+    {
+      "type": "list",
+      "items": [
+        "het afhandelen van de loginredirects;",
+        "het veilig bewaren en vernieuwen van tokens;",
+        "bescherming tegen CSRF en misbruik van de sessie;",
+        "het doorgeven van API-aanvragen in de juiste gebruikerscontext."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Een BFF neemt de autorisatieverantwoordelijkheid van de API niet over."
+    },
+    {
+      "type": "h3",
+      "text": "API Gateway"
+    },
+    {
+      "type": "paragraph",
+      "text": "De API Gateway is de centrale toegangspoort tot de achterliggende API’s. De gateway is verantwoordelijk voor:"
+    },
+    {
+      "type": "list",
+      "items": [
+        "technische validatie van het Access Token;",
+        "controle op issuer en audience;",
+        "grove toegang op basis van scopes of policies;",
+        "routering en eventueel orkestratie;",
+        "rate limiting, logging en monitoring."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "De gateway is geschikt voor uniforme, technische controles. Domeinspecifieke beslissingen horen bij voorkeur niet in de gateway terecht te komen. De vraag of een medewerker de geboortedatum van deze specifieke klant mag zien, vraagt kennis van de resource en hoort daarom doorgaans in de backend."
+    },
+    {
+      "type": "h3",
+      "text": "Backendservices"
+    },
+    {
+      "type": "paragraph",
+      "text": "Backendservices bevatten de businessfunctionaliteit en beheren hun eigen gegevens. Voorbeelden zijn services voor klantgegevens, contracten, bestellingen en facturen."
+    },
+    {
+      "type": "paragraph",
+      "text": "De backend controleert de autorisatie op de feitelijke resource. De service bepaalt bijvoorbeeld of de sub uit het token overeenkomt met de eigenaar van het klantdossier en of de actor de gevraagde handeling mag uitvoeren."
+    },
+    {
+      "type": "h3",
+      "text": "Verdeling van verantwoordelijkheden"
+    },
+    {
+      "type": "paragraph",
+      "text": "Deze verdeling voorkomt dat één controle op één plaats als volledige beveiliging wordt beschouwd. De gateway houdt ongeldige of ongeschikte tokens tegen; de backend beslist of de geldige gebruiker deze specifieke handeling op deze specifieke resource mag uitvoeren."
+    },
+    {
+      "type": "h2",
+      "text": "8. Waar vindt autorisatie plaats?",
+      "id": "hoofdstuk-8"
+    },
+    {
+      "type": "paragraph",
+      "text": "Een endpoint vormt het contract tussen de front-end en de achterliggende systemen. De manier waarop endpoints worden ontworpen heeft grote invloed op onderhoudbaarheid én autorisatie."
+    },
+    {
+      "type": "paragraph",
+      "text": "Dat leidt tot een belangrijke architectuurvraag:"
+    },
+    {
+      "type": "paragraph",
+      "text": "Krijgt iedere gebruikersgroep een eigen endpoint, routeert de API Gateway naar een specifieke backendfunctie of gebruikt iedereen hetzelfde endpoint?"
+    },
+    {
+      "type": "paragraph",
+      "text": "De toegangsbeslissing bestaat daarbij uit meerdere niveaus:"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Tokenniveau: is het token geldig en voor deze API bedoeld?",
+        "Functieniveau: mag deze gebruiker deze functie aanroepen?",
+        "Resourceniveau: mag deze gebruiker deze handeling op dit specifieke klantdossier uitvoeren?",
+        "Gegevensniveau: welke velden mogen in deze context zichtbaar of wijzigbaar zijn?"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Niet ieder niveau hoeft op dezelfde plaats te worden uitgevoerd. Technische tokencontroles passen goed in de gateway. Beslissingen die kennis van klantgegevens of businessregels vereisen passen beter in de backendservice."
+    },
+    {
+      "type": "paragraph",
+      "text": "In het volgende hoofdstuk werken we drie mogelijke endpointarchitecturen uit."
+    },
+    {
+      "type": "h2",
+      "text": "9. Drie architectuurkeuzes",
+      "id": "hoofdstuk-9"
+    },
+    {
+      "type": "h3",
+      "text": "Architectuurkeuze A – Gescheiden endpoints"
+    },
+    {
+      "type": "paragraph",
+      "text": "Iedere gebruikersgroep krijgt een eigen endpoint zodra de functionaliteit of de toegestane gegevens verschillen:"
+    },
+    {
+      "type": "code",
+      "text": "GET /customer\nGET /callcenter/customer\nGET /supervisor/customer"
+    },
+    {
+      "type": "paragraph",
+      "text": "Ieder endpoint heeft een eigen API-contract en is gekoppeld aan een specifieke gebruikersgroep."
+    },
+    {
+      "type": "h3",
+      "text": "Voordelen"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Duidelijke scheiding tussen gebruikersgroepen.",
+        "Ieder endpoint heeft een eigen API-contract met een duidelijk afgebakende set attributen.",
+        "Privacygevoelige gegevens worden minder snel per ongeluk teruggegeven.",
+        "De autorisatie is eenvoudig te begrijpen en te controleren.",
+        "Backendservices bevatten weinig conditionele presentatielogica."
+      ]
+    },
+    {
+      "type": "h3",
+      "text": "Nadelen"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Het aantal endpoints groeit met het aantal gebruikersgroepen.",
+        "Functionaliteit en datamodellen worden sneller gedupliceerd.",
+        "Wijzigingen moeten regelmatig op meerdere plaatsen worden doorgevoerd.",
+        "De front-end moet weten welk endpoint bij de context hoort."
+      ]
+    },
+    {
+      "type": "h3",
+      "text": "Architectuurkeuze B – Centrale routering"
+    },
+    {
+      "type": "paragraph",
+      "text": "De front-end kent slechts één endpoint:"
+    },
+    {
+      "type": "code",
+      "text": "GET /customer"
+    },
+    {
+      "type": "paragraph",
+      "text": "De API Gateway bepaalt op basis van de vertrouwde gebruikerscontext welke backendfunctie wordt aangeroepen."
+    },
+    {
+      "type": "h3",
+      "text": "Voordelen"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Eén eenvoudig API-contract voor de front-end.",
+        "De front-end hoeft weinig van gebruikersrollen te weten.",
+        "Routering en grove toegangscontrole worden centraal beheerd.",
+        "Backendfuncties kunnen per context helder worden afgebakend."
+      ]
+    },
+    {
+      "type": "h3",
+      "text": "Nadelen"
+    },
+    {
+      "type": "list",
+      "items": [
+        "De API Gateway krijgt meer verantwoordelijkheid.",
+        "Routeringslogica en tests van de gateway worden complexer en mogelijk trager.",
+        "Businessspecifieke keuzes kunnen ongemerkt in de gateway belanden.",
+        "Een fout in centrale routering kan meerdere gebruikersgroepen raken."
+      ]
+    },
+    {
+      "type": "h3",
+      "text": "Architectuurkeuze C – Gedeelde endpoints"
+    },
+    {
+      "type": "paragraph",
+      "text": "Voor iedere functie bestaat één endpoint in de gehele keten:"
+    },
+    {
+      "type": "code",
+      "text": "GET /customer"
+    },
+    {
+      "type": "paragraph",
+      "text": "De API Gateway valideert het token en de backend bepaalt op basis van subject, actor en context welke gegevens zichtbaar zijn."
+    },
+    {
+      "type": "h3",
+      "text": "Voordelen"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Slechts één endpoint per functie.",
+        "Een compacte en consistente API.",
+        "Weinig duplicatie van functionaliteit.",
+        "Nieuwe gebruikersgroepen leiden niet direct tot nieuwe API-contracten.",
+        "Functionaliteit hoeft maar op één plaats te worden onderhouden."
+      ]
+    },
+    {
+      "type": "h3",
+      "text": "Nadelen"
+    },
+    {
+      "type": "list",
+      "items": [
+        "De backend bevat meer conditionele autorisatielogica.",
+        "Ontwikkelteams moeten autorisatie consequent implementeren.",
+        "Geautomatiseerde tests en code reviews worden belangrijker.",
+        "Onzorgvuldige implementaties kunnen te veel gegevens vrijgeven en daardoor mogelijk leiden tot een datalek."
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "10. Vergelijking en beslismodel",
+      "id": "hoofdstuk-10"
+    },
+    {
+      "type": "paragraph",
+      "text": "De keuze is niet alleen een API-ontwerpbeslissing. Zij bepaalt waar autorisatielogica terechtkomt, wie ervoor verantwoordelijk is en hoe fouten kunnen doorwerken."
+    },
+    {
+      "type": "paragraph",
+      "text": "Een eerste beslisroute is:"
+    },
+    {
+      "type": "paragraph",
+      "text": "Deze beslisroute geeft een startpunt, geen automatisch antwoord. De uiteindelijke keuze moet worden getoetst aan privacyrisico’s, teamvolwassenheid, testbaarheid, auditvereisten en de verwachte groei van gebruikersgroepen en kanalen."
+    },
+    {
+      "type": "h2",
+      "text": "11. Aanbevolen ontwerpprincipes",
+      "id": "hoofdstuk-11"
+    },
+    {
+      "type": "paragraph",
+      "text": "Ongeacht de gekozen endpointarchitectuur helpen de volgende principes om de oplossing beheersbaar te houden."
+    },
+    {
+      "type": "h3",
+      "text": "1. Vertrouw alleen server-side vastgestelde context"
+    },
+    {
+      "type": "paragraph",
+      "text": "Baseer autorisatie niet op rollen, klantnummers of rechten die uitsluitend door de browser worden meegestuurd. Gebruik gevalideerde tokens en controleer de relatie met de gevraagde resource."
+    },
+    {
+      "type": "h3",
+      "text": "2. Gebruik ieder token waarvoor het bedoeld is"
+    },
+    {
+      "type": "paragraph",
+      "text": "Gebruik een ID Token voor de clientsessie en een Access Token voor toegang tot API’s. Controleer issuer, audience, vervaltijd en toepasselijke autorisatieclaims."
+    },
+    {
+      "type": "h3",
+      "text": "3. Houd tokens uit de browser waar dat passend is"
+    },
+    {
+      "type": "paragraph",
+      "text": "Gebruik voor browserapplicaties bij voorkeur een BFF en beveiligde cookies. Geef binnen deze referentiearchitectuur zonder BFF geen Refresh Token aan de browser uit. Beperk de levensduur van Access Tokens en leg eventuele afwijkingen expliciet vast in het risico- en beveiligingsontwerp."
+    },
+    {
+      "type": "h3",
+      "text": "4. Pas het authenticatieniveau aan het risico aan"
+    },
+    {
+      "type": "paragraph",
+      "text": "Maak step-up-authenticatie onderdeel van het ontwerp. Laat de API aangeven wanneer sterkere of recentere authenticatie nodig is."
+    },
+    {
+      "type": "h3",
+      "text": "5. Scheid grove en fijnmazige autorisatie"
+    },
+    {
+      "type": "paragraph",
+      "text": "Laat de gateway uniforme technische controles uitvoeren en de backend beslissen over de concrete resource en gegevensvelden."
+    },
+    {
+      "type": "h3",
+      "text": "6. Maak subject en actor expliciet"
+    },
+    {
+      "type": "paragraph",
+      "text": "Leg bij handelen namens een klant vast wie de klant is en wie de handeling uitvoert. Gebruik deze informatie consequent in autorisatie en auditlogging."
+    },
+    {
+      "type": "h3",
+      "text": "7. Ontwerp klantwissel en uitloggen bewust"
+    },
+    {
+      "type": "paragraph",
+      "text": "Voorkom dat gegevens of rechten uit een vorige context achterblijven. Beschrijf wat er met sessies, caches en tokens gebeurt bij klantwissel, uitloggen, blokkade en intrekking."
+    },
+    {
+      "type": "h3",
+      "text": "8. Test negatieve scenario’s"
+    },
+    {
+      "type": "paragraph",
+      "text": "Test niet alleen wat een gebruiker mag, maar vooral wat niet mag. Probeer identifiers te wijzigen, endpoints rechtstreeks aan te roepen, tokens voor een andere audience te gebruiken en gegevensvelden buiten de toegestane context op te vragen."
+    },
+    {
+      "type": "h3",
+      "text": "9. Beperk persoonsgegevens in tokens en logs"
+    },
+    {
+      "type": "paragraph",
+      "text": "Neem alleen claims op die iedere ontvangende component nodig heeft. Tokens en auditlogs zijn geen alternatief voor een klantdatabase en verdienen eigen bewaartermijnen en toegangsbeleid."
+    },
+    {
+      "type": "h3",
+      "text": "10. Leg verantwoordelijkheden vast"
+    },
+    {
+      "type": "paragraph",
+      "text": "Maak expliciet welk team eigenaar is van authenticatiebeleid, tokencontracten, gatewaypolicies, resource-autorisatie, auditlogging en periodieke controles. Zonder eigenaarschap veroudert ook een goed ontwerp."
+    },
+    {
+      "type": "h2",
+      "text": "12. Over de auteur",
+      "id": "hoofdstuk-12"
+    },
+    {
+      "type": "paragraph",
+      "text": "Marc Enschede is zelfstandig CIAM-consultant en oprichter van World of CIAM. Hij helpt organisaties bij het ontwerpen en realiseren van veilige en gebruiksvriendelijke oplossingen voor registreren, inloggen en toegang tot digitale dienstverlening."
+    },
+    {
+      "type": "paragraph",
+      "text": "Met bijna veertig jaar ervaring in ICT combineert hij architectuurkennis met praktische ervaring als developer en technisch analist. Daardoor kan hij niet alleen richting geven aan een ontwerp, maar ook de vertaalslag maken naar concrete keuzes voor product owners, architecten en ontwikkelteams."
+    },
+    {
+      "type": "paragraph",
+      "text": "Marc werkt onafhankelijk van softwareleveranciers en ondersteunt organisaties als adviseur, sparringpartner en inhoudelijk specialist."
+    },
+    {
+      "type": "paragraph",
+      "text": "Wil je van gedachten wisselen over jouw authenticatie- of autorisatiearchitectuur? Neem dan contact op via World of CIAM of bel 06-24243469."
+    },
+    {
+      "type": "h2",
+      "text": "13. Conclusie",
+      "id": "hoofdstuk-13"
+    },
+    {
+      "type": "paragraph",
+      "text": "Een veilige selfservicearchitectuur stopt niet nadat de gebruiker is ingelogd."
+    },
+    {
+      "type": "paragraph",
+      "text": "Authenticatie bepaalt wie iemand is. De gebruikerscontext bepaalt namens wie iemand handelt. Autorisatie bepaalt wat die persoon vervolgens mag zien en doen. De architectuur bepaalt waar deze beslissingen worden genomen en afgedwongen."
+    },
+    {
+      "type": "paragraph",
+      "text": "Een CIAM-platform kan gebruikers authenticeren, federaties afhandelen en tokens uitgeven. Het bepaalt echter niet zelfstandig hoe een organisatie resource-autorisatie, gegevensfiltering en verantwoordelijkheden over haar applicatielagen verdeelt."
+    },
+    {
+      "type": "paragraph",
+      "text": "Daarom is een goede CIAM-architectuur meer dan een correcte implementatie van OpenID Connect of OAuth. Het is een bewuste samenhang tussen authenticatiemethoden, sessies, tokens, handelingscontext, API Gateway en backendservices."
+    },
+    {
+      "type": "paragraph",
+      "text": "Er bestaat geen universeel beste endpointarchitectuur. Gescheiden endpoints bieden sterke isolatie, centrale routering houdt de front-end eenvoudig en gedeelde endpoints beperken duplicatie. De juiste keuze hangt af van de risico’s, de gewenste onderhoudbaarheid en de volwassenheid van de ontwikkelorganisatie."
+    },
+    {
+      "type": "paragraph",
+      "text": "Door deze keuzes vóór de realisatie expliciet te maken, ontstaat een architectuur die niet alleen vandaag veilig en beheersbaar is, maar ook ruimte biedt voor nieuwe authenticatiemethoden, kanalen, gebruikersgroepen en samenwerkingsvormen."
+    },
+    {
+      "type": "h2",
+      "text": "Bronnen en standaarden",
+      "id": "bronnen"
+    },
+    {
+      "type": "list",
+      "items": [
+        "OpenID Connect Core 1.0",
+        "RFC 9700 – Best Current Practice for OAuth 2.0 Security",
+        "RFC 8693 – OAuth 2.0 Token Exchange",
+        "OAuth 2.0 for Browser-Based Applications – actuele IETF-werkversie"
+      ]
+    }
+  ]
+}
