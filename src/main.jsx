@@ -110,7 +110,7 @@ function Home() {
             <div className="photo-frame"><Photo name="about"/></div>
             <div className="section-copy">
 
-                <h2>JE WILT DAT DE BUSINESS MAXIMAAL KAN LEVEREN. HOE HELPT CIAM DAARBIJ?</h2>
+                <h2>JE BUSINESS WIL MAXIMAAL LEVEREN. HOE HELPT CIAM DAARBIJ?</h2>
                 <p>Je wilt nieuwe klanten verwelkomen, bestaande klanten beter bedienen en nieuwe digitale diensten snel naar de markt brengen. Dan moet toegang goed geregeld zijn. Eenvoudig een account aanmaken, veilig inloggen en doorgaan met waarvoor je kwam. CIAM legt daarvoor de basis.</p>
                 <p>Als product owner wil je minder afhakers bij registratie, minder telefoontjes over inlogproblemen en meer klanten die je diensten gebruiken. Maar waar begin je? En hoe vertaal je die ambities naar een roadmap waarmee je team aan de slag kan?</p>
                 <p>Als architect wil je een gezamenlijke basis voor klantidentiteit en toegang. Zodat teams nieuwe diensten sneller kunnen aansluiten en niet telkens hetzelfde hoeven op te lossen. Passend bij het bestaande landschap én de plannen van de business.</p>
