@@ -8,14 +8,14 @@ export const profile = {
     tagline: 'Persoonlijk. Nieuwsgierig. Betrokken.'
 };
 export const photos = {
-    hero: ['./images/eb230711 Marc Enschede342 copy.png', 'Marc Enschede'],
-    portrait: ['./images/eb230711 Marc Enschede342 copy.png', 'Marc Enschede'],
+    hero: ['./images/decorations/eb230711 Marc Enschede342 copy.png', 'Marc Enschede'],
+    portrait: ['./images/decorations/eb230711 Marc Enschede342 copy.png', 'Marc Enschede'],
     landscape: ['photo-1470770841072-f978cf4d019e', 'Een stil meer tussen de bergen'],
-    about: ['photo-1441974231531-c6227db76b6e', 'Zonlicht tussen de bomen'],
-    vision: ['./images/6436D8E4-DF4D-4FCC-9D75-0BFAD7F99169_1_201_a.jpeg', 'Een CIAM-workshop met uitleg aan een scherm'],
+    about: ['./images/decorations/8DD176F5-5273-4AC9-8FD9-1DFAB91534D2_1_201_a.jpeg', 'Staand portret van Marc Enschede buiten'],
+    vision: ['./images/decorations/6436D8E4-DF4D-4FCC-9D75-0BFAD7F99169_1_201_a.jpeg', 'Een CIAM-workshop met uitleg aan een scherm'],
     work: ['photo-1499750310107-5fef28a66643', 'Notitieboek en koffie op een werktafel'],
     blog: ['photo-1445394761341-4773ffeb5f07', 'Een opengeslagen notitieboek'],
-    background: ['photo-1464822759023-fed622ff2c3b', 'Bergtoppen in de verte'],
+    background: ['./images/decorations/535DEC9A-AF42-4207-9AA5-4E270AD1C431_1_105_c.jpeg', 'Marc Enschede aan een picknicktafel bij het water'],
     contact: ['photo-1470071459604-3b5ec3a7fe05', 'Groene heuvels in de ochtendmist']
 };
 export const filler = 'Dit is een plek voor jouw verhaal. Vertel hier wat je bezighoudt, waar je in gelooft en wat je graag wilt delen. Een paar persoonlijke woorden zijn vaak genoeg om een mooi gesprek te beginnen.';

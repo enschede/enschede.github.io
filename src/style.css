@@ -259,3 +259,5 @@ footer p, footer > a:last-child { font-size: 11px; color: #bbb; }
 .testimonial-role { margin-top: 6px; }
 
 .testimonial .testimonial-photo { width: 96px; height: 96px; flex-shrink: 0; object-fit: cover; object-position: center; border-radius: 50%; margin-bottom: 24px; }
+
+#ciam .photo-frame { height: auto; aspect-ratio: 2 / 3; }

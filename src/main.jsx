@@ -155,27 +155,14 @@ function Home() {
             <div className="photo-frame"><Photo name="about"/></div>
             <div className="section-copy">
                 <Label number="02">Het speelveld van CIAM</Label>
-                <h2>Je wilt dat de business maximaal kan leveren. Hoe helpt CIAM daarbij?</h2>
-                <p>Je wilt nieuwe klanten verwelkomen, bestaande klanten beter bedienen en nieuwe digitale
-                    diensten snel naar de markt brengen. Dan moet toegang goed geregeld zijn. Klanten moeten
-                    eenvoudig een account kunnen aanmaken, veilig kunnen inloggen en verder kunnen met waarvoor
-                    ze kwamen. CIAM legt daarvoor de basis, zodat je business kan groeien.</p>
-                <p>Als product owner wil je investeren in wat waarde oplevert. Minder klanten die afhaken bij
-                    registratie. Minder telefoontjes over inlogproblemen. Meer klanten die je diensten gebruiken.
-                    Maar welke verbetering heeft de meeste impact? En hoe maak je van die ambitie een roadmap
-                    waarmee je team gericht kan leveren?</p>
-                <p>Als architect wil je dat technologie die ambities mogelijk maakt. Een gezamenlijke basis
-                    voor klantidentiteit en toegang, waarop teams kunnen voortbouwen. Zodat een nieuwe dienst
-                    aansluiten minder tijd kost, je niet telkens hetzelfde oplost en veranderingen beheersbaar
-                    blijven. Hoe richt je dat in, passend bij het bestaande landschap en de plannen van de business?</p>
-                <p>De waarde van CIAM zit in wat je ermee mogelijk maakt: een betere klantreis, sneller nieuwe
-                    functionaliteit leveren en minder kosten voor beheer en ondersteuning. Daarvoor moet je
-                    keuzes maken. Wat draagt het meest bij aan je doelen? Wat moet nu en wat kan later?
-                    En hoe houd je de toegang veilig terwijl je vooruitgaat?</p>
-                <p>Ik help je die verbinding te maken. Van businessdoelen naar concrete keuzes en een uitvoerbaar
-                    plan voor product owners, architecten en teams. Met duidelijke prioriteiten en resultaten
-                    waaraan je kunt zien wat het oplevert. Zodat CIAM de business helpt maximaal te leveren,
-                    door inloggen makkelijker, veiliger en goedkoper te maken.</p>
+                <h2>JE WILT DAT DE BUSINESS MAXIMAAL KAN LEVEREN. HOE HELPT CIAM DAARBIJ?</h2>
+                <p>Je wilt nieuwe klanten verwelkomen, bestaande klanten beter bedienen en nieuwe digitale diensten snel naar de markt brengen. Dan moet toegang goed geregeld zijn. Eenvoudig een account aanmaken, veilig inloggen en doorgaan met waarvoor je kwam. CIAM legt daarvoor de basis.</p>
+                <p>Als product owner wil je minder afhakers bij registratie, minder telefoontjes over inlogproblemen en meer klanten die je diensten gebruiken. Maar waar begin je? En hoe vertaal je die ambities naar een roadmap waarmee je team aan de slag kan?</p>
+                <p>Als architect wil je een gezamenlijke basis voor klantidentiteit en toegang. Zodat teams nieuwe diensten sneller kunnen aansluiten en niet telkens hetzelfde hoeven op te lossen. Passend bij het bestaande landschap én de plannen van de business.</p>
+                <p>Daar zit de waarde van CIAM: een betere klantreis, sneller nieuwe diensten aanbieden en minder kosten voor beheer en ondersteuning. Dat vraagt om keuzes. Wat moet nu, wat kan later en hoe houd je de toegang veilig?</p>
+                <p>In mijn projecten kwamen steeds dezelfde vragen terug. We tekenden vaak dezelfde plaatjes. Iedere organisatie is anders, maar veel vraagstukken hebben we ergens anders al eens opgelost. Waarom zou je telkens opnieuw beginnen?</p>
+                <p>Daaruit ontstond mijn aanpak ‘CIAM in 4 stappen’. Vragen die anders pas onderweg opduiken, stellen we vooraf. We inventariseren wat er is, bepalen de richting en maken een blauwdruk en migratieplan. Daarna volgen realisatie en overdracht, in beheersbare stappen.</p>
+                <p>Zo krijgt de business een uitvoerbaar plan, weet je team wat het moet bouwen en waarom, en krijg jij overzicht en vertrouwen in de keuzes.</p>
             </div>
         </section>
         <section className="vision section" id="visie">
