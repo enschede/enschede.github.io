@@ -1,0 +1,140 @@
+{
+  "title": "3 Stappen om 2FA in te schakelen",
+  "intro": "Een praktische gids om je eigen data en de data van je organisatie beter te beschermen.",
+  "toc": [
+    {
+      "text": "Stap 1 – Breng je kritieke accounts in kaart",
+      "id": "onderdeel-1"
+    },
+    {
+      "text": "Stap 2 – Bescherm je accounts met 2FA",
+      "id": "onderdeel-2"
+    },
+    {
+      "text": "Stap 3 – Zorg dat je zelf niet buitengesloten raakt",
+      "id": "onderdeel-3"
+    },
+    {
+      "text": "Alles bij elkaar",
+      "id": "onderdeel-4"
+    },
+    {
+      "text": "Biedt jij data diensten aan bij je klant?",
+      "id": "onderdeel-5"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "We horen het steeds vaker op radio en televisie; zorg dat je 2FA inschakelt op je Internet accounts. Dat is makkelijk gezegd, maar hoe doe je dat nou? Waar moet je beginnen? En welke accounts moet je beveiligen? Two-Factor Authenticatie (2FA) wordt inmiddels gezien als één van de meest effectieve middelen om identiteitsfraude en ongeautoriseerde toegang te voorkomen. Maar 2FA werkt alleen goed als de basis op orde is. In deze gids deel ik drie concrete stappen die helpen om 2FA aan te zetten; voor jezelf én je organisatie."
+    },
+    {
+      "type": "h2",
+      "text": "Stap 1 – Breng je kritieke accounts in kaart",
+      "id": "onderdeel-1"
+    },
+    {
+      "type": "paragraph",
+      "text": "Wat je niet in beeld hebt, kun je niet beschermen. Begin daarom met een lijst van alle accounts die cruciaal zijn voor je dagelijkse werk of organisatie."
+    },
+    {
+      "type": "paragraph",
+      "text": "Denk daarbij minimaal aan de volgende account:"
+    },
+    {
+      "type": "list",
+      "items": [
+        "E-mail (Office365, Gmail, etc.)",
+        "Telecomprovider (om sim-swaps te voorkomen)",
+        "Social media (reputatie & zakelijke netwerken)",
+        "Financiële platforms (broker, verzekeringen, energieleverancier)",
+        "Boekhoud- en CRM-systemen",
+        "Hosting, domeinnamen en cloud-diensten",
+        "Accounts bij je belangrijkste leveranciers"
+      ]
+    },
+    {
+      "type": "callout",
+      "text": "Tip: schrijf deze lijst op papier en noteer per account de gebruikersnaam of inlognaam. Zo voorkom je dat deze gegevens digitaal te achterhalen zijn."
+    },
+    {
+      "type": "h2",
+      "text": "Stap 2 – Bescherm je accounts met 2FA",
+      "id": "onderdeel-2"
+    },
+    {
+      "type": "paragraph",
+      "text": "Een wachtwoord alleen is al lang niet meer genoeg. Multi-Factor Authenticatie (2FA) voegt een tweede slot toe aan de deur. Maar niet elke 2FA-methode biedt dezelfde bescherming. Hieronder zie je de meest gebruikte varianten:"
+    },
+    {
+      "type": "list",
+      "items": [
+        "SMS-code – makkelijk, maar kwetsbaar voor sim-swapping.",
+        "Code via e-mail – ronduit onveilig (je gebruikt hetzelfde kanaal als password reset).",
+        "Authenticator-app – veilig, maar gebruikersonvriendelijk. En maak altijd een backup.",
+        "Passkeys – robuust, niet te phishen, afhankelijk van device.",
+        "Yubikey met passkeys – zeer veilig, offline sleutel, vrijwel onhackbaar. Helaas niet gratis."
+      ]
+    },
+    {
+      "type": "callout",
+      "text": "Tip: gebruik twee Yubikeys – één voor dagelijks gebruik en één als reserve – en update regelmatig je 2FA-instellingen."
+    },
+    {
+      "type": "h2",
+      "text": "Stap 3 – Zorg dat je zelf niet buitengesloten raakt",
+      "id": "onderdeel-3"
+    },
+    {
+      "type": "paragraph",
+      "text": "Beveiliging is waardeloos als jij zelf niet meer binnenkomt. Stel dat je telefoon gestolen wordt, je Yubikey kwijtraakt of je device crasht – wat dan? Zonder plan sta je zelf net zo goed buitenspel. Een goed recovery-plan voorkomt dat."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Gebruik een apart e-mailadres uitsluitend voor herstel, uiteraard met 2FA.",
+        "Zorg voor recovery-codes en bewaar ze niet digitaal, maar geprint en veilig opgeslagen.",
+        "Noteer op papier niet bij welke accounts de codes horen."
+      ]
+    },
+    {
+      "type": "callout",
+      "text": "Tip: controleer jaarlijks of je recovery-opties nog actueel zijn – vooral bij accounts die je zelden gebruikt."
+    },
+    {
+      "type": "h2",
+      "text": "Alles bij elkaar",
+      "id": "onderdeel-4"
+    },
+    {
+      "type": "paragraph",
+      "text": "Met deze drie stappen maak je het hackers aanzienlijk moeilijker:"
+    },
+    {
+      "type": "ordered-list",
+      "items": [
+        "Breng je kritieke accounts in kaart",
+        "Beveilig ze met de juiste 2FA",
+        "Regel je recovery goed."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Ok, het is even lastig. Maar je kunt wel iets rustiger slapen nu!"
+    },
+    {
+      "type": "h2",
+      "text": "Biedt jij data diensten aan bij je klant?",
+      "id": "onderdeel-5"
+    },
+    {
+      "type": "paragraph",
+      "text": "Veel organisaties bieden slechts een of enkele 2FA-mogelijheden aan."
+    },
+    {
+      "type": "paragraph",
+      "text": "Gevolg: klanten die afhaken, call-centers die vollopen of reputatieschade door datalekken. Een goed CIAM-plan (onboarding en inloggen door klanten) brengt deze opties samen in één geïntegreerde aanpak; veilig én gebruiksvriendelijk."
+    }
+  ],
+  "readingMinutes": 3
+}

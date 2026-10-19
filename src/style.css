@@ -341,3 +341,5 @@ footer p, footer > a:last-child { font-size: 11px; color: #bbb; }
     .header .brand { font-size: 17px; }
     .header .brand-logo { width: 30px; height: 26px; }
 }
+
+.story-feature + .story-feature { margin-top: 36px; }

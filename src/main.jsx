@@ -5,6 +5,7 @@ import './style.css';
 import ContactBlock from './components/ContactBlock';
 import ReactionsBlock from './components/ReactionsBlock';
 import firstStory from './articles/eerste-verhaal.json';
+import secondStory from './articles/tweede-verhaal.json';
 
 const page = location.pathname.split('/').pop().replace('.html', '') || 'index';
 const isHome = page === 'index';
@@ -167,7 +168,8 @@ function Home() {
             <div className="section-heading">
                 <div><Label number="05">Verhalen & gedachten</Label><h2>Even de tijd om <em>te lezen.</em></h2></div>
                 <TextLink href="./blog.html">Naar het blog</TextLink></div>
-            <StoryCard/></section>
+            <StoryCard/>
+        <StoryCard story={secondStory} href="./tweede-verhaal.html" category="Praktische gids" photo="approach"/></section>
         <section className="split section background" id="kennismaken">
             <div className="photo-frame"><Photo name="background"/></div>
             <div className="section-copy"><Label number="06">Kennismaken</Label><h2>Laten we<br/><em>kennismaken.</em>
@@ -181,12 +183,12 @@ function Home() {
     </>
 }
 
-function StoryCard() {
-    return <a className="story-feature" href="./eerste-verhaal.html">
-        <Photo name="vision"/>
-        <div><span className="eyebrow">Whitepaper · {firstStory.readingMinutes} min leestijd</span>
-            <h2>{firstStory.title}</h2>
-            <p>{firstStory.intro}</p>
+function StoryCard({story = firstStory, href = './eerste-verhaal.html', category = 'Whitepaper', photo = 'vision'}) {
+    return <a className="story-feature" href={href}>
+        <Photo name={photo}/>
+        <div><span className="eyebrow">{category} · {story.readingMinutes} min leestijd</span>
+            <h2>{story.title}</h2>
+            <p>{story.intro}</p>
             <span className="text-link">Lees het verhaal <Arrow/></span>
         </div>
     </a>;
@@ -198,24 +200,25 @@ function Blog() {
         <h1>Een moment om te lezen.</h1>
         <p className="intro">Ideeën, observaties en verhalen over CIAM, architectuur en de waarde voor je organisatie.</p>
         <StoryCard/>
+        <StoryCard story={secondStory} href="./tweede-verhaal.html" category="Praktische gids" photo="approach"/>
     </div>;
 }
 
-function FirstStory() {
+function ArticlePage({story, category = 'Whitepaper'}) {
     return <><article className="subpage whitepaper">
         <a className="text-link" href="./blog.html">← Alle verhalen</a>
-        <p className="eyebrow">Whitepaper · Marc Enschede · {firstStory.readingMinutes} min leestijd</p>
-        <h1>{firstStory.title}</h1>
-        <p className="whitepaper-subtitle">{firstStory.subtitle}</p>
-        <p className="intro">{firstStory.intro}</p>
+        <p className="eyebrow">{category} · Marc Enschede · {story.readingMinutes} min leestijd</p>
+        <h1>{story.title}</h1>
+        {story.subtitle && <p className="whitepaper-subtitle">{story.subtitle}</p>}
+        <p className="intro">{story.intro}</p>
         <div className="whitepaper-layout">
             <aside className="whitepaper-toc" aria-label="Inhoudsopgave">
                 <details open><summary>In dit verhaal</summary>
-                    <ol>{firstStory.toc.map(item => <li key={item.id}><a href={`#${item.id}`}>{item.text}</a></li>)}</ol>
+                    <ol>{story.toc.map(item => <li key={item.id}><a href={`#${item.id}`}>{item.text}</a></li>)}</ol>
                 </details>
             </aside>
             <div className="whitepaper-body">
-                {firstStory.blocks.map((block, index) => {
+                {story.blocks.map((block, index) => {
                     if (block.type === 'h2') return <h2 id={block.id} key={index}>{block.text}</h2>;
                     if (block.type === 'h3') return <h3 key={index}>{block.text}</h3>;
                     if (block.type === 'image') return <figure className="whitepaper-figure" key={index}>
@@ -226,6 +229,7 @@ function FirstStory() {
                     </figure>;
                     if (block.type === 'code') return <pre key={index} tabIndex={0} aria-label="Codevoorbeeld"><code>{block.text}</code></pre>;
                     if (block.type === 'references') return <ul className="whitepaper-references" key={index}>{block.items.map(item => <li key={item.href}><a href={item.href} target="_blank" rel="noopener noreferrer" aria-label={`${item.text} (opent in een nieuw tabblad)`}>{item.text}</a></li>)}</ul>;
+                    if (block.type === 'ordered-list') return <ol key={index}>{block.items.map((item, i) => <li key={i}>{item}</li>)}</ol>;
                     if (block.type === 'list') return <ul key={index}>{block.items.map((item, i) => <li key={i}>{item}</li>)}</ul>;
                     return <p className={block.type === 'callout' ? 'whitepaper-callout' : undefined} key={index}>{block.text}</p>;
                 })}
@@ -273,14 +277,15 @@ function Longread() {
 
 function App() {
     return <><a className="skip-link" href="#inhoud">Direct naar inhoud</a><Header/>
-        <main id="inhoud">{page === 'eerste-verhaal' ? <FirstStory/> : page === 'blog' ? <Blog/> : page === 'mijn-verhaal' ? <MyStory/> : page === 'longread' ?
+        <main id="inhoud">{page === 'tweede-verhaal' ? <ArticlePage story={secondStory} category="Praktische gids"/> : page === 'eerste-verhaal' ? <ArticlePage story={firstStory}/> : page === 'blog' ? <Blog/> : page === 'mijn-verhaal' ? <MyStory/> : page === 'longread' ?
             <Longread/> : <Home/>}</main>
-        {!isHome && page !== 'eerste-verhaal' && <footer><a className="brand" href="./index.html">{profile.name}.</a><p>Met aandacht gemaakt.
+        {!isHome && !['eerste-verhaal', 'tweede-verhaal'].includes(page) && <footer><a className="brand" href="./index.html">{profile.name}.</a><p>Met aandacht gemaakt.
             © {new Date().getFullYear()}</p><a href="#inhoud">Terug naar boven ↑</a></footer>}</>
 }
 
 document.title = `${({
     'eerste-verhaal': firstStory.title,
+    'tweede-verhaal': secondStory.title,
     blog: 'Verhalen',
     'mijn-verhaal': 'Mijn verhaal',
     longread: 'De waarde van even stilstaan'
