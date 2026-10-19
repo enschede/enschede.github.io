@@ -648,6 +648,14 @@
       "text": "Ieder endpoint heeft een eigen API-contract en is gekoppeld aan een specifieke gebruikersgroep."
     },
     {
+      "type": "image",
+      "src": "./images/verhalen/architectuur/Architectuurkeuze A.png",
+      "alt": "De front-end gebruikt afzonderlijke endpoints voor klant, callcentermedewerker en supervisor; de API Gateway autoriseert toegang per gebruikersgroep.",
+      "caption": "Architectuurkeuze A – Gescheiden endpoints",
+      "width": 1020,
+      "height": 1214
+    },
+    {
       "type": "h3",
       "text": "Voordelen"
     },
@@ -691,6 +699,14 @@
       "text": "De API Gateway bepaalt op basis van de vertrouwde gebruikerscontext welke backendfunctie wordt aangeroepen."
     },
     {
+      "type": "image",
+      "src": "./images/verhalen/architectuur/Architectuurkeuze B.png",
+      "alt": "De front-end gebruikt één endpoint. De API Gateway routeert op basis van de gebruikersrol naar een specifieke backendinterface.",
+      "caption": "Architectuurkeuze B – Centrale routering",
+      "width": 1020,
+      "height": 1060
+    },
+    {
       "type": "h3",
       "text": "Voordelen"
     },
@@ -731,6 +747,14 @@
     {
       "type": "paragraph",
       "text": "De API Gateway valideert het token en de backend bepaalt op basis van subject, actor en context welke gegevens zichtbaar zijn."
+    },
+    {
+      "type": "image",
+      "src": "./images/verhalen/architectuur/Architectuurkeuze C.png",
+      "alt": "Klant, callcentermedewerker en supervisor gebruiken hetzelfde endpoint. De backend bepaalt welke gegevens bij de gebruikerscontext horen.",
+      "caption": "Architectuurkeuze C – Gedeelde endpoints",
+      "width": 1020,
+      "height": 1004
     },
     {
       "type": "h3",
@@ -921,12 +945,24 @@
       "id": "bronnen"
     },
     {
-      "type": "list",
+      "type": "references",
       "items": [
-        "OpenID Connect Core 1.0",
-        "RFC 9700 – Best Current Practice for OAuth 2.0 Security",
-        "RFC 8693 – OAuth 2.0 Token Exchange",
-        "OAuth 2.0 for Browser-Based Applications – actuele IETF-werkversie"
+        {
+          "text": "OpenID Connect Core 1.0",
+          "href": "https://openid.net/specs/openid-connect-core-1_0.html"
+        },
+        {
+          "text": "RFC 9700 – Best Current Practice for OAuth 2.0 Security",
+          "href": "https://www.rfc-editor.org/rfc/rfc9700.html"
+        },
+        {
+          "text": "RFC 8693 – OAuth 2.0 Token Exchange",
+          "href": "https://www.rfc-editor.org/rfc/rfc8693.html"
+        },
+        {
+          "text": "RFC 10017 – OAuth 2.0 for Browser-Based Applications",
+          "href": "https://datatracker.ietf.org/doc/rfc10017/"
+        }
       ]
     }
   ]

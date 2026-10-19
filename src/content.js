@@ -4,6 +4,7 @@ export const profile = {
     email: 'marc@worldofciam.nl',
     phone: '06-24243469',
     location: '',
+    contactFormUrl: 'https://cal.meetergo.com/f/5e8b5971-942d-4101-b7f8-8d94738e1969', // URL van het reactie-/contactformulier
     linkedin: 'https://www.linkedin.com/in/marcenschede',
     tagline: 'Persoonlijk. Nieuwsgierig. Betrokken.'
 };

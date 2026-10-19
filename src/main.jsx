@@ -2,6 +2,8 @@ import React, {useEffect, useState} from 'react';
 import {createRoot} from 'react-dom/client';
 import {filler, photos, profile, testimonials} from './content';
 import './style.css';
+import ContactBlock from './components/ContactBlock';
+import ReactionsBlock from './components/ReactionsBlock';
 import firstStory from './articles/eerste-verhaal.json';
 
 const page = location.pathname.split('/').pop().replace('.html', '') || 'index';
@@ -36,58 +38,6 @@ function Label({number, children}) {
 
 function TextLink({href, children}) {
     return <a className="text-link" href={href}>{children}<Arrow/></a>
-}
-
-function Contact() {
-    const phone = profile.phone.replace(/[^+0-9]/g, '').replace(/^0/, '+31');
-    return (
-        <section className="company-footer section" id="contact"
-                 aria-label="World of CIAM bedrijfs- en contactgegevens">
-            <Label number="07">Contact</Label><h2>Contact</h2>
-            <div className="company-footer-grid">
-                <div>
-                    <h3>Adres</h3>
-                    <address>
-                        <strong>I am Enschede BV</strong>
-                        <span>Ekersdijk 269<br/>7534 PX Enschede<br/>Nederland</span>
-                    </address>
-                </div>
-                <div>
-                    <h3>Telefoon</h3>
-                    <a href={`tel:${phone}`}>{profile.phone}</a>
-                    <div className="contact-messengers">
-                        <a className="button" href={`https://wa.me/${phone.replace('+', '')}`}>WhatsApp <Arrow/></a>
-                        <a className="button" href={`https://signal.me/#p/${phone}`}>Signal <Arrow/></a>
-                    </div>
-                </div>
-                <div>
-                    <h3>E-mail</h3>
-                    <a href={`mailto:${profile.email}`}>{profile.email}</a>
-                </div>
-                <div>
-                    <h3>LinkedIn</h3>
-                    {profile.linkedin ?
-                        <a className="linkedin-icon" href={profile.linkedin} target="_blank" rel="noopener noreferrer"
-                           aria-label="Bekijk mijn LinkedIn-profiel (opent in een nieuw tabblad)"
-                           title="Bekijk mijn LinkedIn-profiel">
-                            <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor" aria-hidden="true"
-                                 focusable="false">
-                                <path
-                                    d="M20.45 2H3.55C2.69 2 2 2.68 2 3.52v16.96c0 .84.69 1.52 1.55 1.52h16.9c.86 0 1.55-.68 1.55-1.52V3.52c0-.84-.69-1.52-1.55-1.52ZM7.93 18.75H4.98V9.2h2.95v9.55ZM6.45 7.9a1.71 1.71 0 1 1 0-3.42 1.71 1.71 0 0 1 0 3.42Zm12.3 10.85H15.8V14.1c0-1.11-.02-2.54-1.55-2.54-1.55 0-1.79 1.21-1.79 2.46v4.73H9.51V9.2h2.83v1.3h.04c.39-.74 1.36-1.52 2.79-1.52 2.98 0 3.58 1.96 3.58 4.51v5.26Z"/>
-                            </svg>
-                        </a> : <p>Profiel volgt binnenkort.</p>}
-                </div>
-            </div>
-            <div className="company-legal">
-                <p>Besloten vennootschap · KvK-nummer 83929606 · EU VAT ID NL863037975B01</p>
-                <p>Statutaire naam: I am Enschede BV · Handelsnaam: World of CIAM</p>
-            </div>
-            <div className="company-bottom">
-                <span>© {new Date().getFullYear()} I am Enschede BV</span>
-                <a href={`mailto:${profile.email}`}>{profile.email}</a>
-            </div>
-        </section>
-    );
 }
 
 function BookingEmbed() {
@@ -224,7 +174,7 @@ function Home() {
                 className="button" href="#boekingsagenda">Kies een moment <span aria-hidden="true">↓</span></a></div>
             <div id="boekingsagenda" className="booking-container"><BookingEmbed/></div>
         </section>
-        <Contact/>
+        <ContactBlock number="07"/>
 
     </>
 }
@@ -250,7 +200,7 @@ function Blog() {
 }
 
 function FirstStory() {
-    return <article className="subpage whitepaper">
+    return <><article className="subpage whitepaper">
         <a className="text-link" href="./blog.html">← Alle verhalen</a>
         <p className="eyebrow">Whitepaper · Marc Enschede · {firstStory.readingMinutes} min leestijd</p>
         <h1>{firstStory.title}</h1>
@@ -266,7 +216,14 @@ function FirstStory() {
                 {firstStory.blocks.map((block, index) => {
                     if (block.type === 'h2') return <h2 id={block.id} key={index}>{block.text}</h2>;
                     if (block.type === 'h3') return <h3 key={index}>{block.text}</h3>;
+                    if (block.type === 'image') return <figure className="whitepaper-figure" key={index}>
+                        <a href={block.src} target="_blank" rel="noopener noreferrer" aria-label={`${block.caption} op volledige grootte bekijken (nieuw tabblad)`}>
+                            <img src={block.src} alt={block.alt} width={block.width} height={block.height} loading="lazy"/>
+                        </a>
+                        <figcaption>{block.caption} · Klik om te vergroten</figcaption>
+                    </figure>;
                     if (block.type === 'code') return <pre key={index} tabIndex={0} aria-label="Codevoorbeeld"><code>{block.text}</code></pre>;
+                    if (block.type === 'references') return <ul className="whitepaper-references" key={index}>{block.items.map(item => <li key={item.href}><a href={item.href} target="_blank" rel="noopener noreferrer" aria-label={`${item.text} (opent in een nieuw tabblad)`}>{item.text}</a></li>)}</ul>;
                     if (block.type === 'list') return <ul key={index}>{block.items.map((item, i) => <li key={i}>{item}</li>)}</ul>;
                     return <p className={block.type === 'callout' ? 'whitepaper-callout' : undefined} key={index}>{block.text}</p>;
                 })}
@@ -276,7 +233,10 @@ function FirstStory() {
                 </div>
             </div>
         </div>
-    </article>;
+    </article>
+        <ReactionsBlock/>
+        <ContactBlock/>
+    </>;
 }
 
 function MyStory() {
@@ -313,7 +273,7 @@ function App() {
     return <><a className="skip-link" href="#inhoud">Direct naar inhoud</a><Header/>
         <main id="inhoud">{page === 'eerste-verhaal' ? <FirstStory/> : page === 'blog' ? <Blog/> : page === 'mijn-verhaal' ? <MyStory/> : page === 'longread' ?
             <Longread/> : <Home/>}</main>
-        {!isHome && <footer><a className="brand" href="./index.html">{profile.name}.</a><p>Met aandacht gemaakt.
+        {!isHome && page !== 'eerste-verhaal' && <footer><a className="brand" href="./index.html">{profile.name}.</a><p>Met aandacht gemaakt.
             © {new Date().getFullYear()}</p><a href="#inhoud">Terug naar boven ↑</a></footer>}</>
 }
 
