@@ -20,8 +20,10 @@ function Photo({name, eager = false, className = ''}) {
 
 function Header() {
     const [open, setOpen] = useState(false);
-    return <header className="header"><a className="brand" href="./index.html">{profile.name}<span
-        className="brand-dot">.</span></a>
+    return <header className="header"><a className="brand" href="./index.html">
+        <img className="brand-logo" src="./images/WorldofCiam_Icoon_BlauwGroen%20.png" alt="" width="48" height="42"/>
+        <span>{profile.name}<span className="brand-dot">.</span></span>
+    </a>
         <button className="menu-toggle" aria-expanded={open} aria-controls="navigation"
                 onClick={() => setOpen(!open)}>{open ? 'Sluiten ×' : 'Menu ☰'}</button>
         <nav id="navigation" className={open ? 'open' : ''} aria-label="Hoofdnavigatie" onClick={() => setOpen(false)}>

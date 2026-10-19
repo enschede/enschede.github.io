@@ -324,3 +324,20 @@ footer p, footer > a:last-child { font-size: 11px; color: #bbb; }
 .reactions-block h2 { margin-top: 14px; }
 .reactions-block .button { flex-shrink: 0; }
 @media(max-width:700px) { .reactions-block { flex-direction: column; align-items: flex-start; gap: 16px; } }
+
+.header .brand { display: inline-flex; align-items: center; gap: 12px; }
+.header .brand-logo { width: 48px; height: 42px; flex-shrink: 0; object-fit: contain; filter: grayscale(1); }
+@media(max-width:1100px) and (min-width:901px) {
+    .header { padding-left: 3%; padding-right: 3%; gap: 16px; }
+    .header .brand { font-size: 23px; }
+    .header nav { gap: 16px; }
+}
+@media(max-width:600px) {
+    .header .brand { font-size: 20px; gap: 8px; }
+    .header .brand-logo { width: 36px; height: 32px; }
+}
+@media(max-width:380px) {
+    .header { gap: 12px; }
+    .header .brand { font-size: 17px; }
+    .header .brand-logo { width: 30px; height: 26px; }
+}
