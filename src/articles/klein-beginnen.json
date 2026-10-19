@@ -1,0 +1,170 @@
+{
+  "title": "Zo begin je een CIAM-project zonder vast te lopen",
+  "intro": "Eerst draaien, dan verfraaien: Waarom klein beginnen het verschil maakt.",
+  "readingMinutes": 5,
+  "toc": [
+    {
+      "text": "Wat voor organisatie ben je?",
+      "id": "onderdeel-1"
+    },
+    {
+      "text": "Demand helder inrichten",
+      "id": "onderdeel-2"
+    },
+    {
+      "text": "Het ontwerp",
+      "id": "onderdeel-3"
+    },
+    {
+      "text": "Start klein",
+      "id": "onderdeel-4"
+    },
+    {
+      "text": "Samenvatting",
+      "id": "onderdeel-5"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "Veel organisaties komen op een gegeven moment in een vergelijkbare situatie terecht. Inloggen werkt, maar niet overal op dezelfde manier. Registratieprocessen verschillen per applicatie. Soms wordt gewerkt met wachtwoorden, soms met een magic link. Op enkele plekken is 2FA ingericht, maar zeker niet overal. Tegelijk hangt er vaak nog een ouder systeem onder dat eigenlijk aan vervanging toe is."
+    },
+    {
+      "type": "paragraph",
+      "text": "Als je het geheel overziet, is dat goed te verklaren."
+    },
+    {
+      "type": "paragraph",
+      "text": "Verschillende teams hebben in de loop der tijd keuzes gemaakt die op dat moment logisch waren. Systemen zijn gegroeid, aangepast en uitgebreid. Elke stap was verdedigbaar binnen de context van dat moment."
+    },
+    {
+      "type": "paragraph",
+      "text": "Alleen begint het geheel op een gegeven moment te wringen."
+    },
+    {
+      "type": "paragraph",
+      "text": "Het overzicht ontbreekt. Verantwoordelijkheden zijn niet altijd duidelijk belegd. En wijzigingen hebben vaak meer impact dan vooraf ingeschat."
+    },
+    {
+      "type": "paragraph",
+      "text": "Dat is meestal het moment waarop de vraag ontstaat: hoe brengen we dit weer samen?"
+    },
+    {
+      "type": "h2",
+      "text": "Wat voor organisatie ben je?",
+      "id": "onderdeel-1"
+    },
+    {
+      "type": "paragraph",
+      "text": "Als je daar goed naar kijkt, begint het niet met techniek. Het begint met begrijpen wie je klant is. En daar zit meteen een belangrijk verschil."
+    },
+    {
+      "type": "paragraph",
+      "text": "Een bank wil met 100% zekerheid weten wie je bent. Geen twijfel, geen grijs gebied."
+    },
+    {
+      "type": "paragraph",
+      "text": "Aan de andere kant heb je platforms waar anonimiteit juist centraal staat. Daar is het enige wat telt dat “Stille Reneé” van gisteren dezelfde persoon is als “Stille Reneé” van morgen."
+    },
+    {
+      "type": "paragraph",
+      "text": "En webwinkels zitten daar tussenin. Het maakt niet uit hoe jij jezelf noemt, als je pakje maar aankomt."
+    },
+    {
+      "type": "paragraph",
+      "text": "Maar daar stopt het niet. Ook je context speelt een grote rol."
+    },
+    {
+      "type": "paragraph",
+      "text": "Werk je in B2C, B2B of G2C (Government-to-Consumer)? Opereren je klanten als individu of namens een organisatie? Moet je rollen en rechten ondersteunen, of is het vooral een één-op-één relatie?"
+    },
+    {
+      "type": "paragraph",
+      "text": "Werk je onder één merknaam of heb je meerdere labels? Klanten die dezelfde dienst via verschillende ingangen gebruiken, maar wel één identiteit verwachten. Lever je alleen je eigen diensten of ook white-labeldiensten?"
+    },
+    {
+      "type": "h2",
+      "text": "Demand helder inrichten",
+      "id": "onderdeel-2"
+    },
+    {
+      "type": "paragraph",
+      "text": "Deze vragen bepalen in grote mate hoe complex je oplossing wordt en waar je moet beginnen. De volgende stap is de afstemming tussen business en IT. De business bepaalt de doelstellingen, IT vertaalt deze naar een werkende oplossing. Wat de business vraagt en prioriteert noemen we de demand. Wat IT vervolgens ontwerpt en realiseert, is de supply. Als die twee goed op elkaar aansluiten, ontstaat er duidelijkheid en richting, en worden de belangrijkste keuzes gemaakt."
+    },
+    {
+      "type": "paragraph",
+      "text": "Het is daarbij belangrijk dat de wensen en prioriteiten vanuit de business helder zijn, en dat de verschillende stakeholders goed met elkaar in contact staan. Zij worden immers allemaal gebruiker van dezelfde dienst. Dan is het essentieel dat zij zich daarin herkennen. Dit noemen we het inrichten van de demandzijde."
+    },
+    {
+      "type": "paragraph",
+      "text": "Daarbij hoort ook dat je scherp hebt waar je klant echt blij van wordt. Niet alleen wat technisch kan, maar wat daadwerkelijk bijdraagt aan een soepele en betrouwbare gebruikerservaring."
+    },
+    {
+      "type": "paragraph",
+      "text": "Hoeveel frictie is acceptabel, hoe ga je om met nieuwe klanten, welke vormen van verificatie gebruik je en hoe zorg je dat bestaande klanten zorgvuldig worden meegenomen? Dit zijn keuzes die direct invloed hebben op zowel klantbeleving als risico."
+    },
+    {
+      "type": "paragraph",
+      "text": "Daarna kijk je naar het huidige landschap: welke systemen zijn er al, waar bevindt zich klantdata, welke onderdelen zijn herbruikbaar en waar zitten afhankelijkheden die je moet respecteren. In de praktijk is dit zelden een greenfield-situatie, maar met de juiste prioritering kun je stapsgewijs verbeteren."
+    },
+    {
+      "type": "paragraph",
+      "text": "Wat pak je als eerste op, wat levert direct waarde op, waar zit het grootste risico en wat kan voorlopig blijven zoals het is? De volgorde waarin je dit doet, bepaalt of een traject voortgang houdt of vastloopt."
+    },
+    {
+      "type": "h2",
+      "text": "Het ontwerp",
+      "id": "onderdeel-3"
+    },
+    {
+      "type": "paragraph",
+      "text": "Pas daarna ga je ontwerpen. Dit is het begin van de supplyfase, waarin de eerder gemaakte keuzes worden vertaald naar een concrete oplossing."
+    },
+    {
+      "type": "paragraph",
+      "text": "Je start op hoofdlijnen. Hoe ziet de ideale situatie eruit, hoe bewegen gebruikers door je landschap en waar zit de logica? Vanuit daar werk je het verder uit: welke systemen met elkaar communiceren, welke stappen nodig zijn en wie daarbij betrokken is."
+    },
+    {
+      "type": "paragraph",
+      "text": "Op een gegeven moment komt de vertaalslag naar concrete stappen. Niet alles tegelijk, maar gefaseerd. Je begint klein. Eén portal, één flow, één verbetering. Denk bijvoorbeeld aan het toevoegen van 2FA in een nieuwe omgeving of het centraliseren van een login. Daarmee leg je een basis waarop je gecontroleerd kunt doorbouwen."
+    },
+    {
+      "type": "paragraph",
+      "text": "Open standaarden zoals OAuth en OpenID Connect helpen daarbij. Deze vormen samen de basis voor het inrichten van moderne CIAM-oplossingen en zorgen ervoor dat je flexibel blijft in hoe je je landschap verder ontwikkelt."
+    },
+    {
+      "type": "h2",
+      "text": "Start klein",
+      "id": "onderdeel-4"
+    },
+    {
+      "type": "paragraph",
+      "text": "Het aanpassen van een CIAM-landschap heeft vrijwel altijd impact op meerdere systemen tegelijk. Juist daarom is het belangrijk om het beheersbaar te houden."
+    },
+    {
+      "type": "paragraph",
+      "text": "Begin klein. Richt je op één of twee portals en zorg dat je daar een werkende situatie neerzet. In de eerste fase wordt de nieuwe CIAM-oplossing vaak tussen het bestaande landschap geplaatst, terwijl de huidige authenticatie nog door het oude systeem wordt afgehandeld."
+    },
+    {
+      "type": "paragraph",
+      "text": "Zodra het verkeer via de nieuwe omgeving loopt, kun je stap voor stap functionaliteit overzetten, zoals authenticatie, registratie en 2FA. Tegelijk kun je andere onderdelen aansluiten, zoals monitoring en ketentests, en steeds meer applicaties migreren."
+    },
+    {
+      "type": "h2",
+      "text": "Samenvatting",
+      "id": "onderdeel-5"
+    },
+    {
+      "type": "paragraph",
+      "text": "Een goed CIAM-project begint niet met techniek, maar met het begrijpen van je organisatie en je klanten. Door de demandzijde helder in te richten en de juiste afstemming tussen business en IT te organiseren, leg je de basis voor de juiste keuzes."
+    },
+    {
+      "type": "paragraph",
+      "text": "Van daaruit werk je toe naar een ontwerp dat past bij je bestaande landschap, waarbij je rekening houdt met afhankelijkheden en hergebruik van bestaande systemen."
+    },
+    {
+      "type": "paragraph",
+      "text": "Door klein te beginnen en stapsgewijs te werken, houd je controle over het traject, beperk je risico’s en zorg je dat elke stap daadwerkelijk waarde toevoegt."
+    }
+  ]
+}

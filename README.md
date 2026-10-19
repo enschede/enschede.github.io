@@ -47,8 +47,10 @@ De oude URL `cv.html` verwijst door naar `mijn-verhaal.html`, zodat bestaande li
 
 ## Herbruikbare contactblokken
 
-`src/components/ContactBlock.jsx` bevat het gedeelde contactblok. Gebruik `<ContactBlock/>` op een pagina of geef optioneel `number="07"` en een eigen `id` mee. De homepage en het eerste verhaal gebruiken dezelfde component.
+`src/components/ContactBlock.jsx` bevat het gedeelde contactblok. Gebruik `<ContactBlock/>` op een pagina of geef optioneel een eigen `id` mee. De homepage en het eerste verhaal gebruiken dezelfde component.
 
 `src/components/ReactionsBlock.jsx` bevat de uitnodiging om te reageren. Vul `profile.contactFormUrl` in `src/content.js` in om de knop naar het formulier te laten verwijzen. Zolang de URL leeg is, verwijst “Neem contact op” naar het contactblok op dezelfde pagina.
 
-Het tweede verhaal staat op `tweede-verhaal.html`. Bewerk de tekst in `src/articles/tweede-verhaal.json`, met dezelfde structuur als `eerste-verhaal.json`: titel, introductie, leestijd, inhoudsopgave en tekstblokken. Beide verhalen delen dezelfde artikelopmaak, reactie- en contactblokken.
+Het tweede verhaal staat op `tweede-verhaal.html`. Bewerk de tekst in `src/articles/tweede-verhaal.json`, met dezelfde structuur als `architectuur-voor-selfservice-portalen.json`: titel, introductie, leestijd, inhoudsopgave en tekstblokken. Beide verhalen delen dezelfde artikelopmaak, reactie- en contactblokken.
+
+Het verhaal “Zo begin je een CIAM-project zonder vast te lopen” staat op `klein-beginnen.html`. Bewerk de tekst in `src/articles/klein-beginnen.json`.

@@ -3,12 +3,12 @@ import {profile} from '../content';
 
 const Arrow = () => <span aria-hidden="true">↗</span>;
 
-export default function ContactBlock({number, id = 'contact'}) {
+export default function ContactBlock({id = 'contact'}) {
     const phone = profile.phone.replace(/[^+0-9]/g, '').replace(/^0/, '+31');
     return (
         <section className="company-footer section" id={id}
                  aria-label="World of CIAM bedrijfs- en contactgegevens">
-            <p className="eyebrow">{number && <span>{number} / </span>}Contact</p><h2>Contact</h2>
+            <h2>Contact</h2>
             <div className="company-footer-grid">
                 <div>
                     <h3>Adres</h3>

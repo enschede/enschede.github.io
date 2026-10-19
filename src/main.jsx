@@ -4,8 +4,9 @@ import {filler, photos, profile, testimonials} from './content';
 import './style.css';
 import ContactBlock from './components/ContactBlock';
 import ReactionsBlock from './components/ReactionsBlock';
-import firstStory from './articles/eerste-verhaal.json';
+import firstStory from './articles/architectuur-voor-selfservice-portalen.json';
 import secondStory from './articles/tweede-verhaal.json';
+import smallStartStory from './articles/klein-beginnen.json';
 
 const page = location.pathname.split('/').pop().replace('.html', '') || 'index';
 const isHome = page === 'index';
@@ -95,7 +96,7 @@ function LogoBanner() {
 function Home() {
     return <>
         <section className="hero" id="welkom">
-            <div className="hero-copy"><Label number="01">Welkom, fijn dat je er bent</Label><h1>MAAK INLOGGEN MAKKELIJKER,<br/>VEILIGER EN GOEDKOPER</h1><p>CIAM gaat over hoe je de business ondersteunt met digitale identiteit van de klant</p><a className="button"
+            <div className="hero-copy"><h1>MAAK INLOGGEN MAKKELIJKER,<br/>VEILIGER EN GOEDKOPER</h1><p>CIAM gaat over hoe je de business ondersteunt met digitale identiteit van de klant</p><a className="button"
                                                                                                  href="./mijn-verhaal.html">Ontdek
                 mijn verhaal <span>↓</span></a><p className="small-note">{profile.tagline}</p></div>
             <div className="hero-image"><Photo name="hero" eager/>
@@ -108,7 +109,7 @@ function Home() {
         <section className="split section" id="ciam">
             <div className="photo-frame"><Photo name="about"/></div>
             <div className="section-copy">
-                <Label number="02">Het speelveld van CIAM</Label>
+
                 <h2>JE WILT DAT DE BUSINESS MAXIMAAL KAN LEVEREN. HOE HELPT CIAM DAARBIJ?</h2>
                 <p>Je wilt nieuwe klanten verwelkomen, bestaande klanten beter bedienen en nieuwe digitale diensten snel naar de markt brengen. Dan moet toegang goed geregeld zijn. Eenvoudig een account aanmaken, veilig inloggen en doorgaan met waarvoor je kwam. CIAM legt daarvoor de basis.</p>
                 <p>Als product owner wil je minder afhakers bij registratie, minder telefoontjes over inlogproblemen en meer klanten die je diensten gebruiken. Maar waar begin je? En hoe vertaal je die ambities naar een roadmap waarmee je team aan de slag kan?</p>
@@ -121,7 +122,7 @@ function Home() {
         </section>
         <section className="vision section" id="visie">
             <div>
-                <Label number="03">Mijn aanpak</Label>
+
                 <h2>CIAM in 4 stappen</h2>
                 <p>Bij platformen denken we al snel aan techniek. Als je meteen die kant op gaat, loop je snel vast.</p>
                 <p>Een goed CIAM-project begint met begrijpen welke proposities je ondersteunt en hoe je
@@ -152,7 +153,7 @@ function Home() {
         </section>
         <section className="section testimonials" id="testimonials" aria-labelledby="testimonials-title">
             <div className="section-heading">
-                <Label number="04">Testimonials</Label>
+
                 <h2 id="testimonials-title">WAT KLANTEN WAARDEREN</h2>
                 <p>World Of CIAM helpt organisaties om complexe identity-vraagstukken praktisch, begrijpelijk en uitvoerbaar te maken.</p>
             </div>
@@ -166,19 +167,20 @@ function Home() {
         </section>
         <section className="stories section" id="verhalen">
             <div className="section-heading">
-                <div><Label number="05">Verhalen & gedachten</Label><h2>Even de tijd om <em>te lezen.</em></h2></div>
+                <div><h2>Even de tijd om <em>te lezen.</em></h2></div>
                 <TextLink href="./blog.html">Naar het blog</TextLink></div>
             <StoryCard/>
-        <StoryCard story={secondStory} href="./tweede-verhaal.html" category="Praktische gids" photo="approach"/></section>
+        <StoryCard story={secondStory} href="./tweede-verhaal.html" category="Praktische gids" photo="approach"/>
+        <StoryCard story={smallStartStory} href="./klein-beginnen.html" category="Aanpak" photo="background"/></section>
         <section className="split section background" id="kennismaken">
             <div className="photo-frame"><Photo name="background"/></div>
-            <div className="section-copy"><Label number="06">Kennismaken</Label><h2>Laten we<br/><em>kennismaken.</em>
+            <div className="section-copy"><h2>Laten we<br/><em>kennismaken.</em>
             </h2><p>Heb je een vraag, een idee of wil je ontdekken wat we voor elkaar kunnen betekenen? Ik maak graag
                 tijd voor een persoonlijk gesprek.</p><p>Kies hieronder een moment dat jou uitkomt.</p><a
                 className="button" href="#boekingsagenda">Kies een moment <span aria-hidden="true">↓</span></a></div>
             <div id="boekingsagenda" className="booking-container"><BookingEmbed/></div>
         </section>
-        <ContactBlock number="07"/>
+        <ContactBlock/>
 
     </>
 }
@@ -201,6 +203,7 @@ function Blog() {
         <p className="intro">Ideeën, observaties en verhalen over CIAM, architectuur en de waarde voor je organisatie.</p>
         <StoryCard/>
         <StoryCard story={secondStory} href="./tweede-verhaal.html" category="Praktische gids" photo="approach"/>
+        <StoryCard story={smallStartStory} href="./klein-beginnen.html" category="Aanpak" photo="background"/>
     </div>;
 }
 
@@ -277,15 +280,16 @@ function Longread() {
 
 function App() {
     return <><a className="skip-link" href="#inhoud">Direct naar inhoud</a><Header/>
-        <main id="inhoud">{page === 'tweede-verhaal' ? <ArticlePage story={secondStory} category="Praktische gids"/> : page === 'eerste-verhaal' ? <ArticlePage story={firstStory}/> : page === 'blog' ? <Blog/> : page === 'mijn-verhaal' ? <MyStory/> : page === 'longread' ?
+        <main id="inhoud">{page === 'klein-beginnen' ? <ArticlePage story={smallStartStory} category="Aanpak"/> : page === 'tweede-verhaal' ? <ArticlePage story={secondStory} category="Praktische gids"/> : page === 'eerste-verhaal' ? <ArticlePage story={firstStory}/> : page === 'blog' ? <Blog/> : page === 'mijn-verhaal' ? <MyStory/> : page === 'longread' ?
             <Longread/> : <Home/>}</main>
-        {!isHome && !['eerste-verhaal', 'tweede-verhaal'].includes(page) && <footer><a className="brand" href="./index.html">{profile.name}.</a><p>Met aandacht gemaakt.
+        {!isHome && !['eerste-verhaal', 'tweede-verhaal', 'klein-beginnen'].includes(page) && <footer><a className="brand" href="./index.html">{profile.name}.</a><p>Met aandacht gemaakt.
             © {new Date().getFullYear()}</p><a href="#inhoud">Terug naar boven ↑</a></footer>}</>
 }
 
 document.title = `${({
     'eerste-verhaal': firstStory.title,
     'tweede-verhaal': secondStory.title,
+    'klein-beginnen': smallStartStory.title,
     blog: 'Verhalen',
     'mijn-verhaal': 'Mijn verhaal',
     longread: 'De waarde van even stilstaan'
