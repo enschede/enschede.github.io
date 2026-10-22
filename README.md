@@ -54,3 +54,7 @@ De oude URL `cv.html` verwijst door naar `mijn-verhaal.html`, zodat bestaande li
 Het tweede verhaal staat op `tweede-verhaal.html`. Bewerk de tekst in `src/articles/tweede-verhaal.json`, met dezelfde structuur als `architectuur-voor-selfservice-portalen.json`: titel, introductie, leestijd, inhoudsopgave en tekstblokken. Beide verhalen delen dezelfde artikelopmaak, reactie- en contactblokken.
 
 Het verhaal “Zo begin je een CIAM-project zonder vast te lopen” staat op `klein-beginnen.html`. Bewerk de tekst in `src/articles/klein-beginnen.json`.
+
+## Google Tag Manager
+
+Container `GTM-PRW9RN9N` is toegevoegd aan alle zeven inhoudelijke HTML-pagina’s: het script direct na `<head>` en de noscript-iframe direct na `<body>`. De doorverwijspagina `cv.html` laadt de container via de bestemmingspagina. GTM laadt ook lokaal. Tags en triggers beheer en publiceer je in Google Tag Manager. Controleer na publicatie de verbinding en tags met de Preview-functie (Tag Assistant). Leadinfo staat nog rechtstreeks in de HTML; voeg dezelfde tracker niet ook via GTM toe om dubbele metingen te voorkomen.
