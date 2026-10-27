@@ -172,6 +172,26 @@ function Home() {
             <StoryCard/>
         <StoryCard story={secondStory} href="./drie-stappen-voor-2fa.html" category="Praktische gids" photo="twoFactor"/>
         <StoryCard story={smallStartStory} href="./klein-beginnen.html" category="Aanpak" photo="smallStart"/></section>
+        <section className="section collaboration" id="samenwerken" aria-labelledby="collaboration-title">
+            <h2 id="collaboration-title">Hoe kunnen we samenwerken?</h2>
+            <div className="collaboration-grid">
+                <article>
+                    <h3>Advies</h3>
+                    <p>Hoe maak je registreren en inloggen eenvoudiger én veiliger voor je klanten? Ik denk mee over je CIAM-vraagstuk, geef een second opinion op je architectuur of spar regelmatig met je team. Je krijgt onafhankelijk advies, inzicht in de afwegingen en concrete stappen waarmee je verder kunt.</p>
+                    <TextLink href="#kennismaken">Meer over advies</TextLink>
+                </article>
+                <article>
+                    <h3>Projectbasis</h3>
+                    <p>Wil je een klantportaal aansluiten, je CIAM-platform vernieuwen of een migratie voorbereiden? Met mijn aanpak ‘CIAM in 4 stappen’ vertaal ik je businessdoelen naar een passende architectuur en een uitvoerbaar plan. We spreken vooraf af wat ik oplever. Waar nodig bouw ik mee, in kleine, beheersbare stappen.</p>
+                    <TextLink href="#kennismaken">Meer over projecten</TextLink>
+                </article>
+                <article>
+                    <h3>Interim</h3>
+                    <p>Heeft je team tijdelijk een ervaren CIAM-expert nodig? Als architect of inhoudelijke sparringspartner werk ik mee aan de keuzes én de uitvoering. Ik verbind de doelen van de business met wat er technisch nodig is en draag mijn kennis over, zodat je team daarna zelfstandig verder kan.</p>
+                    <TextLink href="#kennismaken">Meer over interim</TextLink>
+                </article>
+            </div>
+        </section>
         <section className="split section background" id="kennismaken">
             <div className="photo-frame"><Photo name="background"/></div>
             <div className="section-copy"><h2>Laten we<br/><em>kennismaken.</em>
