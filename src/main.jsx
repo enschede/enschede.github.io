@@ -273,14 +273,31 @@ function MyStory() {
         <Label number="Persoonlijk">Mijn verhaal</Label>
         <h1>Zelf iets maken blijft leuk. Ook na bijna 40 jaar in de ICT.</h1>
         <div className="about-layout">
-            <div className="photo-frame"><Photo name="portrait" eager/></div>
+            <div className="photo-frame">
+                <Photo name="portrait" eager/>
+            </div>
             <div className="about-copy">
-                    <p>Ooit begon ik als programmeur. Rond het jaar 2000 kreeg ik de kans om architect te worden. Daarmee werd mijn blik een stuk breder. Business value leveren interesseerde me veel meer dan alleen bits en bytes.</p>
-                    <p>Na een jaar of tien begon het programmeren toch weer te kriebelen. Zelf dingen maken, uitproberen en werkend krijgen. Dus ging ik weer bouwen, met de ervaring als architect in mijn achterzak. Die combinatie past bij mij: het geheel overzien én weten wat er nodig is om het aan de praat te krijgen.</p>
-                    <p>In de afgelopen twintig jaar zat in bijna ieder project wel een klantportaal. En bij zo’n portaal hoorde meestal een inlogscherm met een gebruikersnaam en wachtwoord. Het lijkt een klein onderdeel, totdat een klant niet binnenkomt. Dan staat alles wat je achter dat inlogscherm hebt gebouwd ineens buiten bereik.</p>
-                    <p>Inmiddels ligt daar mijn specialisme: klanten soepel en veilig laten registreren en inloggen. Customer Identity &amp; Access Management, oftewel CIAM. Daarin komen voor mij techniek, bedrijfsprocessen en de ervaring van de klant samen.</p>
-                    <p>Als onafhankelijk CIAM-consultant help ik product owners en architecten om rust en overzicht te krijgen. Je hoeft niet zelf alle antwoorden te hebben. Ik denk met je mee, maak keuzes en risico’s inzichtelijk en geef advies vanuit mijn ervaring. Soms met een compleet ontwerp, soms met een second opinion of gewoon een middag sparren. En waar nodig bouw ik mee.</p>
-                    <p>Mijn aanpak is nuchter: eerst draaien, dan verfraaien. Kleine, beheersbare stappen, met oog voor wat er al staat. Zo kun jij met vertrouwen beslissingen nemen en houd je zelf de regie.</p>
+                <p>Ooit begon ik als programmeur. Rond het jaar 2000 kreeg ik de kans om architect te worden. Daarmee werd
+                    mijn blik een stuk breder. Business value leveren interesseerde me veel meer dan alleen bits en
+                    bytes.</p>
+                <p>Na een jaar of tien begon het programmeren toch weer te kriebelen. Zelf dingen maken, uitproberen en
+                    werkend krijgen. Dus ging ik weer bouwen, met de ervaring als architect in mijn achterzak. Die
+                    combinatie past bij mij: het geheel overzien én weten wat er nodig is om het aan de praat te
+                    krijgen.</p>
+                <p>In de afgelopen twintig jaar zat in bijna ieder project wel een klantportaal. En bij zo’n portaal hoorde
+                    meestal een inlogscherm met een gebruikersnaam en wachtwoord. Het lijkt een klein onderdeel, totdat een
+                    klant niet binnenkomt. Dan staat alles wat je achter dat inlogscherm hebt gebouwd ineens buiten
+                    bereik.</p>
+                <p>Inmiddels ligt daar mijn specialisme: klanten soepel en veilig laten registreren en inloggen. Customer
+                    Identity &amp; Access Management, oftewel CIAM. Daarin komen voor mij techniek, bedrijfsprocessen en de
+                    ervaring van de klant samen.</p>
+                <p>Als onafhankelijk CIAM-consultant help ik product owners en architecten om rust en overzicht te krijgen.
+                    Je hoeft niet zelf alle antwoorden te hebben. Ik denk met je mee, maak keuzes en risico’s inzichtelijk
+                    en geef advies vanuit mijn ervaring. Soms met een compleet ontwerp, soms met een second opinion of
+                    gewoon een middag sparren. En waar nodig bouw ik mee.</p>
+                <p>Mijn aanpak is nuchter: eerst draaien, dan verfraaien. Kleine, beheersbare stappen, met oog voor wat er
+                    al staat. En altijd met ruimte voor humor, omdat samenwerken beter gaat als er ook gelachen mag
+                    worden.</p>
                 <TextLink href={homeLink('kennismaken')}>Laten we kennismaken</TextLink>
             </div>
         </div>
