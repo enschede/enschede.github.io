@@ -1,0 +1,317 @@
+{
+  "title": "2FA, hoe dan?",
+  "intro": "Je wilt je klanten beter beschermen. Het volgende bericht over een datalek helpt daar niet bij. Want jouw klanten loggen nog steeds in met alleen een wachtwoord. Je wilt 2FA regelen. Maar hoe doe je dat zonder dat klanten afhaken of je klantenservice overloopt?",
+  "readingMinutes": 11,
+  "toc": [
+    {
+      "text": "Wat kan iemand met een gestolen klantaccount",
+      "id": "wat-kan-iemand-met-een-gestolen-klantaccount"
+    },
+    {
+      "text": "Twee factoren betekenen niet automatisch twee keer gedoe",
+      "id": "twee-factoren-betekenen-niet-automatisch-twee-keer-gedoe"
+    },
+    {
+      "text": "Begin bij het moment waarop bescherming nodig is",
+      "id": "begin-bij-het-moment-waarop-bescherming-nodig-is"
+    },
+    {
+      "text": "Welke methode past bij jouw klanten",
+      "id": "welke-methode-past-bij-jouw-klanten"
+    },
+    {
+      "text": "Ontwerp ook de dag waarop de klant zijn telefoon kwijt is",
+      "id": "ontwerp-ook-de-dag-waarop-de-klant-zijn-telefoon-kwijt-is"
+    },
+    {
+      "text": "Welke bescherming past bij het risico",
+      "id": "welke-bescherming-past-bij-het-risico"
+    },
+    {
+      "text": "Maak van de zorg een uitvoerbare eerste oplevering",
+      "id": "maak-van-de-zorg-een-uitvoerbare-eerste-oplevering"
+    },
+    {
+      "text": "Wanneer is het echt klaar",
+      "id": "wanneer-is-het-echt-klaar"
+    },
+    {
+      "text": "Waar je als product owner morgen mee kunt beginnen",
+      "id": "waar-je-als-product-owner-morgen-mee-kunt-beginnen"
+    },
+    {
+      "text": "Technische bronnen",
+      "id": "technische-bronnen"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "Weer een datalek. Of een site die preventief uit de lucht gaat. Je leest het en denkt aan je eigen portal. Klanten bekijken er hun gegevens, geven wijzigingen door en nemen diensten af. Een gebruikersnaam en een wachtwoord. Meer zit er bij jou nog niet tussen."
+    },
+    {
+      "type": "paragraph",
+      "text": "Dat moet beter. Dat weet je ook wel. Maar je backlog zit vol en er zijn altijd andere zaken die óók gisteren af moesten zijn. En dan moet je nog kiezen. Sms? Een authenticator-app? Passkeys? Je wilt klanten beschermen, maar ze moeten wel gewoon kunnen inloggen."
+    },
+    {
+      "type": "paragraph",
+      "text": "Als product owner hoef je die techniek niet zelf te ontwerpen. Maar iemand moet wel de keuzes maken en zorgen dat er iets gebeurt. Anders staat ‘2FA invoeren’ over een halfjaar nog steeds op de backlog. Met een hogere prioriteit, dat dan weer wel."
+    },
+    {
+      "type": "h2",
+      "text": "Wat kan iemand met een gestolen klantaccount",
+      "id": "wat-kan-iemand-met-een-gestolen-klantaccount"
+    },
+    {
+      "type": "paragraph",
+      "text": "Je hoeft zelf geen wachtwoorden te lekken om er last van te krijgen. Klanten gebruiken soms dezelfde gebruikersnaam en hetzelfde wachtwoord op meerdere websites. Lekt die combinatie daar, dan probeert een aanvaller het bij jou. Vaak geautomatiseerd, met hele lijsten tegelijk. Dat heet een credential stuffing attack. Werkt zo’n combinatie, dan komt de aanvaller gewoon via je inlogscherm binnen."
+    },
+    {
+      "type": "paragraph",
+      "text": "Heb je 2FA echt nodig? Kijk eens wat iemand met een gestolen klantaccount kan doen. Alleen een voorkeur aanpassen? Of ook facturen downloaden, een adres of rekeningnummer wijzigen en betaalde diensten bestellen? Het eerlijke antwoord: als je daar onrustig van wordt, is alleen een wachtwoord moeilijk te verdedigen."
+    },
+    {
+      "type": "paragraph",
+      "text": "Dat maakt het gesprek concreet. Breng met security en je team in kaart welke gegevens en handelingen bescherming vragen. Kijk daarbij ook naar gekoppelde apps, andere portals en het accountbeheer. Een goed beveiligde voordeur helpt weinig als een andere ingang hetzelfde account met minder controle toegankelijk maakt."
+    },
+    {
+      "type": "paragraph",
+      "text": "Twee factor authenticatie kan het misbruik van een gestolen wachtwoord beperken. Het voorkomt niet ieder datalek. Een fout in de toegangsrechten of een kwetsbare API vraagt om andere maatregelen. Geef 2FA daarom een duidelijke plek binnen de beveiliging van je klantomgeving."
+    },
+    {
+      "type": "h2",
+      "text": "Twee factoren betekenen niet automatisch twee keer gedoe",
+      "id": "twee-factoren-betekenen-niet-automatisch-twee-keer-gedoe"
+    },
+    {
+      "type": "paragraph",
+      "text": "Bij twee factor authenticatie, meestal afgekort tot 2FA, gebruik je twee verschillende soorten bewijs. Bijvoorbeeld iets wat de klant weet, zoals een wachtwoord, en iets wat de klant bezit, zoals een telefoon met een authenticator-app. Echte consultants zullen het vaak MFA noemen: authenticatie met meerdere factoren. Zelf gebruik ik liever 2FA. Meer ‘straattaal’, zullen we maar zeggen."
+    },
+    {
+      "type": "paragraph",
+      "text": "Twee wachtwoorden zijn dus geen twee factoren. En een veilige aanmelding hoeft niet te bestaan uit een wachtwoord plus een over te typen code. Met een passend ingerichte passkey kan de klant inloggen met een digitale sleutel die wordt vrijgegeven met een pincode of biometrie."
+    },
+    {
+      "type": "paragraph",
+      "text": "Voor jou is vooral relevant welke bescherming de methode biedt en hoe de klant die ervaart. Hoeveel stappen zijn nodig? Begrijpt de klant wat er gebeurt? Werkt het ook bij een nieuwe telefoon? En wat gebeurt er als het misgaat?"
+    },
+    {
+      "type": "h2",
+      "text": "Begin bij het moment waarop bescherming nodig is",
+      "id": "begin-bij-het-moment-waarop-bescherming-nodig-is"
+    },
+    {
+      "type": "paragraph",
+      "text": "Moet een klant bij iedere aanmelding een extra controle doen? Of vraag je die controle bij bepaalde handelingen? Die keuze hoort bij het ontwerp van de klantreis."
+    },
+    {
+      "type": "paragraph",
+      "text": "Je kunt bijvoorbeeld aanvullende authenticatie vragen voordat iemand een rekeningnummer wijzigt. Dat heet step up authenticatie. De controle hoort dan bij een herkenbaar moment: de klant wil iets doen waarvoor meer zekerheid nodig is."
+    },
+    {
+      "type": "paragraph",
+      "text": "Maar kijk ook naar wat de klant daarvoor al kan zien. Als na de eerste aanmelding gevoelige documenten toegankelijk zijn, beschermt een extra controle bij een latere wijziging die documenten niet. Laat je team bovendien vaststellen hoe de controle technisch wordt afgedwongen, ook bij rechtstreekse verzoeken aan de achterliggende systemen."
+    },
+    {
+      "type": "paragraph",
+      "text": "Mijn vuistregel: alles wat vertrouwelijker is dan openbare kookrecepten verdient meer bescherming dan alleen een wachtwoord. Werk vervolgens met security uit wat dat voor jouw portal betekent. Welke gegevens bescherm je, welke handelingen en op welk moment?"
+    },
+    {
+      "type": "h2",
+      "text": "Welke methode past bij jouw klanten",
+      "id": "welke-methode-past-bij-jouw-klanten"
+    },
+    {
+      "type": "paragraph",
+      "text": "Welke methode kies je? Je klant wil vooral naar binnen. Die zit niet te wachten op jouw beveiligingsproject. Bied daarom een sterke voorkeursmethode en een bruikbaar alternatief voor klanten die daarmee niet uit de voeten kunnen. Klanten keuze geven is prima. Iedere denkbare methode aanbieden levert ook extra beheer, ondersteuning en aanvalsroutes op."
+    },
+    {
+      "type": "h3",
+      "text": "Een code per e mail"
+    },
+    {
+      "type": "paragraph",
+      "text": "Een code per e-mail. Lekker makkelijk. Maar denk even mee. Je klant is zijn wachtwoord vergeten en krijgt een resetlink per e-mail. Een aanvaller die de mailbox heeft overgenomen, kan dus het wachtwoord wijzigen. En waar komt daarna jouw extra inlogcode binnen? Precies. In diezelfde mailbox."
+    },
+    {
+      "type": "paragraph",
+      "text": "Voor mij is e-mail daarom een no-go als voorkeursmethode voor een sterke tweede factor. Je wilt geen extra controle die bij een overgenomen mailbox meteen mee omvalt. Een e-mailadres bevestigen of een melding sturen is uiteraard een ander verhaal."
+    },
+    {
+      "type": "h3",
+      "text": "Een code per sms"
+    },
+    {
+      "type": "paragraph",
+      "text": "Sms heeft een groot voordeel: de klant hoeft geen aparte app te installeren. Het werkt ook op een oude Nokia. Maar een sms-code is geen wondermiddel. Er zijn verzendkosten, berichten komen soms te laat en een telefoonnummer kan worden overgenomen."
+    },
+    {
+      "type": "paragraph",
+      "text": "Ook is sms-OTP vatbaar voor een Adversary-in-the-Middle-aanval, afgekort AiTM. De aanvaller bouwt jouw inlogscherm na. De klant voert daar zijn wachtwoord en sms-code in. Terwijl de klant wacht op toegang, gebruikt de aanvaller die gegevens om op de echte site in te loggen. De extra controle wordt gewoon doorgegeven."
+    },
+    {
+      "type": "paragraph",
+      "text": "Vergezocht? Dit is geen theorie. Bij Odido kwam een medewerker volgens de politie op een nagebouwde inlogpagina terecht, na een telefoontje van iemand die zich voordeed als een IT-collega. De medewerker voerde zijn gebruikersnaam, wachtwoord én verificatiecode in. Daarmee kregen de criminelen toegang tot interne systemen. Het ging daar om een medewerkersaccount, maar het principe werkt ook bij klantaccounts."
+    },
+    {
+      "type": "paragraph",
+      "text": "Is sms daarmee een no-go? Voor mij niet. Het kan een laagdrempelig alternatief of een tussenstap zijn. Maar kies daar bewust voor. Voor welke klanten en handelingen accepteer je het? En hoe regel je het wijzigen van een telefoonnummer? Dat laatste is óók beveiliging."
+    },
+    {
+      "type": "h3",
+      "text": "Een authenticator app"
+    },
+    {
+      "type": "paragraph",
+      "text": "Bij een authenticator-app wordt de code niet verzonden, maar op de telefoon gegenereerd. Dat scheelt sms-kosten. De klant moet de app wel installeren, instellen en kunnen blijven gebruiken na een telefoonwissel."
+    },
+    {
+      "type": "paragraph",
+      "text": "En dan die zes cijfertjes. Telefoon erbij, app openen, code zoeken, terug naar je browser, overtypen. Je kunt er een hoop gedoe van maken. Of je helpt de klant met een goede inrichting en duidelijke uitleg. Test dat met echte klanten. Een developer die het ‘heel logisch’ vindt, is nog geen gebruikersonderzoek. En ook de codes uit een authenticator-app zijn vatbaar voor dezelfde Adversary-in-the-Middle-aanval. Dat de code in een app wordt gemaakt in plaats van per sms wordt verstuurd, voorkomt niet dat een aanvaller hem via een nep-inlogscherm afvangt en direct gebruikt."
+    },
+    {
+      "type": "h3",
+      "text": "Passkeys"
+    },
+    {
+      "type": "paragraph",
+      "text": "Kan dat niet makkelijker én veiliger? Zeker. Onthoud dit woord maar: passkeys. Geen wachtwoord onthouden, geen zes cijfertjes overtypen. De klant gebruikt een digitale sleutel die bij jouw website hoort. Met verplichte gebruikersverificatie via een pincode of biometrie combineer je bezit van de sleutel met een tweede factor."
+    },
+    {
+      "type": "paragraph",
+      "text": "Een passkey beschermt je wél tegen deze Adversary-in-the-Middle-aanval. De sleutel is gebonden aan de echte website en werkt niet op het nagemaakte inlogscherm van de aanvaller. Er is geen wachtwoord of losse code die de klant kan doorgeven. Het Nationaal Cyber Security Centrum (NCSC), het Nederlandse expertisecentrum dat organisaties helpt hun digitale veiligheid te versterken, adviseert passkeys waar dat mogelijk is."
+    },
+    {
+      "type": "paragraph",
+      "text": "Passkeys zijn geen verre toekomst waar je voorlopig niets mee kunt. Je kunt ze nu al meenemen in je ontwerp. Controleer wat jouw oplossing en de apparaten en browsers van je klanten ondersteunen. En werk registratie, gebruik op een ander apparaat en herstel uit. Alleen een vinkje aanzetten is nog geen complete klantreis."
+    },
+    {
+      "type": "h2",
+      "text": "Ontwerp ook de dag waarop de klant zijn telefoon kwijt is",
+      "id": "ontwerp-ook-de-dag-waarop-de-klant-zijn-telefoon-kwijt-is"
+    },
+    {
+      "type": "paragraph",
+      "text": "De demo werkt. Iedereen blij. En dan raakt je klant zijn telefoon kwijt. Dat scenario staat meestal niet in de demo, maar hoort wel bij jouw oplossing."
+    },
+    {
+      "type": "paragraph",
+      "text": "Een klant krijgt een nieuwe telefoon. Een nummer vervalt. Een apparaat raakt kwijt. Iemand belt de klantenservice en zegt dringend toegang nodig te hebben."
+    },
+    {
+      "type": "paragraph",
+      "text": "Hoe stel je dan vast dat je met de juiste persoon te maken hebt? Welke alternatieve middelen zijn vooraf vastgelegd? Wie mag een middel verwijderen of vervangen? En welke melding ontvangt de klant?"
+    },
+    {
+      "type": "paragraph",
+      "text": "Als de klantenservice na een paar eenvoudig te achterhalen antwoorden de tweede factor uitschakelt, heb je een achterdeur gebouwd. De ketting is immers zo sterk als de zwakste schakel. Geef accountherstel daarom een eigen plek in ontwerp, backlog en acceptatie. Laat de klantenservice meedenken voordat de eerste klant vastloopt."
+    },
+    {
+      "type": "h2",
+      "text": "Welke bescherming past bij het risico",
+      "id": "welke-bescherming-past-bij-het-risico"
+    },
+    {
+      "type": "paragraph",
+      "text": "Wat je kiest, hangt ook af van wat een klant met het account kan doen. Kan die alleen content streamen, zonder toegang tot gevoelige gegevens of betaalde wijzigingen? Dan kan alleen een wachtwoord voldoende zijn. Je accepteert daarmee wel het risico dat iemand anders op kosten van de klant meekijkt."
+    },
+    {
+      "type": "paragraph",
+      "text": "Wil je de klant ook een abonnement laten aanzetten, opzeggen of wijzigen? Dan komt 2FA in beeld. Bijvoorbeeld als extra controle op dat moment. Zo bescherm je de handelingen die gevolgen hebben voor de klant, zonder bij iedere aflevering opnieuw een code te vragen."
+    },
+    {
+      "type": "paragraph",
+      "text": "Waarvoor kies je dan? Bij een grote B2C-klantgroep zal een combinatie van sms-OTP, een authenticator-app en passkeys vaak voldoen. Sms omdat het laagdrempelig is. Een authenticator-app voor klanten die daar prettig mee werken. En passkeys omdat die sterke bescherming tegen phishing combineren met eenvoudig inloggen."
+    },
+    {
+      "type": "paragraph",
+      "text": "Laat de klant kiezen binnen de grenzen van het risico dat je accepteert. Vraagt een handeling om phishingbestendige authenticatie, dan zijn sms en een authenticator-app met over te typen codes daarvoor niet voldoende. Keuzevrijheid is mooi, maar de gekozen methode moet wel de bescherming bieden die je hebt afgesproken."
+    },
+    {
+      "type": "h2",
+      "text": "Maak van de zorg een uitvoerbare eerste oplevering",
+      "id": "maak-van-de-zorg-een-uitvoerbare-eerste-oplevering"
+    },
+    {
+      "type": "paragraph",
+      "text": "Je hoeft niet te wachten tot iedere app en ieder uitzonderingsgeval tegelijk kan worden aangepakt. Je moet wel weten wat je eerste oplevering daadwerkelijk beschermt en welke risico’s nog blijven bestaan."
+    },
+    {
+      "type": "paragraph",
+      "text": "Een praktische aanpak bestaat uit vier stappen."
+    },
+    {
+      "type": "ordered-list",
+      "items": [
+        "Breng de huidige situatie in kaart. Welke portals en apps gebruiken het account? Wat kunnen klanten ermee? Hoe werken registratie, wachtwoordherstel en accountbeheer nu?",
+        "Maak keuzes met business en security. Bepaal wat bescherming nodig heeft, welke methode de voorkeur krijgt en welke alternatieven acceptabel zijn. Betrek ook de klantenservice en verantwoordelijken voor de klantreis.",
+        "Ontwerp de volledige route. Werk aanmelding, registratie van het middel, wijzigen, verlies en herstel uit. Onderzoek wat je huidige inlogoplossing ondersteunt en toets onzekerheden met een gerichte proef.",
+        "Start met een afgebakende invoering. Kies een beheersbare groep of klantreis, bereid communicatie en ondersteuning voor en spreek af wanneer je kunt uitbreiden. Een vrijwillige proef levert inzichten op, maar beschermt nog niet vanzelf de overige accounts."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Dit levert meer op dan een backlogitem met de titel ‘2FA aanzetten’. Je team krijgt concrete keuzes en acceptatiecriteria. Jij kunt uitleggen wat er wordt opgeleverd en waarom."
+    },
+    {
+      "type": "h2",
+      "text": "Wanneer is het echt klaar",
+      "id": "wanneer-is-het-echt-klaar"
+    },
+    {
+      "type": "paragraph",
+      "text": "Een collega ontvangt een code en kan inloggen. Mooi. Maar daarmee ben je er niet. Klanten moeten hun middel kunnen instellen, kunnen blijven inloggen en veilig toegang kunnen herstellen. Ook de klanten die niet iedere week met nieuwe techniek spelen."
+    },
+    {
+      "type": "paragraph",
+      "text": "Meet daarom hoeveel klanten de beoogde bescherming daadwerkelijk gebruiken, waar ze afhaken, hoeveel aanmeldingen mislukken en welke vragen bij de klantenservice binnenkomen. Controleer ook of de beschermde handelingen via alle relevante routes de afgesproken authenticatie vereisen."
+    },
+    {
+      "type": "paragraph",
+      "text": "Spreek vooraf af wat je doet bij problemen. Een terugval naar alleen een wachtwoord kan de klant tijdelijk helpen, maar verandert ook de bescherming. Zo’n besluit vraagt dezelfde aandacht als de oorspronkelijke keuze."
+    },
+    {
+      "type": "h2",
+      "text": "Waar je als product owner morgen mee kunt beginnen",
+      "id": "waar-je-als-product-owner-morgen-mee-kunt-beginnen"
+    },
+    {
+      "type": "paragraph",
+      "text": "Je hoeft morgen geen expert te zijn in alle vormen van 2FA. Maar je kunt wel zorgen dat er beweging komt. Plan een gesprek met je tech lead, security en de klantenservice. Neem één concrete klantreis mee. Bijvoorbeeld het bekijken van facturen en wijzigen van betaalgegevens."
+    },
+    {
+      "type": "paragraph",
+      "text": "Stel vast wat een aanvaller met dat account kan doen, welke controle nu ontbreekt en hoe een klant straks toegang houdt bij verlies van een telefoon. Daarmee heb je een vertrekpunt voor een besluit én voor werk dat je team kan oppakken."
+    },
+    {
+      "type": "paragraph",
+      "text": "Staat ‘2FA invoeren’ bij jou ook al te lang op de backlog? Laten we kennismaken en samen kijken waar het vastloopt. Je krijgt hulp om keuzes te maken en ze te vertalen naar werk dat je team kan uitvoeren. Bel of stuur een bericht. Dan maken we de eerste stap concreet."
+    },
+    {
+      "type": "h2",
+      "text": "Technische bronnen",
+      "id": "technische-bronnen"
+    },
+    {
+      "type": "references",
+      "items": [
+        {
+          "text": "NCSC — Kies je authenticatiemiddel op basis van het risico.",
+          "href": "https://www.ncsc.nl/multifactor-authenticatie/kies-je-authenticatiemiddel-op-basis-van-het-risico"
+        },
+        {
+          "text": "NCSC — Aan de slag met passkeys.",
+          "href": "https://www.ncsc.nl/multifactor-authenticatie/aan-de-slag-met-passkeys"
+        },
+        {
+          "text": "NIST SP 800-63B-4 — Authenticators, met onder meer de beperkingen van e-mail en eenmalige codes.",
+          "href": "https://pages.nist.gov/800-63-4/sp800-63b/authenticators/"
+        },
+        {
+          "text": "Politie — Politie deelt stem van verdachte in onderzoek naar hack Odido, 7 september 2026.",
+          "href": "https://www.politie.nl/nieuws/2026/september/7/11-politie-deelt-stem-van-verdachte-in-onderzoek-naar-hack-odido.html"
+        }
+      ]
+    }
+  ]
+}
