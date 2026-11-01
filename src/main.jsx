@@ -7,6 +7,7 @@ import ReactionsBlock from './components/ReactionsBlock';
 import firstStory from './articles/architectuur-voor-selfservice-portalen.json';
 import secondStory from './articles/drie-stappen-voor-2fa.json';
 import smallStartStory from './articles/klein-beginnen.json';
+import twoFactorHowStory from './articles/2fa-hoe-dan.json';
 
 const page = location.pathname.split('/').pop().replace('.html', '') || 'index';
 const isHome = page === 'index';
@@ -169,7 +170,8 @@ function Home() {
             <div className="section-heading">
                 <div><h2>Even de tijd om <em>te lezen.</em></h2></div>
                 <TextLink href="./blog.html">Naar het blog</TextLink></div>
-            <StoryCard/>
+            <StoryCard story={twoFactorHowStory} href="./2fa-hoe-dan.html" category="Praktische gids" photo="twoFactorHow"/>
+        <StoryCard/>
         <StoryCard story={secondStory} href="./drie-stappen-voor-2fa.html" category="Praktische gids" photo="twoFactor"/>
         <StoryCard story={smallStartStory} href="./klein-beginnen.html" category="Aanpak" photo="smallStart"/></section>
         <section className="section collaboration" id="samenwerken" aria-labelledby="collaboration-title">
@@ -221,6 +223,7 @@ function Blog() {
         <Label number="Blog">Verhalen & gedachten</Label>
         <h1>Een moment om te lezen.</h1>
         <p className="intro">Ideeën, observaties en verhalen over CIAM, architectuur en de waarde voor je organisatie.</p>
+        <StoryCard story={twoFactorHowStory} href="./2fa-hoe-dan.html" category="Praktische gids" photo="twoFactorHow"/>
         <StoryCard/>
         <StoryCard story={secondStory} href="./drie-stappen-voor-2fa.html" category="Praktische gids" photo="twoFactor"/>
         <StoryCard story={smallStartStory} href="./klein-beginnen.html" category="Aanpak" photo="smallStart"/>
@@ -317,13 +320,14 @@ function Longread() {
 
 function App() {
     return <><a className="skip-link" href="#inhoud">Direct naar inhoud</a><Header/>
-        <main id="inhoud">{page === 'klein-beginnen' ? <ArticlePage story={smallStartStory} category="Aanpak"/> : page === 'drie-stappen-voor-2fa' ? <ArticlePage story={secondStory} category="Praktische gids"/> : page === 'eerste-verhaal' ? <ArticlePage story={firstStory}/> : page === 'blog' ? <Blog/> : page === 'mijn-verhaal' ? <MyStory/> : page === 'longread' ?
+        <main id="inhoud">{page === '2fa-hoe-dan' ? <ArticlePage story={twoFactorHowStory} category="Praktische gids"/> : page === 'klein-beginnen' ? <ArticlePage story={smallStartStory} category="Aanpak"/> : page === 'drie-stappen-voor-2fa' ? <ArticlePage story={secondStory} category="Praktische gids"/> : page === 'eerste-verhaal' ? <ArticlePage story={firstStory}/> : page === 'blog' ? <Blog/> : page === 'mijn-verhaal' ? <MyStory/> : page === 'longread' ?
             <Longread/> : <Home/>}</main>
-        {!isHome && !['eerste-verhaal', 'drie-stappen-voor-2fa', 'klein-beginnen'].includes(page) && <footer><a className="brand" href="./index.html">{profile.name}.</a><p>Met aandacht gemaakt.
+        {!isHome && !['2fa-hoe-dan', 'eerste-verhaal', 'drie-stappen-voor-2fa', 'klein-beginnen'].includes(page) && <footer><a className="brand" href="./index.html">{profile.name}.</a><p>Met aandacht gemaakt.
             © {new Date().getFullYear()}</p><a href="#inhoud">Terug naar boven ↑</a></footer>}</>
 }
 
 document.title = `${({
+    '2fa-hoe-dan': twoFactorHowStory.title,
     'eerste-verhaal': firstStory.title,
     'drie-stappen-voor-2fa': secondStory.title,
     'klein-beginnen': smallStartStory.title,
