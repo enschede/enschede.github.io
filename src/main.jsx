@@ -30,7 +30,8 @@ function Header() {
         <button className="menu-toggle" aria-expanded={open} aria-controls="navigation"
                 onClick={() => setOpen(!open)}>{open ? 'Sluiten ×' : 'Menu ☰'}</button>
         <nav id="navigation" className={open ? 'open' : ''} aria-label="Hoofdnavigatie" onClick={() => setOpen(false)}>
-            <a href={homeLink('ciam')}>Over CIAM</a><a href={homeLink('testimonials')}>Testimonials</a><a
+            <a href={homeLink('ciam')}>Over CIAM</a><a
+            aria-current={page === '2fa-hoe-dan' ? 'page' : undefined} href="./2fa-hoe-dan.html">2FA hoe dan</a><a
             aria-current={page === 'blog' ? 'page' : undefined} href="./blog.html">Verhalen</a><a
             aria-current={page === 'mijn-verhaal' ? 'page' : undefined} href="./mijn-verhaal.html">Mijn verhaal</a><a
             className="nav-contact" href={homeLink('kennismaken')}>Even kennismaken <Arrow/></a></nav>
