@@ -31,8 +31,8 @@ function Header() {
                 onClick={() => setOpen(!open)}>{open ? 'Sluiten ×' : 'Menu ☰'}</button>
         <nav id="navigation" className={open ? 'open' : ''} aria-label="Hoofdnavigatie" onClick={() => setOpen(false)}>
             <a href={homeLink('ciam')}>Over CIAM</a><a
-            aria-current={page === '2fa-hoe-dan' ? 'page' : undefined} href="./2fa-hoe-dan.html">2FA hoe dan</a><a
-            aria-current={page === 'blog' ? 'page' : undefined} href="./blog.html">Verhalen</a><a
+            aria-current={page === '2fa-hoe-dan' ? 'page' : undefined} href="./2fa-hoe-dan.html">2FA voor jouw klanten, hoe dan</a><a
+            aria-current={page === 'blog' ? 'page' : undefined} href="./blog.html">Blogjes</a><a
             aria-current={page === 'mijn-verhaal' ? 'page' : undefined} href="./mijn-verhaal.html">Mijn verhaal</a><a
             className="nav-contact" href={homeLink('kennismaken')}>Even kennismaken <Arrow/></a></nav>
     </header>
@@ -214,16 +214,16 @@ function StoryCard({story = firstStory, href = './eerste-verhaal.html', category
         <div><span className="eyebrow">{category} · {story.readingMinutes} min leestijd</span>
             <h2>{story.title}</h2>
             <p>{story.intro}</p>
-            <span className="text-link">Lees het verhaal <Arrow/></span>
+            <span className="text-link">Lees het blogje <Arrow/></span>
         </div>
     </a>;
 }
 
 function Blog() {
     return <div className="subpage">
-        <Label number="Blog">Verhalen & gedachten</Label>
+        <Label number="Blog">Blogjes & gedachten</Label>
         <h1>Een moment om te lezen.</h1>
-        <p className="intro">Ideeën, observaties en verhalen over CIAM, architectuur en de waarde voor je organisatie.</p>
+        <p className="intro">Ideeën, observaties en blogjes over CIAM, architectuur en de waarde voor je organisatie.</p>
         <StoryCard story={twoFactorHowStory} href="./2fa-hoe-dan.html" category="Praktische gids" photo="twoFactorHow"/>
         <StoryCard/>
         <StoryCard story={secondStory} href="./drie-stappen-voor-2fa.html" category="Praktische gids" photo="twoFactor"/>
@@ -233,14 +233,14 @@ function Blog() {
 
 function ArticlePage({story, category = 'Whitepaper'}) {
     return <><article className="subpage whitepaper">
-        <a className="text-link" href="./blog.html">← Alle verhalen</a>
+        <a className="text-link" href="./blog.html">← Alle blogjes</a>
         <p className="eyebrow">{category} · Marc Enschede · {story.readingMinutes} min leestijd</p>
         <h1>{story.title}</h1>
         {story.subtitle && <p className="whitepaper-subtitle">{story.subtitle}</p>}
         <p className="intro">{story.intro}</p>
         <div className="whitepaper-layout">
             <aside className="whitepaper-toc" aria-label="Inhoudsopgave">
-                <details open><summary>In dit verhaal</summary>
+                <details open><summary>In dit blogje</summary>
                     <ol>{story.toc.map(item => <li key={item.id}><a href={`#${item.id}`}>{item.text}</a></li>)}</ol>
                 </details>
             </aside>
@@ -262,7 +262,7 @@ function ArticlePage({story, category = 'Whitepaper'}) {
                 })}
                 <div className="whitepaper-end"><h2>Sparren over jouw architectuur?</h2>
                     <a className="button" href={homeLink('kennismaken')}>Plan een kennismaking <Arrow/></a>
-                    <TextLink href="./blog.html">Terug naar alle verhalen</TextLink>
+                    <TextLink href="./blog.html">Terug naar alle blogjes</TextLink>
                 </div>
             </div>
         </div>
@@ -315,7 +315,7 @@ function Longread() {
         <div className="article-body"><p className="example-note">Dit is een voorbeeldtekst voor de indeling van een
             longread.</p>{[['Ruimte in je dag', 'Een agenda vult zich vaak vanzelf. Een afspraak hier, een bericht daar. Voor je het weet is de dag voorbij. Even stilstaan kan helpen om opnieuw te zien wat je aandacht verdient. Het hoeft niet groot te zijn: een wandeling, een kop koffie zonder scherm of een paar gedachten op papier.'], ['Kijken met aandacht', 'Wie wat langzamer kijkt, ziet andere dingen. Het licht op een muur, een onverwachte vraag in een gesprek, een idee dat nog geen vorm heeft. Aandacht geeft ruimte aan wat je anders misschien voorbij zou lopen.'], ['Een klein begin', 'Je hoeft niet meteen alles anders te doen. Begin met een klein moment dat je voor jezelf vrijhoudt. Wat valt je op? Wat wil je bewaren? En wat mag nog even wachten? Misschien begint daar wel een nieuw verhaal.']].map(([title, body]) =>
             <section key={title}><h2>{title}</h2><p>{body}</p><p>{filler}</p></section>)}<TextLink href="./blog.html">Terug
-            naar alle verhalen</TextLink></div>
+            naar alle blogjes</TextLink></div>
     </article>
 }
 
@@ -332,7 +332,7 @@ document.title = `${({
     'eerste-verhaal': firstStory.title,
     'drie-stappen-voor-2fa': secondStory.title,
     'klein-beginnen': smallStartStory.title,
-    blog: 'Verhalen',
+    blog: 'Blogjes',
     'mijn-verhaal': 'Mijn verhaal',
     longread: 'De waarde van even stilstaan'
 })[page] || 'CIAM in 4 stappen'} — ${profile.name}`;

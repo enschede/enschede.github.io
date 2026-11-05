@@ -6,7 +6,7 @@ export default function ReactionsBlock() {
         <div>
             <p className="eyebrow">Reacties</p>
             <h2 id="reactions-title">Wat is jouw ervaring?</h2>
-            <p>Heb je een vraag over dit verhaal, een aanvulling of een ervaring die je wilt delen? Ik hoor graag van je.</p>
+            <p>Heb je een vraag over dit blogje, een aanvulling of een ervaring die je wilt delen? Ik hoor graag van je.</p>
         </div>
         <div className="reaction-form">
             <iframe src={profile.contactFormUrl}
