@@ -266,7 +266,15 @@ footer p, footer > a:last-child { font-size: 11px; color: #bbb; }
 .whitepaper > h1 { max-width: 1050px; text-transform: none; font-size: clamp(30px, 4vw, 54px); }
 .whitepaper > .eyebrow { margin-top: 35px; }
 .whitepaper-subtitle { font-family: Montserrat, Arial, sans-serif; color: #333; font-size: clamp(19px, 2vw, 26px); }
-.whitepaper > .intro { max-width: none; width: 100%; }
+.whitepaper > .intro {
+    max-width: none;
+    width: 100%;
+    font-family: Montserrat, Arial, sans-serif;
+    font-size: clamp(20px, 2.2vw, 26px);
+    font-weight: 600;
+    line-height: 1.5;
+    color: #333;
+}
 .whitepaper-layout { display: grid; grid-template-columns: minmax(200px, .8fr) minmax(0, 2fr); align-items: start; gap: 6%; }
 .whitepaper-toc { position: sticky; top: 110px; max-height: calc(100vh - 140px); overflow-y: auto; background: #f5f5f5; padding: 22px; border-top: 3px solid #333; }
 .whitepaper-toc summary { font-weight: 600; cursor: pointer; }
