@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useLayoutEffect, useState} from 'react';
 import {createRoot} from 'react-dom/client';
 import {filler, photos, profile, testimonials} from './content';
 import './style.css';
@@ -318,6 +318,14 @@ function Longread() {
 }
 
 function App() {
+    useLayoutEffect(() => {
+        // The anchor target only exists after React has rendered the page.
+        const targetId = window.location.hash.slice(1);
+        if (targetId) {
+            document.getElementById(targetId)?.scrollIntoView({behavior: 'instant', block: 'start'});
+        }
+    }, []);
+
     return <><a className="skip-link" href="#inhoud">Direct naar inhoud</a><Header/>
         <main id="inhoud">{page === '2fa-hoe-dan' ? <ArticlePage story={twoFactorHowStory} category="Praktische gids"/> : page === 'klein-beginnen' ? <ArticlePage story={smallStartStory} category="Aanpak"/> : page === 'drie-stappen-voor-2fa' ? <ArticlePage story={secondStory} category="Praktische gids"/> : page === 'eerste-verhaal' ? <ArticlePage story={firstStory}/> : page === 'blog' ? <Blog/> : page === 'mijn-verhaal' ? <MyStory/> : page === 'longread' ?
             <Longread/> : <Home/>}</main>
