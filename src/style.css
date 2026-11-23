@@ -229,13 +229,12 @@ footer p, footer > a:last-child { font-size: 11px; color: #bbb; }
 }
 
 /* Two identical strips create a seamless, single-row logo banner. */
-.logo-banner { position: relative; background: #fff; padding: 30px 0 40px; border-bottom: 1px solid #eee; overflow: hidden; }
-.logo-banner-track { display: flex; width: max-content; animation: logo-scroll 65s linear infinite; }
+.logo-banner { position: relative; background: #fff; padding: 30px 0; border-bottom: 1px solid #eee; overflow: hidden; }
+.logo-banner-track { display: flex; width: max-content; animation: logo-scroll 130s linear infinite; }
 .logo-banner-list { display: flex; flex: 0 0 auto; align-items: center; gap: 48px; margin: 0; padding: 0 48px 0 0; list-style: none; }
 .logo-banner-list li { display: flex; align-items: center; justify-content: center; flex: 0 0 155px; width: 155px; height: 65px; }
 .logo-banner img { width: 100%; height: 100%; object-fit: contain; filter: none; }
-.logo-banner:hover .logo-banner-track, .logo-banner.is-paused .logo-banner-track { animation-play-state: paused; }
-.logo-motion-toggle { position: absolute; right: 12px; bottom: 2px; min-height: 32px; border: 0; background: #fff; color: #555; font-size: 11px; cursor: pointer; }
+.logo-banner:hover .logo-banner-track { animation-play-state: paused; }
 @keyframes logo-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 @media(max-width:600px) {
     .logo-banner-list { gap: 32px; padding-right: 32px; }
@@ -244,7 +243,7 @@ footer p, footer > a:last-child { font-size: 11px; color: #bbb; }
 @media(prefers-reduced-motion:reduce) {
     .logo-banner { overflow-x: auto; padding-bottom: 30px; }
     .logo-banner-track { animation: none; }
-    .logo-banner-list[aria-hidden="true"], .logo-motion-toggle { display: none; }
+    .logo-banner-list[aria-hidden="true"] { display: none; }
 }
 
 .testimonials-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; }

@@ -86,12 +86,6 @@ function LogoBanner() {
                 </li>)}
             </ul>)}
         </div>
-        <button className="logo-motion-toggle" type="button" onClick={event => {
-            const banner = event.currentTarget.closest('.logo-banner');
-            const paused = banner.classList.toggle('is-paused');
-            event.currentTarget.setAttribute('aria-pressed', String(paused));
-            event.currentTarget.textContent = paused ? 'Afspelen' : 'Pauzeren';
-        }} aria-label="Logobeweging pauzeren of hervatten" aria-pressed="false">Pauzeren</button>
     </aside>;
 }
 
