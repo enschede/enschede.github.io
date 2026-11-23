@@ -104,8 +104,6 @@ function Home() {
             <div className="hero-image"><Photo name="hero" eager/>
                 <div className="image-note">Een frisse blik begint met even stilstaan.</div>
             </div>
-            <div className="hero-bottom"><span>Met aandacht voor wat ertoe doet</span><a href="#ciam">Scroll om te
-                ontdekken ↓</a></div>
         </section>
         <LogoBanner/>
         <section className="split section" id="ciam">
