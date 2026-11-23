@@ -34,7 +34,7 @@ function Header() {
             aria-current={page === '2fa-hoe-dan' ? 'page' : undefined} href="./2fa-hoe-dan.html">2FA voor jouw klanten, hoe dan</a><a
             aria-current={page === 'blog' ? 'page' : undefined} href="./blog.html">Blogjes</a><a
             aria-current={page === 'mijn-verhaal' ? 'page' : undefined} href="./mijn-verhaal.html">Mijn verhaal</a><a
-            className="nav-contact" href={homeLink('kennismaken')}>Even kennismaken <Arrow/></a></nav>
+            className="button nav-contact" href={homeLink('kennismaken')}>Kennismaken</a></nav>
     </header>
 }
 
