@@ -212,7 +212,7 @@ function StoryCard({story = firstStory, href = './eerste-verhaal.html', category
         <div><span className="eyebrow">{category} · {story.readingMinutes} min leestijd</span>
             <h2>{story.title}</h2>
             <p>{story.intro}</p>
-            <span className="text-link">Lees het blogje <Arrow/></span>
+            <span className="button">Lees dit artikel</span>
         </div>
     </a>;
 }
