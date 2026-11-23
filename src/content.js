@@ -9,7 +9,7 @@ export const profile = {
     tagline: 'Persoonlijk. Nieuwsgierig. Betrokken.'
 };
 export const photos = {
-    hero: ['./images/decorations/eb230711 Marc Enschede342 copy.png', 'Marc Enschede'],
+    hero: ['./images/decorations/eb230711 Marc Enschede334.png', 'Marc Enschede'],
     portrait: ['./images/decorations/D691F81F-DDC1-457F-95B7-7D216CC78926_1_105_c.jpeg', 'Marc Enschede glimlachend in een donkerblauw colbert buiten'],
     landscape: ['photo-1470770841072-f978cf4d019e', 'Een stil meer tussen de bergen'],
     about: ['./images/decorations/8DD176F5-5273-4AC9-8FD9-1DFAB91534D2_1_201_a.jpeg', 'Staand portret van Marc Enschede buiten'],

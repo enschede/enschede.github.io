@@ -40,15 +40,15 @@ nav .nav-contact:hover { text-decoration: none; }
 .eyebrow span { margin-right: 9px; color: #777; }
 .button { max-width: 100%; min-height: 44px; text-align: center; display: inline-flex; align-items: center; justify-content: center; gap: 26px; background: #222; color: #fff; border: 1px solid #222; padding: 16px 28px; margin: 15px 0; font-family: Montserrat, Arial, sans-serif; text-transform: uppercase; font-weight: 600; font-size: 11px; letter-spacing: .7px; cursor: pointer; transition: background .2s, color .2s; }
 .button:hover { background: #555; border-color: #555; }
-.hero { position: relative; isolation: isolate; background: #202020; min-height: 640px; display: grid; place-items: center; padding: 90px var(--content-padding) 70px; text-align: center; color: #fff; }
+.hero { position: relative; isolation: isolate; background: #202020; min-height: 640px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; padding: 90px var(--content-padding) 70px; text-align: left; color: #fff; }
 .hero-image { position: absolute; inset: 0; z-index: -2; overflow: hidden; }
 .hero-image::after { content: ''; position: absolute; inset: 0; background: #000a; }
 .hero-image img { object-position: center 55%; }
-.hero-copy { width: 100%; max-width: 900px; }
+.hero-copy { width: 100%; min-width: 0; }
 .hero h1 { margin: 22px 0; }
 .hero h1::after, .section h2::after { content: ''; display: block; width: 65px; height: 3px; background: #555; margin-top: 25px; }
-.hero h1::after { margin: 25px auto; background: #ddd; }
-.hero-copy > p { color: #eee; max-width: 620px; margin: 18px auto; }
+.hero h1::after { margin: 25px 0; background: #ddd; }
+.hero-copy > p { color: #eee; max-width: 620px; margin: 18px 0; }
 .hero .eyebrow, .hero .eyebrow span { color: #ddd; }
 .hero .button { background: #fff; color: #222; border-color: #fff; margin-top: 16px; }
 .hero .button:hover { background: #ccc; border-color: #ccc; }
@@ -108,7 +108,7 @@ footer p, footer > a:last-child { font-size: 11px; color: #bbb; }
   .story-feature > div { padding-right: 22px; }
 }
 @media(max-width:700px) {
-  .hero { min-height: 0; padding-top: 55px; padding-bottom: 25px; gap: 35px; }
+  .hero { grid-template-columns: minmax(0, 1fr); min-height: 0; padding-top: 55px; padding-bottom: 25px; gap: 35px; }
   .hero h1 { font-size: clamp(30px, 7vw, 46px); }
   .hero-copy > p { font-size: 15px; }
   .hero-bottom { position: static; width: 100%; align-items: center; flex-wrap: wrap; font-size: 9px; }

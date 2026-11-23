@@ -100,7 +100,7 @@ function Home() {
         <section className="hero" id="welkom">
             <div className="hero-copy"><h1>JOUW KLANTEN VEILIGER, MAKKELIJKER EN GOEDKOPER LATEN INLOGGEN</h1><p>CIAM gaat over hoe je de business ondersteunt met digitale identiteit van de klant</p><a className="button"
                                                                                                  href="./mijn-verhaal.html">Ontdek
-                mijn verhaal <span>↓</span></a><p className="small-note">{profile.tagline}</p></div>
+                mijn verhaal <span>↓</span></a></div>
             <div className="hero-image"><Photo name="hero" eager/>
                 <div className="image-note">Een frisse blik begint met even stilstaan.</div>
             </div>
